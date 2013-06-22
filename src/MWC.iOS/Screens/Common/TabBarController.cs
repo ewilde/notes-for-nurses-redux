@@ -68,14 +68,6 @@ namespace MWC.iOS.Screens.Common {
 		    }
 		}
 		
-		public void ShowSessionDay(int day)
-		{
-			// WARNING: ORDER IS IMPORTANT, call ShowDay() before setting index (which causes ViewWillAppear)
-			var sv = sessionsSplitView as MWC.iOS.Screens.iPad.Sessions.SessionSplitView;
-			sv.ShowDay (day);
-			SelectedIndex = 2; // Sessions
-		}
-
 		/// <summary>
 		/// Only allow iPad application to rotate, iPhone is always portrait
 		/// </summary>
