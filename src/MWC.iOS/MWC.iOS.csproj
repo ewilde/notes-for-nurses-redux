@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -115,10 +115,6 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Screens\Common\TabBarController.cs" />
-    <Compile Include="Screens\iPhone\Home\HomeScreen.cs" />
-    <Compile Include="Screens\iPhone\Home\HomeScreen.designer.cs">
-      <DependentUpon>HomeScreen.cs</DependentUpon>
-    </Compile>
     <Compile Include="Screens\Common\About\AboutXamScreen.cs" />
     <Compile Include="Screens\Common\About\AboutXamScreen.designer.cs">
       <DependentUpon>AboutXamScreen.cs</DependentUpon>
@@ -185,42 +181,8 @@
     <Compile Include="Screens\Common\About\AboutXamarinScreen.cs" />
     <Compile Include="ConsoleD.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="Images\" />
-    <Folder Include="Screens\" />
-    <Folder Include="Screens\iPhone\" />
-    <Folder Include="Screens\iPad\" />
-    <Folder Include="Screens\Common\" />
-    <Folder Include="Screens\iPhone\Home\" />
-    <Folder Include="Screens\Common\Map\" />
-    <Folder Include="Images\Icons\" />
-    <Folder Include="Screens\Common\About\" />
-    <Folder Include="Screens\Common\Speakers\" />
-    <Folder Include="AL\" />
-    <Folder Include="Screens\iPhone\Exhibitors\" />
-    <Folder Include="UI\" />
-    <Folder Include="UI\CustomElements\" />
-    <Folder Include="Screens\Common\Session\" />
-    <Folder Include="UI\Controls\" />
-    <Folder Include="Screens\iPhone\Speakers\" />
-    <Folder Include="Images\Tabs\" />
-    <Folder Include="Screens\iPhone\Sessions\" />
-    <Folder Include="Screens\Common\News\" />
-    <Folder Include="Screens\iPhone\Twitter\" />
-    <Folder Include="Screens\iPhone\Favorites\" />
-    <Folder Include="Screens\iPad\Speakers\" />
-    <Folder Include="UI\Views\" />
-    <Folder Include="Screens\iPad\Exhibitors\" />
-    <Folder Include="Screens\iPad\Twitter\" />
-    <Folder Include="Screens\iPad\News\" />
-    <Folder Include="Screens\iPad\Sessions\" />
-    <Folder Include="Images\Empty\" />
-    <Folder Include="Images\Logos\" />
-    <Folder Include="Images\About\" />
-    <Folder Include="Images\About\iPad\" />
-    <Folder Include="Images\About\iPhone\" />
-  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
+  <ItemGroup />
   <ItemGroup>
     <InterfaceDefinition Include="Screens\Common\About\AboutXamScreen_iPhone.xib" />
     <InterfaceDefinition Include="Screens\Common\About\AboutXamScreen_iPad.xib" />
@@ -228,8 +190,6 @@
     <InterfaceDefinition Include="Screens\Common\Speakers\SpeakersScreen_iPad.xib" />
     <InterfaceDefinition Include="Screens\Common\Session\SessionDetailsScreen_iPhone.xib" />
     <InterfaceDefinition Include="Screens\Common\Session\SessionDetailsScreen_iPad.xib" />
-    <InterfaceDefinition Include="Screens\iPhone\Home\HomeScreen_iPhone.xib" />
-    <InterfaceDefinition Include="Screens\iPhone\Home\HomeScreen_iPad.xib" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MWC.Core\MWC.Core.MT.csproj">
