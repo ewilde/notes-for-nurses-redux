@@ -149,10 +149,8 @@ namespace MWC.iOS.UI.Controls.Views {
 				bioTextView.TextColor = UIColor.Gray;
 				bioTextView.Text = "No background information available.";
 			}
-			if (showSpeaker.ImageUrl != "http://www.mobileworldcongress.com") {
-				var u = new Uri(showSpeaker.ImageUrl);
-				image.Image = ImageLoader.DefaultRequestImage(u, this);
-			}
+
+            image.Image = ImageLoader.DefaultRequestImage(new Uri("https://en.gravatar.com/avatar/196d33ea9cdaf7817b98b981afe62c16?s=100"), this);			
 		}
 
 		public void UpdatedImage (Uri uri)

@@ -123,57 +123,26 @@
     <Compile Include="Screens\Common\Speakers\SpeakersScreen.designer.cs">
       <DependentUpon>SpeakersScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Screens\iPhone\Exhibitors\ExhibitorsScreen.cs" />
-    <Compile Include="UI\CustomElements\ExhibitorElement.cs" />
-    <Compile Include="UI\CustomElements\ExhibitorCell.cs" />
-    <Compile Include="Screens\Common\Session\SessionDetailsScreen.cs" />
-    <Compile Include="Screens\Common\Session\SessionDetailsScreen.designer.cs">
-      <DependentUpon>SessionDetailsScreen.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Screens\iPad\SessionPopupScreen.cs" />
     <Compile Include="UI\Controls\LoadingOverlay.cs" />
-    <Compile Include="Screens\Common\Session\SessionDayScheduleScreen.cs" />
     <Compile Include="AL\DaysTableSource.cs" />
     <Compile Include="AL\DayClickedEventArgs.cs" />
     <Compile Include="Screens\iPhone\Speakers\SpeakersScreen.cs" />
     <Compile Include="Screens\iPhone\WebViewControllerBase.cs" />
-    <Compile Include="Screens\iPhone\Sessions\SessionsScreen.cs" />
-    <Compile Include="Screens\iPhone\Exhibitors\ExhibitorDetailsScreen.cs" />
-    <Compile Include="UI\CustomElements\SessionElement.cs" />
     <Compile Include="UI\CustomElements\SpeakerElement.cs" />
-    <Compile Include="UI\CustomElements\SessionCell.cs" />
     <Compile Include="UI\CustomElements\SpeakerCell.cs" />
     <Compile Include="Screens\iPhone\WebViewController.cs" />
-    <Compile Include="UI\CustomElements\TweetCell.cs" />
-    <Compile Include="UI\CustomElements\TweetElement.cs" />
-    <Compile Include="Screens\iPhone\Twitter\TwitterScreen.cs" />
-    <Compile Include="Screens\iPhone\Twitter\TweetDetailsScreen.cs" />
     <Compile Include="Screens\iPhone\Speakers\SpeakerDetailsScreen.cs" />
-    <Compile Include="Screens\Common\News\NewsScreen.cs" />
-    <Compile Include="Screens\Common\News\NewsDetailsScreen.cs" />
     <Compile Include="Screens\Common\UILoadingVIew.cs" />
     <Compile Include="Screens\Common\LoadingDialogViewController.cs" />
-    <Compile Include="Screens\iPhone\Favorites\FavoritesScreen.cs" />
     <Compile Include="AL\Reachibility.cs" />
-    <Compile Include="UI\CustomElements\NewsElement.cs" />
-    <Compile Include="UI\CustomElements\NewsCell.cs" />
     <Compile Include="Screens\iPhone\UpdateManagerLoadingDialogViewController.cs" />
     <Compile Include="Screens\iPad\Speakers\SpeakerSplitView.cs" />
     <Compile Include="Screens\iPad\Speakers\SpeakerSessionMasterDetail.cs" />
     <Compile Include="UI\Views\SpeakerView.cs" />
     <Compile Include="UI\Views\SessionView.cs" />
-    <Compile Include="Screens\iPad\Exhibitors\ExhibitorSplitView.cs" />
-    <Compile Include="Screens\iPad\Twitter\TwitterSplitView.cs" />
-    <Compile Include="Screens\iPad\News\NewsSplitView.cs" />
-    <Compile Include="Screens\Common\Map\MapScreen.cs" />
-    <Compile Include="AL\FavoritesTableSource.cs" />
-    <Compile Include="Screens\iPad\Sessions\SessionPopupScreen.cs" />
-    <Compile Include="AL\UpNextTableSource.cs" />
-    <Compile Include="Screens\iPad\Sessions\SessionSplitView.cs" />
-    <Compile Include="Screens\iPad\Sessions\SessionSpeakersMasterDetail.cs" />
     <Compile Include="UI\Controls\EmptyOverlay.cs" />
     <Compile Include="AL\SpeakersTableSource.cs" />
-    <Compile Include="Screens\iPhone\Sessions\SessionDetailsScreen.cs" />
-    <Compile Include="AL\SessionsTableSource.cs" />
     <Compile Include="UI\CustomElements\DayCell.cs" />
     <Compile Include="UI\CustomElements\CustomBadgeElement.cs" />
     <Compile Include="UI\Controls\IntelligentSplitViewController.cs" />
@@ -188,8 +157,6 @@
     <InterfaceDefinition Include="Screens\Common\About\AboutXamScreen_iPad.xib" />
     <InterfaceDefinition Include="Screens\Common\Speakers\SpeakersScreen_iPhone.xib" />
     <InterfaceDefinition Include="Screens\Common\Speakers\SpeakersScreen_iPad.xib" />
-    <InterfaceDefinition Include="Screens\Common\Session\SessionDetailsScreen_iPhone.xib" />
-    <InterfaceDefinition Include="Screens\Common\Session\SessionDetailsScreen_iPad.xib" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MWC.Core\MWC.Core.MT.csproj">

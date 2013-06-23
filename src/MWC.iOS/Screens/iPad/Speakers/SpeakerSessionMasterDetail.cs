@@ -4,7 +4,6 @@ using System;
 using System.Linq;
 using MonoTouch.Foundation;
 using MWC.iOS.Screens.Common;
-using MWC.iOS.Screens.Common.Session;
 using MWC.iOS.UI.Controls.Views;
 
 namespace MWC.iOS.Screens.iPad.Speakers {
