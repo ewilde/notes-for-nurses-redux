@@ -11,7 +11,7 @@ namespace MWC.iOS.UI.Controls.Views {
 	/// Used in:
 	///  iPad   * SessionSpeakersMasterDetail
 	///         * SpeakerSessionsMasterDetail
-	///  NOT used on iPhone ~ see Common.iPhone.SpeakersScreen which dups some of this
+	///  NOT used on iPhone ~ see Common.iPhone.PatientListViewController which dups some of this
 	/// </summary>
 	public class SpeakerView : UIView, IImageUpdated {
 		UILabel nameLabel, titleLabel, companyLabel;

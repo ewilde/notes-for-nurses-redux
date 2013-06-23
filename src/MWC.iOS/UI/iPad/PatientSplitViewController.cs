@@ -6,25 +6,27 @@ using MonoTouch.ObjCRuntime;
 using MWC.iOS.Screens.iPhone.Speakers;
 
 namespace MWC.iOS.Screens.iPad.Speakers {
-	public class SpeakerSplitView : IntelligentSplitViewController {
-		SpeakersScreen speakersList;
-		SpeakerSessionMasterDetail speakerDetailWithSession;
+    using MWC.iOS.Xamarin.UI;
+
+    public class PatientSplitViewController : IntelligentSplitViewController {
+		PatientListViewController speakersList;
+		PatientDetailViewController speakerDetailViewControllerWithSession;
 		
-		public SpeakerSplitView ()
+		public PatientSplitViewController ()
 		{
 			Delegate = new SpeakerSplitViewDelegate();
 			
-			speakersList = new SpeakersScreen(this);
-			speakerDetailWithSession = new SpeakerSessionMasterDetail(-1);
+			speakersList = new PatientListViewController(this);
+			this.speakerDetailViewControllerWithSession = new PatientDetailViewController(-1);
 			
 			ViewControllers = new UIViewController[]
-				{speakersList, speakerDetailWithSession};
+				{speakersList, this.speakerDetailViewControllerWithSession};
 		}
 
 		public void ShowSpeaker (int speakerID)
 		{
-			speakerDetailWithSession = this.ViewControllers[1] as SpeakerSessionMasterDetail;
-			speakerDetailWithSession.Update(speakerID);
+			this.speakerDetailViewControllerWithSession = this.ViewControllers[1] as PatientDetailViewController;
+			this.speakerDetailViewControllerWithSession.Update(speakerID);
 		}
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
         {
@@ -42,7 +44,7 @@ namespace MWC.iOS.Screens.iPad.Speakers {
 
 		public override void WillHideViewController (UISplitViewController svc, UIViewController aViewController, UIBarButtonItem barButtonItem, UIPopoverController pc)
 		{
-			SpeakerSessionMasterDetail dvc = svc.ViewControllers[1] as SpeakerSessionMasterDetail;
+			PatientDetailViewController dvc = svc.ViewControllers[1] as PatientDetailViewController;
 			
 			if (dvc != null) {
 				dvc.AddNavBarButton (barButtonItem);
@@ -52,7 +54,7 @@ namespace MWC.iOS.Screens.iPad.Speakers {
 		
 		public override void WillShowViewController (UISplitViewController svc, UIViewController aViewController, UIBarButtonItem button)
 		{
-			SpeakerSessionMasterDetail dvc = svc.ViewControllers[1] as SpeakerSessionMasterDetail;
+			PatientDetailViewController dvc = svc.ViewControllers[1] as PatientDetailViewController;
 			
 			if (dvc != null) {
 				dvc.RemoveNavBarButton ();

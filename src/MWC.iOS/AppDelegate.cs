@@ -41,7 +41,7 @@ namespace MWC.iOS {
 		public static readonly NSString NotificationFavoriteUpdated = new NSString("NotificationFavoriteUpdated");
 		// class-level declarations
 		UIWindow window;
-		Screens.Common.TabBarController tabBar;
+		Screens.Common.NavigationViewController navigationView;
 		
 
 
@@ -146,7 +146,7 @@ try {
 				}
 			})).Start();
 
-			tabBar = new Screens.Common.TabBarController ();
+			this.navigationView = new Screens.Common.NavigationViewController ();
 			
 			// couldn't do RespondsToSelector() on static 'Appearance' property)
 			var majorVersionString = UIDevice.CurrentDevice.SystemVersion.Substring (0,1);
@@ -154,7 +154,7 @@ try {
 			if (majorVersion >= 5) { // gotta love Appearance in iOS5
 				UINavigationBar.Appearance.TintColor = ColorNavBarTint;			
 			}
-			window.RootViewController = tabBar;
+			window.RootViewController = this.navigationView;
 			window.MakeKeyAndVisible ();
 
 			return true;

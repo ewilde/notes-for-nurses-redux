@@ -9,23 +9,23 @@ namespace MWC.iOS.UI.CustomElements {
 	/// on iPhone, pushes via MT.D
 	/// on iPad, sends view to SplitViewController
 	/// </summary>
-	public class SpeakerElement : Element  {
-		static NSString cellId = new NSString ("SpeakerElement");
+	public class PatientTableElement : Element  {
+		static NSString cellId = new NSString ("PatientTableElement");
 		Speaker speaker;
 
 		/// <summary>If this is null, on iPhone; otherwise on iPad</summary>
-		MWC.iOS.Screens.iPad.Speakers.SpeakerSplitView splitView;
+		MWC.iOS.Screens.iPad.Speakers.PatientSplitViewController splitViewController;
 		
 		/// <summary>for iPhone</summary>
-		public SpeakerElement (Speaker showSpeaker) : base (showSpeaker.Name)
+		public PatientTableElement (Speaker showSpeaker) : base (showSpeaker.Name)
 		{
 			speaker = showSpeaker;
 		}
 		/// <summary>for iPad (SplitViewController)</summary>
-		public SpeakerElement (Speaker showSpeaker, MWC.iOS.Screens.iPad.Speakers.SpeakerSplitView speakerSplitView) : base (showSpeaker.Name)
+		public PatientTableElement (Speaker showSpeaker, MWC.iOS.Screens.iPad.Speakers.PatientSplitViewController patientSplitViewController) : base (showSpeaker.Name)
 		{
 			speaker = showSpeaker;
-			splitView = speakerSplitView;
+			this.splitViewController = patientSplitViewController;
 		}
 		
 		static int count;
@@ -34,9 +34,9 @@ namespace MWC.iOS.UI.CustomElements {
 			var cell = tv.DequeueReusableCell (cellId);
 			count++;
 			if (cell == null)
-				cell = new SpeakerCell (UITableViewCellStyle.Subtitle, cellId, speaker);
+				cell = new PatientTableViewCell (UITableViewCellStyle.Subtitle, cellId, speaker);
 			else
-				((SpeakerCell)cell).UpdateCell (speaker);
+				((PatientTableViewCell)cell).UpdateCell (speaker);
 
 			return cell;
 		}
@@ -52,10 +52,10 @@ namespace MWC.iOS.UI.CustomElements {
 		/// </summary>
 		public override void Selected (DialogViewController dvc, UITableView tableView, MonoTouch.Foundation.NSIndexPath path)
 		{
-			if (splitView != null)
-				splitView.ShowSpeaker (speaker.ID);
+			if (this.splitViewController != null)
+				this.splitViewController.ShowSpeaker (speaker.ID);
 			else {
-				var sds = new MWC.iOS.Screens.iPhone.Speakers.SpeakerDetailsScreen (speaker.ID);
+				var sds = new MWC.iOS.Screens.iPhone.Speakers.PatientDetailViewController (speaker.ID);
 				sds.Title = "Speaker";
 				dvc.ActivateController (sds);
 			}

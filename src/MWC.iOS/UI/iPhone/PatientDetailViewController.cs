@@ -11,7 +11,7 @@ namespace MWC.iOS.Screens.iPhone.Speakers {
 	/// <summary>
 	/// Displays personal information about the speaker
 	/// </summary>
-	public class SpeakerDetailsScreen : UIViewController, IImageUpdated {
+	public class PatientDetailViewController : UIViewController, IImageUpdated {
 		UILabel nameLabel, titleLabel, companyLabel;
 		UITextView bioTextView;
 		UIImageView image;
@@ -24,7 +24,7 @@ namespace MWC.iOS.Screens.iPhone.Speakers {
 		
 		public bool ShouldShowSessions { get; set; }
 
-		public SpeakerDetailsScreen (int speakerID) : base()
+		public PatientDetailViewController (int speakerID) : base()
 		{
 			ShouldShowSessions = true;
 

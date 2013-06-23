@@ -7,11 +7,11 @@ namespace MWC.iOS.Screens.Common.About {
 	/// <summary>
 	/// This screen REPLACES the old XIB version
 	/// </summary>
-	public class AboutXamarinScreen : UIViewController {
+	public class AboutView : UIViewController {
 		protected string basedir;
 		UIWebView webView;
 
-		public AboutXamarinScreen ()
+		public AboutView ()
 		{
 			Title = "About Xamarin";
 		}

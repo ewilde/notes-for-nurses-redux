@@ -7,7 +7,7 @@ using MWC.iOS.Screens.Common;
 using MWC.iOS.UI.Controls.Views;
 
 namespace MWC.iOS.Screens.iPad.Speakers {
-	public class SpeakerSessionMasterDetail : UIViewController {
+	public class PatientDetailViewController : UIViewController {
 		UINavigationBar navBar;
 
 		int speakerId;
@@ -19,7 +19,7 @@ namespace MWC.iOS.Screens.iPad.Speakers {
 	
 		public UIPopoverController Popover;
 
-		public SpeakerSessionMasterDetail (int speakerID) //, UIViewController speakerView)
+		public PatientDetailViewController (int speakerID) //, UIViewController speakerView)
 		{
 			speakerId = speakerID;
 			

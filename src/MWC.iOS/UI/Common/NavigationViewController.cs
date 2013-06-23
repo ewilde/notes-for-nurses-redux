@@ -2,36 +2,32 @@ using MonoTouch.Dialog;
 using MonoTouch.UIKit;
 
 namespace MWC.iOS.Screens.Common {
-	public class TabBarController : UITabBarController {
+	public class NavigationViewController : UITabBarController {
 		private UINavigationController speakerNav;
         private DialogViewController speakersScreen;
-		private Screens.Common.About.AboutXamarinScreen aboutScreen;
-        private UISplitViewController speakersSplitView, sessionsSplitView;
-		
-		public TabBarController ()
-		{
-		}
-		
-		public override void ViewDidLoad ()
+		private Screens.Common.About.AboutView aboutScreen;
+        private UISplitViewController speakersSplitView;
+
+	    public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 			
 			// speakers tab
 			if (AppDelegate.IsPhone) {
-				speakersScreen = new Screens.iPhone.Speakers.SpeakersScreen();			
+				speakersScreen = new Screens.iPhone.Speakers.PatientListViewController();			
 				speakerNav = new UINavigationController();
 				speakerNav.TabBarItem = new UITabBarItem("Speakers"
 											, UIImage.FromBundle("Images/Tabs/speakers.png"), 1);
 				speakerNav.PushViewController ( speakersScreen, false );
 			} else {
-				speakersSplitView = new MWC.iOS.Screens.iPad.Speakers.SpeakerSplitView();
+				speakersSplitView = new MWC.iOS.Screens.iPad.Speakers.PatientSplitViewController();
 				speakersSplitView.TabBarItem = new UITabBarItem("Speakers"
 											, UIImage.FromBundle("Images/Tabs/speakers.png"), 1);
 			}
 
 			
 			// about tab
-			aboutScreen = new Screens.Common.About.AboutXamarinScreen();
+			aboutScreen = new Screens.Common.About.AboutView();
 			aboutScreen.TabBarItem = new UITabBarItem("About Xamarin"
 										, UIImage.FromBundle("Images/Tabs/about.png"), 8);
 			

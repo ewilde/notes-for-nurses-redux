@@ -15,7 +15,7 @@ namespace MWC.iOS.Screens.Common {
 	/// method LoadData(), which must call StopLoadingScreen()
 	/// </remarks>
 	public class LoadingDialogViewController : DialogViewController {
-		MWC.iOS.Screens.Common.UILoadingView loadingView;
+		MWC.iOS.Screens.Common.LoadingDialogView loadingDialogView;
 		
 		/// <summary>
 		/// Set pushing=true so that the UINavCtrl 'back' button is enabled
@@ -66,12 +66,12 @@ namespace MWC.iOS.Screens.Common {
 					if (AppDelegate.IsPhone)
 						bounds = new RectangleF(0,0,320,460);
 
-					loadingView = new UILoadingView (message, bounds);
+					this.loadingDialogView = new LoadingDialogView (message, bounds);
 					// because DialogViewController is a UITableViewController,
 					// we need to step OVER the UITableView, otherwise the loadingOverlay
 					// sits *in* the scrolling area of the table
-					View.Superview.Add (loadingView);
-					View.Superview.BringSubviewToFront (loadingView);
+					View.Superview.Add (this.loadingDialogView);
+					View.Superview.BringSubviewToFront (this.loadingDialogView);
 					View.UserInteractionEnabled = false;
 				});
 			}
@@ -86,16 +86,16 @@ namespace MWC.iOS.Screens.Common {
 		{
 			using (var pool = new NSAutoreleasePool ()) {
 				InvokeOnMainThread(delegate {
-					if (loadingView != null) {
+					if (this.loadingDialogView != null) {
 						Debug.WriteLine ("Fade out loading...");
-						loadingView.OnFinishedFadeOutAndRemove += delegate {
-							if (loadingView != null) {
-								Debug.WriteLine ("Disposing of loadingView object..");
-								loadingView.Dispose();
-								loadingView = null;
+						this.loadingDialogView.OnFinishedFadeOutAndRemove += delegate {
+							if (this.loadingDialogView != null) {
+								Debug.WriteLine ("Disposing of loadingDialogView object..");
+								this.loadingDialogView.Dispose();
+								this.loadingDialogView = null;
 							}
 						};
-						loadingView.FadeOutAndRemove ();
+						this.loadingDialogView.FadeOutAndRemove ();
 						View.UserInteractionEnabled = true;
 					}
 				});

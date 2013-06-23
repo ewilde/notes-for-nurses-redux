@@ -27,6 +27,7 @@
     <MtouchI18n />
     <CrashReportingApiKey />
     <MtouchArch>ARMv7</MtouchArch>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -114,47 +115,28 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Screens\Common\TabBarController.cs" />
-    <Compile Include="Screens\Common\About\AboutXamScreen.cs" />
-    <Compile Include="Screens\Common\About\AboutXamScreen.designer.cs">
-      <DependentUpon>AboutXamScreen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Screens\Common\Speakers\SpeakersScreen.cs" />
-    <Compile Include="Screens\Common\Speakers\SpeakersScreen.designer.cs">
-      <DependentUpon>SpeakersScreen.cs</DependentUpon>
-    </Compile>
+    <Compile Include="UI\Common\NavigationViewController.cs" />
     <Compile Include="UI\Controls\LoadingOverlay.cs" />
-    <Compile Include="AL\DaysTableSource.cs" />
-    <Compile Include="AL\DayClickedEventArgs.cs" />
-    <Compile Include="Screens\iPhone\Speakers\SpeakersScreen.cs" />
-    <Compile Include="Screens\iPhone\WebViewControllerBase.cs" />
-    <Compile Include="UI\CustomElements\SpeakerElement.cs" />
-    <Compile Include="UI\CustomElements\SpeakerCell.cs" />
-    <Compile Include="Screens\iPhone\WebViewController.cs" />
-    <Compile Include="Screens\iPhone\Speakers\SpeakerDetailsScreen.cs" />
-    <Compile Include="Screens\Common\UILoadingVIew.cs" />
-    <Compile Include="Screens\Common\LoadingDialogViewController.cs" />
+    <Compile Include="UI\Common\PatientListViewController.cs" />
+    <Compile Include="UI\Common\PatientTableElement.cs" />
+    <Compile Include="UI\Common\PatientTableViewCell.cs" />
+    <Compile Include="UI\iPhone\PatientDetailViewController.cs" />
+    <Compile Include="Xamarin\Common\LoadingDialogView.cs" />
+    <Compile Include="Xamarin\Common\LoadingDialogViewController.cs" />
     <Compile Include="AL\Reachibility.cs" />
-    <Compile Include="Screens\iPhone\UpdateManagerLoadingDialogViewController.cs" />
-    <Compile Include="Screens\iPad\Speakers\SpeakerSplitView.cs" />
-    <Compile Include="Screens\iPad\Speakers\SpeakerSessionMasterDetail.cs" />
+    <Compile Include="Xamarin\Common\UpdateManagerLoadingDialogViewController.cs" />
+    <Compile Include="UI\iPad\PatientSplitViewController.cs" />
+    <Compile Include="UI\iPad\PatientDetailViewController.cs" />
     <Compile Include="UI\Views\SpeakerView.cs" />
     <Compile Include="UI\Controls\EmptyOverlay.cs" />
-    <Compile Include="AL\SpeakersTableSource.cs" />
-    <Compile Include="UI\CustomElements\DayCell.cs" />
-    <Compile Include="UI\CustomElements\CustomBadgeElement.cs" />
-    <Compile Include="UI\Controls\IntelligentSplitViewController.cs" />
     <Compile Include="UI\Controls\UnderlineLabel.cs" />
-    <Compile Include="Screens\Common\About\AboutXamarinScreen.cs" />
+    <Compile Include="Xamarin\Common\AboutView.cs" />
     <Compile Include="ConsoleD.cs" />
+    <Compile Include="Xamarin\UI\IntelligentSplitViewController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
-  <ItemGroup />
   <ItemGroup>
-    <InterfaceDefinition Include="Screens\Common\About\AboutXamScreen_iPhone.xib" />
-    <InterfaceDefinition Include="Screens\Common\About\AboutXamScreen_iPad.xib" />
-    <InterfaceDefinition Include="Screens\Common\Speakers\SpeakersScreen_iPhone.xib" />
-    <InterfaceDefinition Include="Screens\Common\Speakers\SpeakersScreen_iPad.xib" />
+    <Folder Include="UI\CustomElements\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MWC.Core\MWC.Core.MT.csproj">

@@ -10,24 +10,23 @@ using MWC.iOS.Screens.iPad.Speakers;
 namespace MWC.iOS.Screens.iPhone.Speakers {
 	/// <summary>
 	/// Speakers screen. Derives from MonoTouch.Dialog's DialogViewController to do 
-	/// the heavy lifting for table population. Also uses ImageLoader in SpeakerCell.cs
+	/// the heavy lifting for table population. Also uses ImageLoader in PatientTableViewCell.cs
 	/// </summary>
-	public partial class SpeakersScreen : UpdateManagerLoadingDialogViewController {
-		protected SpeakerDetailsScreen speakerDetailsScreen;
+	public partial class PatientListViewController : UpdateManagerLoadingDialogViewController {
 		IList<Speaker> speakers;
 		
 		/// <summary>If this is null, on iPhone; otherwise on iPad</summary>
-		SpeakerSplitView splitView;
+		PatientSplitViewController splitViewController;
 		
 		/// <summary>for iPhone</summary>
-		public SpeakersScreen () : this (null)
+		public PatientListViewController () : this (null)
 		{
 		}
 		/// <summary>for iPad</summary>
-		public SpeakersScreen (SpeakerSplitView speakerSplitView) : base ()
+		public PatientListViewController (PatientSplitViewController patientSplitViewController) : base ()
 		{
-			splitView = speakerSplitView;
-			EnableSearch = true; // requires SpeakerElement to implement Matches()
+			this.splitViewController = patientSplitViewController;
+			EnableSearch = true; // requires PatientTableElement to implement Matches()
 		}
 		
 		/// <summary>
@@ -43,7 +42,7 @@ namespace MWC.iOS.Screens.iPhone.Speakers {
 						orderby alpha.Key
 						select new Section (alpha.Key) {
 						from eachSpeaker in alpha
-						   select (Element) new MWC.iOS.UI.CustomElements.SpeakerElement (eachSpeaker, splitView)
+						   select (Element) new MWC.iOS.UI.CustomElements.PatientTableElement (eachSpeaker, this.splitViewController)
 			}};
 			// hide search until pull-down
 			TableView.ScrollToRow (NSIndexPath.FromRowSection (0,0), UITableViewScrollPosition.Top, false);
@@ -51,7 +50,7 @@ namespace MWC.iOS.Screens.iPhone.Speakers {
 		
 		public override DialogViewController.Source CreateSizingSource (bool unevenRows)
 		{
-			return new SpeakersTableSource(this, speakers);
+			return new PatientListTableSource(this, speakers);
 		}
 
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
@@ -64,9 +63,9 @@ namespace MWC.iOS.Screens.iPhone.Speakers {
 	/// <summary>
 	/// Implement index
 	/// </summary>
-	public class SpeakersTableSource : DialogViewController.SizingSource {
+	public class PatientListTableSource : DialogViewController.SizingSource {
 		IList<Speaker> speakerList;
-		public SpeakersTableSource (DialogViewController dvc, IList<Speaker> speakers) : base(dvc)
+		public PatientListTableSource (DialogViewController dvc, IList<Speaker> speakers) : base(dvc)
 		{
 			speakerList = speakers;
 		}

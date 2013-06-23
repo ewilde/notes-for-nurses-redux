@@ -8,7 +8,7 @@ using MonoTouch.UIKit;
 namespace MWC.iOS.Screens.Common {
 	public delegate void FinishedFadeOutAndRemove ();
 
-	public class UILoadingView : UIView {
+	public class LoadingDialogView : UIView {
 		UILabel loadingMessageLabel;
 		UIImageView overlayBackground;
 		UIActivityIndicatorView activityIndicator;
@@ -18,19 +18,19 @@ namespace MWC.iOS.Screens.Common {
 
 		public FinishedFadeOutAndRemove OnFinishedFadeOutAndRemove;
 		
-		public UILoadingView (string message, RectangleF bounds)
+		public LoadingDialogView (string message, RectangleF bounds)
 		{
 			this.message = message;
 			Initialize(message, bounds);
 		}
 
-		public UILoadingView (IntPtr handle) : base (handle)
+		public LoadingDialogView (IntPtr handle) : base (handle)
 		{
 			message = "Loading...";
 		}
  
 		[Export("initWithCoder:")]
-		public UILoadingView (NSCoder coder) : base (coder)
+		public LoadingDialogView (NSCoder coder) : base (coder)
 		{
 			message = "Loading...";
 		}
@@ -45,7 +45,7 @@ namespace MWC.iOS.Screens.Common {
 
 		void Initialize (string message, RectangleF bounds)
 		{
-			ConsoleD.WriteLine ("UILoadingView.Initialize " + bounds);
+			ConsoleD.WriteLine ("LoadingDialogView.Initialize " + bounds);
 			SetUpLoadingMessageLabel (message);
 			SetUpActivityIndicator ();
 			SetUpOverlayBackground (bounds);

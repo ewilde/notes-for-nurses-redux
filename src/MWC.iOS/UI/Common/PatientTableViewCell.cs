@@ -10,7 +10,7 @@ namespace MWC.iOS.UI.CustomElements {
 	/// Uses ImageLoader from MonoTouch.Dialog
 	/// https://github.com/migueldeicaza/MonoTouch.Dialog/blob/master/MonoTouch.Dialog/Utilities/ImageLoader.cs
 	/// </remarks>
-	public class SpeakerCell : UITableViewCell, IImageUpdated {
+	public class PatientTableViewCell : UITableViewCell, IImageUpdated {
 		static UIFont bigFont = UIFont.FromName("Helvetica-Light", AppDelegate.Font16pt);
 		static UIFont smallFont = UIFont.FromName("Helvetica-LightOblique", AppDelegate.Font10pt);
 		UILabel nameLabel, companyLabel;
@@ -19,7 +19,7 @@ namespace MWC.iOS.UI.CustomElements {
 		const int imageSpace = 44;
 		const int padding = 8;
 		
-		public SpeakerCell (UITableViewCellStyle style, NSString ident, Speaker showSpeaker) : base (style, ident)
+		public PatientTableViewCell (UITableViewCellStyle style, NSString ident, Speaker showSpeaker) : base (style, ident)
 		{
 			SelectionStyle = UITableViewCellSelectionStyle.Blue;
 			
