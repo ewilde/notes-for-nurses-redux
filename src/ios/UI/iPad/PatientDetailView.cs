@@ -24,7 +24,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
 		
 		int y = 0;
 		int speakerId;
-		Speaker showSpeaker;
+		Patient showPatient;
 		EmptyOverlay emptyOverlay;
 
 		const int ImageSpace = 80;		
@@ -70,7 +70,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
 
 		public override void LayoutSubviews ()
 		{
-			if (EmptyOverlay.ShowIfRequired (ref this.emptyOverlay, this.showSpeaker, this, "No speaker info", EmptyOverlayType.Speaker)) return;
+			if (EmptyOverlay.ShowIfRequired (ref this.emptyOverlay, this.showPatient, this, "No Patient info", EmptyOverlayType.Speaker)) return;
 
 			var full = this.Bounds;
 			var bigFrame = full;
@@ -93,17 +93,17 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
 
 			this.image.Frame = new RectangleF(13, this.y + 15, 80, 80);
 
-			if (!String.IsNullOrEmpty(this.showSpeaker.Bio)) {
+			if (!String.IsNullOrEmpty(this.showPatient.Bio)) {
 				if (AppDelegate.IsPhone) {
 					// for now, hardcode iPhone dimensions to reduce regressions
-					SizeF size = this.bioTextView.StringSize (this.showSpeaker.Bio
+					SizeF size = this.bioTextView.StringSize (this.showPatient.Bio
 										, this.bioTextView.Font
 										, new SizeF (310, 580)
 										, UILineBreakMode.WordWrap);
 					this.bioTextView.Frame = new RectangleF(5, this.y + 115, 310, size.Height);
 				} else {
 					var f = new SizeF (full.Width - 13 * 2, full.Height - (this.image.Frame.Y + 80 + 20));
-//					SizeF size = bioTextView.StringSize (showSpeaker.Bio
+//					SizeF size = bioTextView.StringSize (showPatient.Bio
 //										, bioTextView.Font
 //										, f
 //										, UILineBreakMode.WordWrap);
@@ -120,32 +120,32 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
 		public void Update(int speakerID)
 		{
 			this.speakerId = speakerID;
-			this.showSpeaker = SpeakerManager.GetSpeaker (this.speakerId);
+			this.showPatient = SpeakerManager.GetSpeaker (this.speakerId);
 			this.Update ();
 			this.LayoutSubviews ();
 		}
 
 		public void Clear()
 		{
-			this.showSpeaker = null;
+			this.showPatient = null;
 			this.nameLabel.Text = "";
 			this.titleLabel.Text = "";
 			this.companyLabel.Text = "";
 			this.bioTextView.Text = "";
 			this.image.Image = null;
-			this.LayoutSubviews (); // show the grey 'no speaker' message
+			this.LayoutSubviews (); // show the grey 'no Patient' message
 		}
 
 		void Update()
 		{
-			if (this.showSpeaker == null) {this.nameLabel.Text ="not found"; return;}
+			if (this.showPatient == null) {this.nameLabel.Text ="not found"; return;}
 			
-			this.nameLabel.Text = this.showSpeaker.Name;
-			this.titleLabel.Text = this.showSpeaker.Title;
-			this.companyLabel.Text = this.showSpeaker.Company;
+			this.nameLabel.Text = this.showPatient.Name;
+			this.titleLabel.Text = this.showPatient.Title;
+			this.companyLabel.Text = this.showPatient.Company;
 
-			if (!String.IsNullOrEmpty(this.showSpeaker.Bio)) {
-				this.bioTextView.Text = this.showSpeaker.Bio;
+			if (!String.IsNullOrEmpty(this.showPatient.Bio)) {
+				this.bioTextView.Text = this.showPatient.Bio;
 				this.bioTextView.Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font10_5pt);
 				this.bioTextView.TextColor = UIColor.Black;
 			} else {

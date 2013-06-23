@@ -6,7 +6,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.BL
 {
     using Edward.Wilde.Note.For.Nurses.Core.DL.SQLite;
 
-    public partial class Speaker : Contracts.BusinessEntityBase
+    public partial class Patient : Contracts.BusinessEntityBase
 	{
 		[XmlAttribute("k")]
 		public string Key { get; set; }
@@ -21,18 +21,6 @@ namespace Edward.Wilde.Note.For.Nurses.Core.BL
 		[XmlAttribute("i")]
 		public string ImageUrl { get; set; }
 		
-		// These are ONLY POPULATED on the client-side, when a single Speaker is requested
-		[Ignore]
-		public List<string> SessionKeys { get; set; }
-		
-		[XmlIgnore]
-		[Ignore]
-		public List<Session> Sessions { get; set; }
-
-		public Speaker ()
-		{
-		}
-
         public string Index {
             get {
                 return Name.Length == 0 ? "A" : Name[0].ToString().ToUpper();

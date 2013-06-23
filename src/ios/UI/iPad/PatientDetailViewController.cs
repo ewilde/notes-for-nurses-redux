@@ -20,7 +20,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
 			this.speakerId = speakerID;
 			
 			this.navBar = new UINavigationBar(new RectangleF(0,0,768, 44));
-			this.navBar.SetItems(new UINavigationItem[]{new UINavigationItem("Speaker & Session Info")},false);
+			this.navBar.SetItems(new UINavigationItem[]{new UINavigationItem("Patient & Session Info")},false);
 			
 			this.View.BackgroundColor = UIColor.LightGray;
 			this.View.Frame = new RectangleF(0,0,768,768);

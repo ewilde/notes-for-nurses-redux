@@ -17,7 +17,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common {
 	/// the heavy lifting for table population. Also uses ImageLoader in PatientTableViewCell.cs
 	/// </summary>
 	public partial class PatientListViewController : UpdateManagerLoadingDialogViewController {
-		IList<Speaker> speakers;
+		IList<Patient> speakers;
 		
 		/// <summary>If this is null, on iPhone; otherwise on iPad</summary>
 		PatientSplitViewController splitViewController;
@@ -73,8 +73,8 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common {
 	/// Implement index
 	/// </summary>
 	public class PatientListTableSource : DialogViewController.SizingSource {
-		IList<Speaker> speakerList;
-		public PatientListTableSource (DialogViewController dvc, IList<Speaker> speakers) : base(dvc)
+		IList<Patient> speakerList;
+		public PatientListTableSource (DialogViewController dvc, IList<Patient> speakers) : base(dvc)
 		{
 			this.speakerList = speakers;
 		}

@@ -3,6 +3,8 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.Xamarin.Common {
     using System.Diagnostics;
     using System.Drawing;
 
+    using Edward.Wilde.Note.For.Nurses.Core.Xamarin;
+
     using MonoTouch.Foundation;
     using MonoTouch.ObjCRuntime;
     using MonoTouch.UIKit;

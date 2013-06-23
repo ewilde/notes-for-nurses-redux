@@ -11,7 +11,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPhone {
     using Edward.Wilde.Note.For.Nurses.Core.BL.Managers;
 
     /// <summary>
-	/// Displays personal information about the speaker
+	/// Displays personal information about the Patient
 	/// </summary>
 	public class PatientDetailViewController : UIViewController, IImageUpdated {
 		UILabel nameLabel, titleLabel, companyLabel;
@@ -21,7 +21,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPhone {
 		UIScrollView scrollView;	
 		int y = 0;
 		int speakerId;
-		Speaker speaker;
+		Patient patient;
 		const int ImageSpace = 80;
 		
 		public bool ShouldShowSessions { get; set; }
@@ -82,11 +82,11 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPhone {
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-			this.speaker = SpeakerManager.GetSpeaker (this.speakerId);
+			this.patient = SpeakerManager.GetSpeaker (this.speakerId);
 			// this shouldn't be null, but it gets that way when the data
 			// "shifts" underneath it. need to reload the screen or prevent
 			// selection via loading overlay - neither great UIs :-(
-			if (this.speaker != null)  {	
+			if (this.patient != null)  {	
 				this.LayoutSubviews ();
 				this.Update ();
 			}
@@ -119,9 +119,9 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPhone {
 			
 			this.bioTextView.Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font10_5pt);
 			
-			if (!String.IsNullOrEmpty(this.speaker.Bio)) {
+			if (!String.IsNullOrEmpty(this.patient.Bio)) {
 				var f = new SizeF (full.Width - 13 * 2, 4000);
-				SizeF size = this.bioTextView.StringSize (this.speaker.Bio
+				SizeF size = this.bioTextView.StringSize (this.patient.Bio
 									, this.bioTextView.Font
 									, f);
 				this.bioTextView.Frame = new RectangleF(5
@@ -140,19 +140,19 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPhone {
 
 		void Update()
 		{
-			this.nameLabel.Text = this.speaker.Name;
-			this.titleLabel.Text = this.speaker.Title;
-			this.companyLabel.Text = this.speaker.Company;
+			this.nameLabel.Text = this.patient.Name;
+			this.titleLabel.Text = this.patient.Title;
+			this.companyLabel.Text = this.patient.Company;
 			
-			if (!String.IsNullOrEmpty(this.speaker.Bio)) {
-				this.bioTextView.Text = this.speaker.Bio;
+			if (!String.IsNullOrEmpty(this.patient.Bio)) {
+				this.bioTextView.Text = this.patient.Bio;
 				this.bioTextView.TextColor = UIColor.Black;
 			} else {
 				this.bioTextView.TextColor = UIColor.Gray;
 				this.bioTextView.Text = "No background information available.";
 			}
-			if (this.speaker.ImageUrl != "http://www.mobileworldcongress.com") {
-				var u = new Uri(this.speaker.ImageUrl);
+			if (this.patient.ImageUrl != "http://www.mobileworldcongress.com") {
+				var u = new Uri(this.patient.ImageUrl);
 				this.image.Image = ImageLoader.DefaultRequestImage (u, this);
 			}
 		}

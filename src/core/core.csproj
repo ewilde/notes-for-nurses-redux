@@ -87,33 +87,19 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <ItemGroup />
   <ItemGroup>
-    <Compile Include="DL\MwcDatabase.cs" />
-    <Compile Include="DL\SQLite.cs" />
-    <Compile Include="BL\Session.cs" />
-    <Compile Include="BL\Exhibitor.cs" />
-    <Compile Include="BL\Speaker.cs" />
-    <Compile Include="BL\Contracts\BusinessEntityBase.cs" />
-    <Compile Include="DAL\DataManager.cs" />
-    <Compile Include="BL\Managers\SessionManager.cs" />
-    <Compile Include="BL\Managers\UpdateManager.cs" />
-    <Compile Include="BL\Managers\SpeakerManager.cs" />
-    <Compile Include="BL\Managers\ExhibitorManager.cs" />
-    <Compile Include="BL\Managers\TwitterFeedManager.cs" />
-    <Compile Include="SAL\MwcSiteParser.cs" />
-    <Compile Include="BL\Managers\NewsManager.cs" />
-    <Compile Include="BL\Contracts\IBusinessEntity.cs" />
-    <Compile Include="SAL\Tweet.cs" />
-    <Compile Include="SAL\RSSEntry.cs" />
-    <Compile Include="SAL\XmlFeedParserBase.cs" />
-    <Compile Include="SAL\TwitterParser.cs" />
-    <Compile Include="SAL\RSSParser.cs" />
-    <Compile Include="BL\Conference.cs" />
-    <Compile Include="BL\Managers\FavoritesManager.cs" />
-    <Compile Include="BL\Favorite.cs" />
-    <Compile Include="BL\SessionTimeslot.cs" />
+    <Compile Include="Data\MwcDatabase.cs" />
+    <Compile Include="Model\PatientFile.cs" />
+    <Compile Include="Xamarin\Data\SQLite.cs" />
+    <Compile Include="Model\Patient.cs" />
+    <Compile Include="Xamarin\Contracts\BusinessEntityBase.cs" />
+    <Compile Include="Data\DataManager.cs" />
+    <Compile Include="Model\Managers\UpdateManager.cs" />
+    <Compile Include="Model\Managers\SpeakerManager.cs" />
+    <Compile Include="Service\PatientFileParser.cs" />
+    <Compile Include="Xamarin\Contracts\IBusinessEntity.cs" />
+    <Compile Include="Xamarin\Service\XmlFeedParserBase.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="BL\Managers\DaysManager.cs" />
-    <Compile Include="BL\Managers\UpdateFinishedEventArgs.cs" />
-    <Compile Include="BL\SessionSpeaker.cs" />
+    <Compile Include="Model\Managers\UpdateFinishedEventArgs.cs" />
+    <Compile Include="Xamarin\System\ConsoleD.cs" />
   </ItemGroup>
 </Project>

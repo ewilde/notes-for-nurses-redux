@@ -2,6 +2,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.Xamarin.Common {
     using System;
     using System.Drawing;
 
+    using Edward.Wilde.Note.For.Nurses.Core.Xamarin;
     using Edward.Wilde.Note.For.Nurses.iOS.Xamarin.UI.Controls;
 
     using MonoTouch.Dialog;

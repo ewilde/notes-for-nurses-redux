@@ -21,7 +21,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common {
 		const int imageSpace = 44;
 		const int padding = 8;
 		
-		public PatientTableViewCell (UITableViewCellStyle style, NSString ident, Speaker showSpeaker) : base (style, ident)
+		public PatientTableViewCell (UITableViewCellStyle style, NSString ident, Patient showPatient) : base (style, ident)
 		{
 			this.SelectionStyle = UITableViewCellSelectionStyle.Blue;
 			
@@ -39,7 +39,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common {
 
 			this.image = new UIImageView();
 
-			this.UpdateCell (showSpeaker);
+			this.UpdateCell (showPatient);
 			
 			this.ContentView.Add (this.nameLabel);
 			this.ContentView.Add (this.companyLabel);
@@ -68,16 +68,16 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common {
 			this.image.Frame = new RectangleF(8,8,44,44);
 		}
 		
-		public void UpdateCell (Speaker speaker)
+		public void UpdateCell (Patient patient)
 		{
-			this.nameLabel.Text = speaker.Name;
+			this.nameLabel.Text = patient.Name;
 			string subtitle = "";
-			if (String.IsNullOrEmpty (speaker.Title))
-				subtitle = String.Format ("{0}", speaker.Company);
-			else if (String.IsNullOrEmpty(speaker.Company))
-				subtitle = String.Format("{0}", speaker.Title);
+			if (String.IsNullOrEmpty (patient.Title))
+				subtitle = String.Format ("{0}", patient.Company);
+			else if (String.IsNullOrEmpty(patient.Company))
+				subtitle = String.Format("{0}", patient.Title);
 			else
-				subtitle = String.Format ("{0}, {1}", speaker.Title, speaker.Company);
+				subtitle = String.Format ("{0}, {1}", patient.Title, patient.Company);
 
 			this.companyLabel.Text = subtitle;
 

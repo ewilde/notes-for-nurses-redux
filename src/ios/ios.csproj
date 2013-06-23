@@ -133,7 +133,6 @@
     <Compile Include="Xamarin\UI\Controls\EmptyOverlay.cs" />
     <Compile Include="Xamarin\UI\Controls\UnderlineLabel.cs" />
     <Compile Include="UI\Common\AboutView.cs" />
-    <Compile Include="Xamarin\System\ConsoleD.cs" />
     <Compile Include="Xamarin\UI\IntelligentSplitViewController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />

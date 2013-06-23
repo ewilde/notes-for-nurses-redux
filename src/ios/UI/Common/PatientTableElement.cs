@@ -10,26 +10,26 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common {
     using PatientDetailViewController = Edward.Wilde.Note.For.Nurses.iOS.UI.iPhone.PatientDetailViewController;
 
     /// <summary>
-	/// Speaker element.
+	/// Patient element.
 	/// on iPhone, pushes via MT.D
 	/// on iPad, sends view to SplitViewController
 	/// </summary>
 	public class PatientTableElement : Element  {
 		static NSString cellId = new NSString ("PatientTableElement");
-		Speaker speaker;
+		Patient patient;
 
 		/// <summary>If this is null, on iPhone; otherwise on iPad</summary>
 		PatientSplitViewController splitViewController;
 		
 		/// <summary>for iPhone</summary>
-		public PatientTableElement (Speaker showSpeaker) : base (showSpeaker.Name)
+		public PatientTableElement (Patient showPatient) : base (showPatient.Name)
 		{
-			this.speaker = showSpeaker;
+			this.patient = showPatient;
 		}
 		/// <summary>for iPad (SplitViewController)</summary>
-		public PatientTableElement (Speaker showSpeaker, PatientSplitViewController patientSplitViewController) : base (showSpeaker.Name)
+		public PatientTableElement (Patient showPatient, PatientSplitViewController patientSplitViewController) : base (showPatient.Name)
 		{
-			this.speaker = showSpeaker;
+			this.patient = showPatient;
 			this.splitViewController = patientSplitViewController;
 		}
 		
@@ -39,9 +39,9 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common {
 			var cell = tv.DequeueReusableCell (cellId);
 			count++;
 			if (cell == null)
-				cell = new PatientTableViewCell (UITableViewCellStyle.Subtitle, cellId, this.speaker);
+				cell = new PatientTableViewCell (UITableViewCellStyle.Subtitle, cellId, this.patient);
 			else
-				((PatientTableViewCell)cell).UpdateCell (this.speaker);
+				((PatientTableViewCell)cell).UpdateCell (this.patient);
 
 			return cell;
 		}
@@ -49,7 +49,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common {
 		/// <summary>Implement MT.D search on name and company properties</summary>
 		public override bool Matches (string text)
 		{
-			return (this.speaker.Name + " " + this.speaker.Company).ToLower ().IndexOf (text.ToLower ()) >= 0;
+			return (this.patient.Name + " " + this.patient.Company).ToLower ().IndexOf (text.ToLower ()) >= 0;
 		}
 
 		/// <summary>
@@ -58,10 +58,10 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common {
 		public override void Selected (DialogViewController dvc, UITableView tableView, MonoTouch.Foundation.NSIndexPath path)
 		{
 			if (this.splitViewController != null)
-				this.splitViewController.ShowSpeaker (this.speaker.ID);
+				this.splitViewController.ShowSpeaker (this.patient.ID);
 			else {
-				var sds = new PatientDetailViewController (this.speaker.ID);
-				sds.Title = "Speaker";
+				var sds = new PatientDetailViewController (this.patient.ID);
+				sds.Title = "Patient";
 				dvc.ActivateController (sds);
 			}
 		}
