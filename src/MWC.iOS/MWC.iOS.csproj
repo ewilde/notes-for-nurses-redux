@@ -123,7 +123,6 @@
     <Compile Include="Screens\Common\Speakers\SpeakersScreen.designer.cs">
       <DependentUpon>SpeakersScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Screens\iPad\SessionPopupScreen.cs" />
     <Compile Include="UI\Controls\LoadingOverlay.cs" />
     <Compile Include="AL\DaysTableSource.cs" />
     <Compile Include="AL\DayClickedEventArgs.cs" />
@@ -140,7 +139,6 @@
     <Compile Include="Screens\iPad\Speakers\SpeakerSplitView.cs" />
     <Compile Include="Screens\iPad\Speakers\SpeakerSessionMasterDetail.cs" />
     <Compile Include="UI\Views\SpeakerView.cs" />
-    <Compile Include="UI\Views\SessionView.cs" />
     <Compile Include="UI\Controls\EmptyOverlay.cs" />
     <Compile Include="AL\SpeakersTableSource.cs" />
     <Compile Include="UI\CustomElements\DayCell.cs" />

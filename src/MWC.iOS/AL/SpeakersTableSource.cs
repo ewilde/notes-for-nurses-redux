@@ -9,13 +9,11 @@ using MWC.BL;
 namespace MWC.iOS {
 	public class SpeakersTableSource : UITableViewSource {
 		IList<Speaker> speakers;
-		MWC.iOS.UI.Controls.Views.SessionView view;
 		static NSString cellId = new NSString("SpeakerCell");
 
-		public SpeakersTableSource (List<Speaker> speakers, MWC.iOS.UI.Controls.Views.SessionView view)
+		public SpeakersTableSource (List<Speaker> speakers)
 		{
 			this.speakers = speakers;
-			this.view = view;
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
@@ -47,7 +45,6 @@ namespace MWC.iOS {
 		public override void RowSelected (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
 		{
 			var speaker = speakers[indexPath.Row];
-			view.SelectSpeaker(speaker);
 			if (AppDelegate.IsPhone) tableView.DeselectRow (indexPath, true);
 		}
 	}
