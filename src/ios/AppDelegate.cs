@@ -9,6 +9,7 @@ using MonoTouch.ObjCRuntime;
 namespace Edward.Wilde.Note.For.Nurses.iOS {
     using Edward.Wilde.Note.For.Nurses.Core;
     using Edward.Wilde.Note.For.Nurses.Core.BL.Managers;
+    using Edward.Wilde.Note.For.Nurses.Core.DL;
     using Edward.Wilde.Note.For.Nurses.Core.Xamarin;
     using Edward.Wilde.Note.For.Nurses.iOS.UI.Common;
     using Edward.Wilde.Note.For.Nurses.iOS.Xamarin;
@@ -63,8 +64,8 @@ namespace Edward.Wilde.Note.For.Nurses.iOS {
 		{
 			// create a new window instance based on the screen size
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
-		
-			UpdateManager.UpdateFinished += HandleFinishedUpdate;
+            PatientDatabase.Initialize();				
+			PatientFileUpdateManager.UpdateFinished += HandleFinishedUpdate;
 
 			// start updating all data in the background
 			// by calling this asynchronously, we must check to see if it's finished
@@ -72,7 +73,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS {
 			new Thread(new ThreadStart(() => {
 				var prefs = NSUserDefaults.StandardUserDefaults;
 
-				bool hasSeedData = UpdateManager.HasDataAlready;
+                bool hasSeedData = PatientFileUpdateManager.HasDataAlready;
 				ConsoleD.WriteLine ("hasSeedData="+hasSeedData);
 				if (!hasSeedData) {
 					// only happens when the database is empty (or wasn't there); use local file update
@@ -80,13 +81,13 @@ namespace Edward.Wilde.Note.For.Nurses.iOS {
 					var appdir = NSBundle.MainBundle.ResourcePath;
 					var seedDataFile = appdir + "/Images/SeedData.xml";
 					string xml = System.IO.File.ReadAllText (seedDataFile);
-					UpdateManager.UpdateFromFile(xml);
+					PatientFileUpdateManager.UpdateFromFile(xml);
 
-					ConsoleD.WriteLine("Database lives at: "+Core.DL.MwcDatabase.DatabaseFilePath);
+					ConsoleD.WriteLine("Database lives at: "+Core.DL.PatientDatabase.DatabaseFilePath);
 					// We SHOULDN'T skip backup because we are saving the Favorites in the same sqlite
 					// database as the sessions are stored. A more iCloud-friendly design would be 
 					// to keep the user-data separate from the server-generated data...
-					NSFileManager.SetSkipBackupAttribute (Core.DL.MwcDatabase.DatabaseFilePath, true);
+					NSFileManager.SetSkipBackupAttribute (Core.DL.PatientDatabase.DatabaseFilePath, true);
 				} 
 			})).Start();
 
@@ -106,7 +107,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS {
 		
 		public override void WillTerminate (UIApplication application)
 		{
-			UpdateManager.UpdateFinished -= HandleFinishedUpdate;
+			PatientFileUpdateManager.UpdateFinished -= HandleFinishedUpdate;
 		}
 		
 		/// <summary>

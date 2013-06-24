@@ -82,7 +82,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPhone {
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-			this.patient = SpeakerManager.GetSpeaker (this.speakerId);
+			this.patient = SpeakerManager.GetPatient (this.speakerId);
 			// this shouldn't be null, but it gets that way when the data
 			// "shifts" underneath it. need to reload the screen or prevent
 			// selection via loading overlay - neither great UIs :-(

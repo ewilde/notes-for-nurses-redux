@@ -12,8 +12,8 @@ namespace Edward.Wilde.Note.For.Nurses.Core.BL.Managers {
 	/// Central point for triggering data update from server
 	/// to our local SQLite db
 	/// </summary>
-	public static class UpdateManager {
-		private static object locker = new object();
+	public static class PatientFileUpdateManager {
+		private static object @lock = new object();
 		
 		public static event EventHandler UpdateStarted = delegate {};
 		public static event EventHandler UpdateFinished = delegate {};
@@ -34,7 +34,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.BL.Managers {
 		
 		public static bool HasDataAlready {
 			get {
-				return MwcDatabase.CountTable<Patient>() > 0;
+				return PatientDatabase.CountTable<Patient>() > 0;
 			}
 		}
 
@@ -43,7 +43,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.BL.Managers {
 			ConsoleD.WriteLine ("### Updating all data from local file");
 
 			// make this a critical section to ensure that access is serial
-			lock (locker) {
+			lock (@lock) {
 				isUpdating = true;
 				UpdateStarted (null, EventArgs.Empty);
 				var ea = new UpdateFinishedEventArgs (UpdateType.SeedData, false);

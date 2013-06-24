@@ -16,38 +16,38 @@ namespace Edward.Wilde.Note.For.Nurses.Core.DAL {
 		
 		public static IEnumerable<Patient> GetSpeakers ()
 		{
-			return DL.MwcDatabase.GetItems<Patient> ();
+			return DL.PatientDatabase.GetItems<Patient> ();
 		}
 		
 		public static Patient GetSpeaker (int id)
 		{
-			//return DL.MwcDatabase.GetItem<Patient> (id);
-            return DL.MwcDatabase.GetSpeaker(id);
+			//return DL.PatientDatabase.GetItem<Patient> (id);
+            return DL.PatientDatabase.GetSpeaker(id);
 		}
 
         public static Patient GetSpeakerWithKey (string key)
         {
-            return DL.MwcDatabase.GetSpeakerWithKey (key);
+            return DL.PatientDatabase.GetSpeakerWithKey (key);
         }
 		
 		public static int SaveSpeaker (Patient item)
 		{
-			return DL.MwcDatabase.SaveItem<Patient> (item);
+			return DL.PatientDatabase.SaveItem<Patient> (item);
 		}
 		
 		public static void SaveSpeakers (IEnumerable<Patient> items)
 		{
-			DL.MwcDatabase.SaveItems<Patient> (items);
+			DL.PatientDatabase.SaveItems<Patient> (items);
 		}
 		
 		public static int DeleteSpeaker(int id)
 		{
-			return DL.MwcDatabase.DeleteItem<Patient> (id);
+			return DL.PatientDatabase.DeleteItem<Patient> (id);
 		}
 		
 		public static void DeleteSpeakers()
 		{
-			DL.MwcDatabase.ClearTable<Patient>();
+			DL.PatientDatabase.ClearTable<Patient>();
 		}
 		
 		#endregion

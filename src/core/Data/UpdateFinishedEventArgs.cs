@@ -5,8 +5,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core
 	public enum UpdateType
 	{
 		SeedData,
-		Conference,
-		Exhibitors
+		Patient
 	}
 	
 	/// <summary>

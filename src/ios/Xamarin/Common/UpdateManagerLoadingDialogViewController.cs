@@ -30,13 +30,13 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.Xamarin.Common {
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			UpdateManager.UpdateFinished += this.HandleUpdateFinished;
+			PatientFileUpdateManager.UpdateFinished += this.HandleUpdateFinished;
 		}
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
 
-			if(UpdateManager.IsUpdating) {
+			if(PatientFileUpdateManager.IsUpdating) {
 				if (this.loadingOverlay == null) {
 					var bounds = new RectangleF(0,0,768,1004);
 					if (this.InterfaceOrientation == UIInterfaceOrientation.LandscapeLeft
@@ -63,7 +63,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.Xamarin.Common {
 		public override void ViewDidUnload ()
 		{
 			base.ViewDidUnload ();
-			UpdateManager.UpdateFinished -= this.HandleUpdateFinished; 
+			PatientFileUpdateManager.UpdateFinished -= this.HandleUpdateFinished; 
 		}
 		void HandleUpdateFinished(object sender, EventArgs e)
 		{
@@ -76,10 +76,6 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.Xamarin.Common {
 			});
 		}
 		
-		/// <summary>
-		/// Your implementation should get data from the UpdateManager 
-		/// and set the Root for the DialogViewController
-		/// </summary>
 		protected virtual void PopulateTable()
 		{
 		}
