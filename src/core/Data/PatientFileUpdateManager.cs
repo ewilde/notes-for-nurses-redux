@@ -1,80 +1,100 @@
-using System;
-using System.Collections.Generic;
-using System.Xml.Serialization;
+namespace Edward.Wilde.Note.For.Nurses.Core.Data 
+{
+    using System;
 
-namespace Edward.Wilde.Note.For.Nurses.Core.BL.Managers {
     using Edward.Wilde.Note.For.Nurses.Core.DL;
     using Edward.Wilde.Note.For.Nurses.Core.Model;
     using Edward.Wilde.Note.For.Nurses.Core.SAL;
+    using Edward.Wilde.Note.For.Nurses.Core.Service;
     using Edward.Wilde.Note.For.Nurses.Core.Xamarin;
 
     /// <summary>
-	/// Central point for triggering data update from server
-	/// to our local SQLite db
-	/// </summary>
-	public static class PatientFileUpdateManager {
-		private static object @lock = new object();
+    /// Used to manage saving the initial seed data file which is deserialized into a <see cref="PatientFile"/>
+    /// and save to the database using <see cref="Update"/>.
+    /// </summary>
+    public static class PatientFileUpdateManager 
+    {
+        /// <summary>
+        /// The global synchronization object, locks access across all threads in the application.
+        /// </summary>
+		private static readonly object globalSync = new object();
 		
 		public static event EventHandler UpdateStarted = delegate {};
-		public static event EventHandler UpdateFinished = delegate {};
-		
-		/// <summary>
-		/// Gets or sets a value indicating whether the data is updating.
-		/// </summary>
-		/// <value>
-		/// <c>true</c> if the data is updating; otherwise, <c>false</c>.
-		/// </value>
-		public static bool IsUpdating
-		{
-			get { return isUpdating; }
-			set { isUpdating = value; }
-		}
 
-		private static bool isUpdating;
-		
-		public static bool HasDataAlready {
-			get {
-				return PatientDatabase.CountTable<Patient>() > 0;
+		public static event EventHandler UpdateFinished = delegate {};
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the <see cref="PatientFileUpdateManager"/> is in the process of updating that database.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if the data is being updating; otherwise, <c>false</c>.
+        /// </value>
+        public static bool UpdateInProgress { get; set; }
+
+        /// <summary>
+        /// Gets a value indicating whether data already exists.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if data exists; otherwise, <c>false</c>.
+        /// </value>
+        public static bool DataExists 
+        {
+			get 
+            {
+				return XamarinDatabase.CountTable<Patient>() > 0;
 			}
 		}
 
-		public static void UpdateFromFile(string xmlString)
+        /// <summary>
+        /// Updates the database using the specified xml, which is deserialize into a <see cref="PatientFile"/> instance, first.
+        /// </summary>
+        /// <param name="xml">The xml representing a <see cref="PatientFile"/> object.</param>
+		public static void Update(string xml)
 		{
-			ConsoleD.WriteLine ("### Updating all data from local file");
+			ConsoleD.WriteLine ("Updating database using xml");
 
-			// make this a critical section to ensure that access is serial
-			lock (@lock) {
-				isUpdating = true;
+			lock (globalSync) 
+            {
+				UpdateInProgress = true;
 				UpdateStarted (null, EventArgs.Empty);
-				var ea = new UpdateFinishedEventArgs (UpdateType.SeedData, false);
+                var finishedEventArgs = new UpdateFinishedEventArgs(UpdateType.SeedData, false);
 				
-				var c = PatientFileParser.DeserializeConference (xmlString);
-				if (c != null) {
-					if (SaveToDatabase (c)) {
-						ea.Success = true;
+                //TODO Inject when this is made an instance
+				var patientFile = new PatientFileParser().Deserialize(xml);
+				if (patientFile != null) 
+                {
+					if (SaveToDatabase(patientFile)) 
+                    {
+						finishedEventArgs.Success = true;
 					}
 				}
-				UpdateFinished (null, ea);
-				isUpdating = false;
+
+				UpdateFinished (null, finishedEventArgs);
+				UpdateInProgress = false;
 			}
 		}
         
-		private static bool SaveToDatabase(PatientFile c)
+		private static bool SaveToDatabase(PatientFile patientFile)
 		{
-			bool success = false;
-			try  {
-                ConsoleD.WriteLine("yyy SAVING new conference data to sqlite");
+			bool result = false;
+			try  
+            {
+                ConsoleD.WriteLine("Saving the patient file data to sqlite");
 			
-				if (c.Speakers.Count > 0) {
-					DAL.DataManager.DeleteSpeakers ();
-					DAL.DataManager.SaveSpeakers (c.Speakers);
+				if (patientFile.Patients.Count > 0) 
+                {
+					DataManager.DeletePatients ();
+					DataManager.SavePatients (patientFile.Patients);
 				}
 				
-				success = true;
-			} catch (Exception ex) {
-                ConsoleD.WriteLine("xxx SAVING conference to sqlite failed " + ex.Message);
+				result = true;
+			} 
+            catch (Exception ex) 
+            {
+                ConsoleD.WriteError("Saving patient file data failed for the following reasons ", ex);
 			}
-			return success;
+
+			return result;
 		}		
 	}
 }

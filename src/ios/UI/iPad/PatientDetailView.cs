@@ -1,6 +1,8 @@
 namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
     using System;
 
+    using Edward.Wilde.Note.For.Nurses.Core.Data;
+    using Edward.Wilde.Note.For.Nurses.Core.Model;
     using Edward.Wilde.Note.For.Nurses.iOS.Xamarin.UI.Controls;
 
     using MonoTouch.UIKit;
@@ -8,8 +10,6 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
 
     using System.Drawing;
 
-    using Edward.Wilde.Note.For.Nurses.Core.BL;
-    using Edward.Wilde.Note.For.Nurses.Core.BL.Managers;
 
     /// <summary>
 	/// Used in:
@@ -120,7 +120,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
 		public void Update(int speakerID)
 		{
 			this.speakerId = speakerID;
-			this.showPatient = SpeakerManager.GetPatient (this.speakerId);
+			this.showPatient = PatientManager.GetPatient (this.speakerId);
 			this.Update ();
 			this.LayoutSubviews ();
 		}
@@ -140,7 +140,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
 		{
 			if (this.showPatient == null) {this.nameLabel.Text ="not found"; return;}
 			
-			this.nameLabel.Text = this.showPatient.Name;
+			this.nameLabel.Text = this.showPatient.Name.ToString();
 			this.titleLabel.Text = this.showPatient.Title;
 			this.companyLabel.Text = this.showPatient.Company;
 

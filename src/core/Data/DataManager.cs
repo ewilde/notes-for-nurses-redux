@@ -1,55 +1,50 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Edward.Wilde.Note.For.Nurses.Core.BL;
+namespace Edward.Wilde.Note.For.Nurses.Core.Data {
+    using System.Collections.Generic;
 
-namespace Edward.Wilde.Note.For.Nurses.Core.DAL {
-    using Edward.Wilde.Note.For.Nurses.Core.BL;
+    using Edward.Wilde.Note.For.Nurses.Core.Model;
 
     /// <summary>
 	/// [abstracts fromt the underlying data source(s)]
 	/// [if multiple data sources, can agreggate/etc without BL knowing]
 	/// [superflous if only one data source]
 	/// </summary>
-	public static class DataManager {
-		#region Patient
+	public static class DataManager 
+    {
 		
-		public static IEnumerable<Patient> GetSpeakers ()
+		public static IEnumerable<Patient> GetPatients()
 		{
-			return DL.PatientDatabase.GetItems<Patient> ();
+			return PatientDatabase.GetItems<Patient> ();
 		}
 		
-		public static Patient GetSpeaker (int id)
+		public static Patient GetPatient(int id)
 		{
 			//return DL.PatientDatabase.GetItem<Patient> (id);
-            return DL.PatientDatabase.GetSpeaker(id);
+            return PatientDatabase.GetPatient(id);
 		}
 
         public static Patient GetSpeakerWithKey (string key)
         {
-            return DL.PatientDatabase.GetSpeakerWithKey (key);
+            return PatientDatabase.GetSpeakerWithKey (key);
         }
 		
 		public static int SaveSpeaker (Patient item)
 		{
-			return DL.PatientDatabase.SaveItem<Patient> (item);
+			return PatientDatabase.SaveItem<Patient> (item);
 		}
 		
-		public static void SaveSpeakers (IEnumerable<Patient> items)
+		public static void SavePatients (IEnumerable<Patient> items)
 		{
-			DL.PatientDatabase.SaveItems<Patient> (items);
+			PatientDatabase.SaveItems<Patient> (items);
 		}
 		
 		public static int DeleteSpeaker(int id)
 		{
-			return DL.PatientDatabase.DeleteItem<Patient> (id);
+			return PatientDatabase.DeleteItem<Patient> (id);
 		}
 		
-		public static void DeleteSpeakers()
+		public static void DeletePatients()
 		{
-			DL.PatientDatabase.ClearTable<Patient>();
-		}
-		
-		#endregion
+			PatientDatabase.ClearTable<Patient>();
+		}		
 	}
 }

@@ -1,10 +1,8 @@
-using System;
-
-namespace Edward.Wilde.Note.For.Nurses.Core.BL.Contracts
+namespace Edward.Wilde.Note.For.Nurses.Core.Xamarin.Contracts
 {
-	public interface IBusinessEntity
+    public interface IBusinessEntity
 	{
-		int ID { get; set; }
+		int Id { get; set; }
 	}
 }
 

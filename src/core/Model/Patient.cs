@@ -1,18 +1,31 @@
-using System;
-using System.Collections.Generic;
-using System.Xml.Serialization;
-
-namespace Edward.Wilde.Note.For.Nurses.Core.BL
+namespace Edward.Wilde.Note.For.Nurses.Core.Model
 {
-    using Edward.Wilde.Note.For.Nurses.Core.DL.SQLite;
+    using System.Xml.Serialization;
 
-    public partial class Patient : Contracts.BusinessEntityBase
+    using Edward.Wilde.Note.For.Nurses.Core.Xamarin.Contracts;
+
+    using SQLite;
+
+    /// <summary>
+    /// Represents a patient
+    /// </summary>
+    public class Patient : BusinessEntityBase
 	{
-		[XmlAttribute("k")]
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Patient"/> class.
+        /// </summary>
+        public Patient()
+        {
+            this.Name = new Name();
+        }
+
+        [XmlAttribute("k")]
 		public string Key { get; set; }
-		[XmlAttribute("n")]
-		public string Name { get; set; }
-		[XmlAttribute("t")]
+
+        [One2One(typeof(Name))]
+        public Name Name { get; set; }
+		
+        [XmlAttribute("t")]
 		public string Title { get; set; }
 		[XmlAttribute("c")]
 		public string Company { get; set; }
@@ -23,7 +36,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.BL
 		
         public string Index {
             get {
-                return Name.Length == 0 ? "A" : Name[0].ToString().ToUpper();
+                return this.Name == null || this.Name.FirstName.Length == 0 ? "A" : this.Name.FirstName[0].ToString().ToUpper();
             }
         }
 	}

@@ -1,0 +1,27 @@
+﻿// -----------------------------------------------------------------------
+// <copyright file="PatientFileParserTests.cs" company="UBS AG">
+// Copyright (c) 2013.
+// </copyright>
+// -----------------------------------------------------------------------
+
+
+using System;
+
+using Machine.Fakes;
+using Machine.Specifications;
+
+namespace core.net.tests.Service
+{
+    using System.IO;
+
+    using Edward.Wilde.Note.For.Nurses.Core.Model;
+    using Edward.Wilde.Note.For.Nurses.Core.Service;
+
+    [Subject(typeof(PatientFileParser))]
+    public class When_deserializing_the_seed_data : WithSubjectAndResult<PatientFileParser, PatientFile>
+    {
+        Because of = () => Result = Subject.Deserialize(File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestData\\SeedData.xml")));
+
+        It should_hydrate_the_instance_and_contain_some_patients = () => Result.Patients.Count.ShouldBeGreaterThan(0);
+    }
+}

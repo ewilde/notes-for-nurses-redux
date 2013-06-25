@@ -2,13 +2,13 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPhone {
     using System;
     using System.Drawing;
 
+    using Edward.Wilde.Note.For.Nurses.Core.Data;
+    using Edward.Wilde.Note.For.Nurses.Core.Model;
+
     using MonoTouch.UIKit;
 
-    using Edward.Wilde.Note.For.Nurses.Core.BL;
 
     using MonoTouch.Dialog.Utilities;
-
-    using Edward.Wilde.Note.For.Nurses.Core.BL.Managers;
 
     /// <summary>
 	/// Displays personal information about the Patient
@@ -82,7 +82,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPhone {
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-			this.patient = SpeakerManager.GetPatient (this.speakerId);
+			this.patient = PatientManager.GetPatient (this.speakerId);
 			// this shouldn't be null, but it gets that way when the data
 			// "shifts" underneath it. need to reload the screen or prevent
 			// selection via loading overlay - neither great UIs :-(
@@ -140,7 +140,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPhone {
 
 		void Update()
 		{
-			this.nameLabel.Text = this.patient.Name;
+			this.nameLabel.Text = this.patient.Name.ToString();
 			this.titleLabel.Text = this.patient.Title;
 			this.companyLabel.Text = this.patient.Company;
 			

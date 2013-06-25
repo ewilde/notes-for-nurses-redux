@@ -1,8 +1,8 @@
-using System;
-
-namespace Edward.Wilde.Note.For.Nurses.Core
+namespace Edward.Wilde.Note.For.Nurses.Core.Data
 {
-	public enum UpdateType
+    using System;
+
+    public enum UpdateType
 	{
 		SeedData,
 		Patient

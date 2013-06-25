@@ -138,9 +138,9 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\core\core.csproj">
+    <ProjectReference Include="..\core\core.monotouch.csproj">
       <Project>{CAA47381-0DBB-461D-8EB6-4D00AC453656}</Project>
-      <Name>core</Name>
+      <Name>core.monotouch</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

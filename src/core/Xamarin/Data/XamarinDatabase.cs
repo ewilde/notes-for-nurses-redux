@@ -5,7 +5,9 @@ namespace Edward.Wilde.Note.For.Nurses.Core.DL
     using System.IO;
     using System.Linq;
 
-    using Edward.Wilde.Note.For.Nurses.Core.DL.SQLite;
+    using Edward.Wilde.Note.For.Nurses.Core.Xamarin.Contracts;
+
+    using SQLite;
 
     public abstract class XamarinDatabase : SQLiteConnection
     {
@@ -26,41 +28,41 @@ namespace Edward.Wilde.Note.For.Nurses.Core.DL
             }
         }
 
-        public static IEnumerable<T> GetItems<T> () where T : BL.Contracts.IBusinessEntity, new ()
+        public static IEnumerable<T> GetItems<T> () where T : IBusinessEntity, new ()
         {
             lock (locker) {
                 return (from i in database.Table<T> () select i).ToList ();
             }
         }
 
-        public static T GetItem<T> (int id) where T : BL.Contracts.IBusinessEntity, new ()
+        public static T GetItem<T> (int id) where T : IBusinessEntity, new ()
         {
             lock (locker) {
                 
                 // ---
                 //return (from i in database.Table<T> ()
-                //        where i.ID == id
+                //        where i.Id == id
                 //        select i).FirstOrDefault ();
 
                 // +++ To properly use Generic version and eliminate NotSupportedException
                 // ("Cannot compile: " + expr.NodeType.ToString ()); in SQLite.cs
-                return database.Table<T>().FirstOrDefault(x => x.ID == id);
+                return database.Table<T>().FirstOrDefault(x => x.Id == id);
             }
         }
 
-        public static int SaveItem<T> (T item) where T : BL.Contracts.IBusinessEntity
+        public static int SaveItem<T> (T item) where T : IBusinessEntity
         {
             lock (locker) {
-                if (item.ID != 0) {
+                if (item.Id != 0) {
                     database.Update (item);
-                    return item.ID;
+                    return item.Id;
                 } else {
                     return database.Insert (item);
                 }
             }
         }
 
-        public static void SaveItems<T> (IEnumerable<T> items) where T : BL.Contracts.IBusinessEntity
+        public static void SaveItems<T> (IEnumerable<T> items) where T : IBusinessEntity
         {
             lock (locker) {
                 database.BeginTransaction ();
@@ -73,21 +75,21 @@ namespace Edward.Wilde.Note.For.Nurses.Core.DL
             }
         }
 
-        public static int DeleteItem<T>(int id) where T : BL.Contracts.IBusinessEntity, new ()
+        public static int DeleteItem<T>(int id) where T : IBusinessEntity, new ()
         {
             lock (locker) {
-                return database.Delete<T> (new T () { ID = id });
+                return database.Delete<T> (new T () { Id = id });
             }
         }
 
-        public static void ClearTable<T>() where T : BL.Contracts.IBusinessEntity, new ()
+        public static void ClearTable<T>() where T : IBusinessEntity, new ()
         {
             lock (locker) {
                 database.Execute (string.Format ("delete from \"{0}\"", typeof (T).Name));
             }
         }
 
-        public static int CountTable<T>() where T : BL.Contracts.IBusinessEntity, new ()
+        public static int CountTable<T>() where T : IBusinessEntity, new ()
         {
             lock (locker) {
                 if (database == null)
@@ -107,15 +109,18 @@ namespace Edward.Wilde.Note.For.Nurses.Core.DL
             var path = fileName;
 #else
 
-#if __ANDROID__
-                string libraryPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal); ;
+    #if __ANDROID__
+            string libraryPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+    #elif TESTRUNNER
+            string libraryPath = AppDomain.CurrentDomain.BaseDirectory;
 #else
             string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             string libraryPath = Path.Combine(documentsPath, "../Library/");
+    #endif
+    
+    var path = Path.Combine(libraryPath, fileName);
 #endif
-            var path = Path.Combine(libraryPath, fileName);
-#endif
-            return path;            
+    return path;            
         }
     }
 }

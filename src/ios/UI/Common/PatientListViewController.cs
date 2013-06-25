@@ -2,15 +2,14 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common {
     using System.Collections.Generic;
     using System.Linq;
 
+    using Edward.Wilde.Note.For.Nurses.Core.Data;
+    using Edward.Wilde.Note.For.Nurses.Core.Model;
     using Edward.Wilde.Note.For.Nurses.iOS.UI.iPad;
     using Edward.Wilde.Note.For.Nurses.iOS.Xamarin.Common;
 
     using MonoTouch.Dialog;
     using MonoTouch.Foundation;
     using MonoTouch.UIKit;
-
-    using Edward.Wilde.Note.For.Nurses.Core.BL;
-    using Edward.Wilde.Note.For.Nurses.Core.BL.Managers;
 
     /// <summary>
 	/// Speakers screen. Derives from MonoTouch.Dialog's DialogViewController to do 
@@ -38,7 +37,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common {
 		/// </summary>
 		protected override void PopulateTable()
 		{
-			this.speakers = SpeakerManager.GetPatients();
+			this.speakers = PatientManager.GetPatients();
 
 			this.Root = new RootElement ("Speakers") {
 					from speaker in this.speakers

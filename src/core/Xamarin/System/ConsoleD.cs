@@ -14,12 +14,17 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Xamarin {
         [global::System.Diagnostics.Conditional("DEBUG")]
 		public static void WriteLine(string format, params object[] arg)
 		{
-			Console.WriteLine(format, arg);
+            Console.WriteLine("DEBUG: " + format, arg);
 		}
 		[global::System.Diagnostics.Conditional("DEBUG")]
 		public static void WriteLine(string message)
 		{
-			Console.WriteLine(message);
+			Console.WriteLine("DEBUG: " + message);
 		}
+
+        public static void WriteError(string message, Exception exception, params object[] arg)
+        {
+            Console.WriteLine("ERROR: " + string.Format(message, arg) + Environment.NewLine + exception);
+        }
 	}
 }

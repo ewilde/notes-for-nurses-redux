@@ -1,25 +1,21 @@
-using System;
-using Edward.Wilde.Note.For.Nurses.Core.DL.SQLite;
-
-namespace Edward.Wilde.Note.For.Nurses.Core.BL.Contracts
+namespace Edward.Wilde.Note.For.Nurses.Core.Xamarin.Contracts
 {
-    using Edward.Wilde.Note.For.Nurses.Core.DL.SQLite;
+    using SQLite;
 
     /// <summary>
-	/// Business entity base class. Provides the ID property.
+	/// Business entity base class. Provides the Id property.
 	/// </summary>
 	public abstract class BusinessEntityBase : IBusinessEntity
 	{
         /// <summary>
-		/// Gets or sets the Database ID.
+		/// Gets or sets the Database Id.
 		/// </summary>
 		/// <value>
-		/// The ID.
+		/// The Id.
 		/// </value>
 		[PrimaryKey, AutoIncrement]
 		[System.Xml.Serialization.XmlIgnore]
-        public int ID { get; set; }
-
+        public int Id { get; set; }
 	}
 }
 

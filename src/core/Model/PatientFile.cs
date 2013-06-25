@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Edward.Wilde.Note.For.Nurses.Core.Model
 {
-    using System.Xml.Serialization;
-
-    using Edward.Wilde.Note.For.Nurses.Core.BL;
-
     public class PatientFile
     {
-        [XmlElement("sp")]
-        public List<Patient> Speakers { get; set; }
+        public PatientFile()
+        {
+            this.Patients = new List<Patient>();
+        }
 
+        public List<Patient> Patients { get; set; }
     }
 }

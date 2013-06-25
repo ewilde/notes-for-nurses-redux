@@ -1,11 +1,10 @@
 namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common {
+    using Edward.Wilde.Note.For.Nurses.Core.Model;
     using Edward.Wilde.Note.For.Nurses.iOS.UI.iPad;
 
     using MonoTouch.Dialog;
     using MonoTouch.Foundation;
     using MonoTouch.UIKit;
-
-    using Edward.Wilde.Note.For.Nurses.Core.BL;
 
     using PatientDetailViewController = Edward.Wilde.Note.For.Nurses.iOS.UI.iPhone.PatientDetailViewController;
 
@@ -22,12 +21,12 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common {
 		PatientSplitViewController splitViewController;
 		
 		/// <summary>for iPhone</summary>
-		public PatientTableElement (Patient showPatient) : base (showPatient.Name)
+		public PatientTableElement (Patient showPatient) : base (showPatient.Name.ToString())
 		{
 			this.patient = showPatient;
 		}
 		/// <summary>for iPad (SplitViewController)</summary>
-		public PatientTableElement (Patient showPatient, PatientSplitViewController patientSplitViewController) : base (showPatient.Name)
+		public PatientTableElement (Patient showPatient, PatientSplitViewController patientSplitViewController) : base (showPatient.Name.ToString())
 		{
 			this.patient = showPatient;
 			this.splitViewController = patientSplitViewController;
@@ -58,9 +57,9 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common {
 		public override void Selected (DialogViewController dvc, UITableView tableView, MonoTouch.Foundation.NSIndexPath path)
 		{
 			if (this.splitViewController != null)
-				this.splitViewController.ShowSpeaker (this.patient.ID);
+				this.splitViewController.ShowSpeaker (this.patient.Id);
 			else {
-				var sds = new PatientDetailViewController (this.patient.ID);
+				var sds = new PatientDetailViewController (this.patient.Id);
 				sds.Title = "Patient";
 				dvc.ActivateController (sds);
 			}

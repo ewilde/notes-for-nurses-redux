@@ -8,8 +8,8 @@ using MonoTouch.ObjCRuntime;
 
 namespace Edward.Wilde.Note.For.Nurses.iOS {
     using Edward.Wilde.Note.For.Nurses.Core;
-    using Edward.Wilde.Note.For.Nurses.Core.BL.Managers;
     using Edward.Wilde.Note.For.Nurses.Core.DL;
+    using Edward.Wilde.Note.For.Nurses.Core.Data;
     using Edward.Wilde.Note.For.Nurses.Core.Xamarin;
     using Edward.Wilde.Note.For.Nurses.iOS.UI.Common;
     using Edward.Wilde.Note.For.Nurses.iOS.Xamarin;
@@ -73,7 +73,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS {
 			new Thread(new ThreadStart(() => {
 				var prefs = NSUserDefaults.StandardUserDefaults;
 
-                bool hasSeedData = PatientFileUpdateManager.HasDataAlready;
+                bool hasSeedData = PatientFileUpdateManager.DataExists;
 				ConsoleD.WriteLine ("hasSeedData="+hasSeedData);
 				if (!hasSeedData) {
 					// only happens when the database is empty (or wasn't there); use local file update
@@ -81,13 +81,13 @@ namespace Edward.Wilde.Note.For.Nurses.iOS {
 					var appdir = NSBundle.MainBundle.ResourcePath;
 					var seedDataFile = appdir + "/Images/SeedData.xml";
 					string xml = System.IO.File.ReadAllText (seedDataFile);
-					PatientFileUpdateManager.UpdateFromFile(xml);
+					PatientFileUpdateManager.Update(xml);
 
-					ConsoleD.WriteLine("Database lives at: "+Core.DL.PatientDatabase.DatabaseFilePath);
+					ConsoleD.WriteLine("Database lives at: "+PatientDatabase.DatabaseFilePath);
 					// We SHOULDN'T skip backup because we are saving the Favorites in the same sqlite
 					// database as the sessions are stored. A more iCloud-friendly design would be 
 					// to keep the user-data separate from the server-generated data...
-					NSFileManager.SetSkipBackupAttribute (Core.DL.PatientDatabase.DatabaseFilePath, true);
+					NSFileManager.SetSkipBackupAttribute (PatientDatabase.DatabaseFilePath, true);
 				} 
 			})).Start();
 

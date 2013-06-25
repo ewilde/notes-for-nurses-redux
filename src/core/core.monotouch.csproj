@@ -85,17 +85,24 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\PatientDatabase.cs" />
+    <Compile Include="Model\Name.cs" />
+    <Compile Include="Service\SerializerService.cs" />
+    <Compile Include="System\StringWriterWithEncoding.cs" />
+    <Compile Include="Xamarin\Data\SQLite.cs" />
+    <Compile Include="Xamarin\Data\SQLite.MonoTouchAdmin.cs" />
+    <Compile Include="Xamarin\Data\SQLiteAsync.cs" />
     <Compile Include="Xamarin\Data\XamarinDatabase.cs" />
     <Compile Include="Model\PatientFile.cs" />
-    <Compile Include="Xamarin\Data\SQLite.cs" />
     <Compile Include="Model\Patient.cs" />
     <Compile Include="Xamarin\Contracts\BusinessEntityBase.cs" />
     <Compile Include="Data\DataManager.cs" />
     <Compile Include="Data\PatientFileUpdateManager.cs" />
-    <Compile Include="Data\SpeakerManager.cs" />
+    <Compile Include="Data\PatientManager.cs" />
     <Compile Include="Service\PatientFileParser.cs" />
     <Compile Include="Xamarin\Contracts\IBusinessEntity.cs" />
     <Compile Include="Xamarin\Service\XmlFeedParserBase.cs" />

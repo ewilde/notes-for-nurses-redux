@@ -1,30 +1,35 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Net;
-using System.Text;
-using System.Xml.Serialization;
-using Edward.Wilde.Note.For.Nurses.Core.BL;
-
-namespace Edward.Wilde.Note.For.Nurses.Core.SAL
+namespace Edward.Wilde.Note.For.Nurses.Core.Service
 {
-    using Edward.Wilde.Note.For.Nurses.Core.BL;
-    using Edward.Wilde.Note.For.Nurses.Core.Model;
+    using System;
+    using System.IO;
+    using System.Xml.Serialization;
 
+    using Edward.Wilde.Note.For.Nurses.Core.Model;
+    using Edward.Wilde.Note.For.Nurses.Core.Xamarin;
+
+    /// <summary>
+    /// Responsible for parsing the patient file from xml into a <see cref="PatientFile"/> instance.
+    /// </summary>
     public class PatientFileParser
 	{
-		internal static PatientFile DeserializeConference (string xml)
+        /// <summary>
+        /// Deserializes the specified XML.
+        /// </summary>
+        /// <param name="xml">The XML.</param>
+        /// <returns>An instance of <see cref="PatientFile"/> represented by the passed in <paramref name="xml"/>.</returns>
+        public PatientFile Deserialize(string xml)
 		{
-            PatientFile confData = null;
-			try {
-                var serializer = new XmlSerializer(typeof(PatientFile));
-				var sr = new StringReader(xml);
-                confData = (PatientFile)serializer.Deserialize(sr);
-			} catch (Exception ex) {
-				Debug.WriteLine ("ERROR deserializing patient file XML: " + ex);
+            PatientFile patientFile = null;
+			try
+			{
+			    patientFile = xml.Deserialize<PatientFile>();
+			} 
+            catch (Exception ex) 
+            {
+				ConsoleD.WriteError("Error occured deserializing patient file data.", ex);
 			}
-			return confData;
+
+			return patientFile;
 		}				
 	}
 }

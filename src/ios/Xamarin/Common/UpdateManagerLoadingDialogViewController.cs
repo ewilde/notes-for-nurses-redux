@@ -2,13 +2,12 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.Xamarin.Common {
     using System;
     using System.Drawing;
 
+    using Edward.Wilde.Note.For.Nurses.Core.Data;
     using Edward.Wilde.Note.For.Nurses.Core.Xamarin;
     using Edward.Wilde.Note.For.Nurses.iOS.Xamarin.UI.Controls;
 
     using MonoTouch.Dialog;
     using MonoTouch.UIKit;
-
-    using Edward.Wilde.Note.For.Nurses.Core.BL.Managers;
 
     /// <summary>
 	/// Base class for loading screens: Home, Speakers, Sessions
@@ -36,7 +35,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.Xamarin.Common {
 		{
 			base.ViewWillAppear (animated);
 
-			if(PatientFileUpdateManager.IsUpdating) {
+			if(PatientFileUpdateManager.UpdateInProgress) {
 				if (this.loadingOverlay == null) {
 					var bounds = new RectangleF(0,0,768,1004);
 					if (this.InterfaceOrientation == UIInterfaceOrientation.LandscapeLeft

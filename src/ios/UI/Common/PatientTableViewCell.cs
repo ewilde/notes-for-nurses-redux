@@ -2,11 +2,11 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common {
     using System;
     using System.Drawing;
 
+    using Edward.Wilde.Note.For.Nurses.Core.Model;
+
     using MonoTouch.Dialog.Utilities;
     using MonoTouch.Foundation;
     using MonoTouch.UIKit;
-
-    using Edward.Wilde.Note.For.Nurses.Core.BL;
 
     /// <remarks>
 	/// Uses ImageLoader from MonoTouch.Dialog
@@ -70,7 +70,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common {
 		
 		public void UpdateCell (Patient patient)
 		{
-			this.nameLabel.Text = patient.Name;
+			this.nameLabel.Text = patient.Name.ToString();
 			string subtitle = "";
 			if (String.IsNullOrEmpty (patient.Title))
 				subtitle = String.Format ("{0}", patient.Company);

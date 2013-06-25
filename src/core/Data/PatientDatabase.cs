@@ -1,13 +1,10 @@
-using Edward.Wilde.Note.For.Nurses.Core.BL;
-using Edward.Wilde.Note.For.Nurses.Core.DL.SQLite;
-
-namespace Edward.Wilde.Note.For.Nurses.Core.DL {
-    using System;
-    using System.IO;
-
-    using Edward.Wilde.Note.For.Nurses.Core.BL;
+namespace Edward.Wilde.Note.For.Nurses.Core.Data 
+{
+    using Edward.Wilde.Note.For.Nurses.Core.DL;
+    using Edward.Wilde.Note.For.Nurses.Core.Model;
     using Edward.Wilde.Note.For.Nurses.Core.Xamarin;
 
+    
     /// <summary>
 	/// <see cref="PatientDatabase"/> builds on SQLite.Net and represents a specific database, in our case, the Patient DB.
 	/// It contains methods for retreival and persistance as well as db creation, all based on the underlying ORM.
@@ -21,30 +18,26 @@ namespace Edward.Wilde.Note.For.Nurses.Core.DL {
         protected PatientDatabase (string path) : base (path)
 		{
 			// create the tables
-			CreateTable<Patient> ();						
+			this.CreateTable<Patient> ();						
 		}
 
-        private const string databaseFileName = "Patient.db3";
-
-        static PatientDatabase()
-		{
-            string databaseFilePath = GetDatabaseFilePath(databaseFileName);
+        public const string DatabaseFileName = "Patient.db3";
+        
+        public static void Initialize()
+        {
+            string databaseFilePath = GetDatabaseFilePath(DatabaseFileName);
             ConsoleD.WriteLine("Patient database initializing, using path: " + databaseFilePath);
             database = new PatientDatabase(databaseFilePath);
-		}
-
-        public static void Initialize()
-        {            
         }
 
         /// <summary>
 		/// Gets the Patient
 		/// </summary>
-        public static Patient GetSpeaker(int id)
+        public static Patient GetPatient(int id)
         {
             lock (locker) {
                 Patient patient = (from s in database.Table<Patient> ()
-                        where s.ID == id
+                        where s.Id == id
                         select s).FirstOrDefault ();				
 
 				return patient;
