@@ -114,15 +114,17 @@ namespace Edward.Wilde.Note.For.Nurses.iOS {
 		/// When updates finished, save the time so we don't check again
 		/// too soon.
 		/// </summary>
-		void HandleFinishedUpdate (object sender, EventArgs ea)
+		void HandleFinishedUpdate (object sender, EventArgs eventArgs)
 		{
-			var args = ea as UpdateFinishedEventArgs;
-			if (args != null) 
+			var updateFinishedEventArgs = eventArgs as UpdateFinishedEventArgs;
+			if (updateFinishedEventArgs != null) 
             {
-				if (args.Success)  
+                ConsoleD.WriteLine("Finished updating success {0} type {1}.", updateFinishedEventArgs.Success, updateFinishedEventArgs.UpdateType);
+
+				if (updateFinishedEventArgs.Success)  
                 {
-                    if (args.UpdateType == UpdateType.SeedData)
-                    {
+                    if (updateFinishedEventArgs.UpdateType == UpdateType.SeedData)
+                    {                        
                     }
                 }				
 			}

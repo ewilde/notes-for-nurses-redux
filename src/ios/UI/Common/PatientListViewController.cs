@@ -37,7 +37,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common {
 		/// </summary>
 		protected override void PopulateTable()
 		{
-			this.speakers = PatientManager.GetPatients();
+			this.speakers = PatientManager.Get();
 
 			this.Root = new RootElement ("Speakers") {
 					from speaker in this.speakers

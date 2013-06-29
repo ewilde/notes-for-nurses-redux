@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\NameTests.cs" />
     <Compile Include="Model\PatientFileTests.cs" />
     <Compile Include="Model\PatientTests.cs" />
     <Compile Include="Service\PatientFileParserTests.cs" />
@@ -76,6 +77,9 @@
       <Link>TestData\SeedData.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

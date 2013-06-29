@@ -120,7 +120,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
 		public void Update(int speakerID)
 		{
 			this.speakerId = speakerID;
-			this.showPatient = PatientManager.GetPatient (this.speakerId);
+			this.showPatient = PatientManager.GetById (this.speakerId);
 			this.Update ();
 			this.LayoutSubviews ();
 		}

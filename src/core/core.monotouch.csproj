@@ -99,6 +99,7 @@
       <Link>Xamarin\Data\SQLiteAsync.cs</Link>
     </Compile>
     <Compile Include="Data\PatientDatabase.cs" />
+    <Compile Include="Model\CompareResult.cs" />
     <Compile Include="Model\Name.cs" />
     <Compile Include="Service\SerializerService.cs" />
     <Compile Include="System\StringWriterWithEncoding.cs" />

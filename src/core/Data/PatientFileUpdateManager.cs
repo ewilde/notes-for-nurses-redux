@@ -15,7 +15,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
     public static class PatientFileUpdateManager 
     {
         /// <summary>
-        /// The global synchronization object, locks access across all threads in the application.
+        /// The global synchronization object, locks access across all threads in the application whilst updating.
         /// </summary>
 		private static readonly object globalSync = new object();
 		
@@ -69,7 +69,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
 					}
 				}
 
-				UpdateFinished (null, finishedEventArgs);
+                UpdateFinished(null, finishedEventArgs);
 				UpdateInProgress = false;
 			}
 		}
