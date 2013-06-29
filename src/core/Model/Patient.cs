@@ -16,7 +16,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Model
         /// </summary>
         public Patient()
         {
-            this.Name = new Name();
+            //this.Name = new Name();
         }
 
         [XmlAttribute("k")]

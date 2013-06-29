@@ -39,6 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\sqlite\src\SQLite.cs">
+      <Link>Xamarin\Data\SQLite.cs</Link>
+    </Compile>
+    <Compile Include="..\sqlite\src\SQLiteAsync.cs">
+      <Link>Xamarin\Data\SQLiteAsync.cs</Link>
+    </Compile>
     <Compile Include="Data\PatientManager.cs" />
     <Compile Include="Model\Name.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -54,8 +60,6 @@
     <Compile Include="System\StringWriterWithEncoding.cs" />
     <Compile Include="Xamarin\Contracts\BusinessEntityBase.cs" />
     <Compile Include="Xamarin\Contracts\IBusinessEntity.cs" />
-    <Compile Include="Xamarin\Data\SQLite.cs" />
-    <Compile Include="Xamarin\Data\SQLiteAsync.cs" />
     <Compile Include="Xamarin\Data\XamarinDatabase.cs" />
     <Compile Include="Xamarin\Service\XmlFeedParserBase.cs" />
     <Compile Include="Xamarin\System\ConsoleD.cs" />

@@ -48,5 +48,20 @@ namespace core.net.integrationtests.Data
             {
                 DataManager.GetPatients().Count().ShouldBeGreaterThan(0);
             };
+
+        It should_save_the_patient_record = () =>
+            {
+                DataManager.GetPatients().ElementAt(0).ShouldNotBeNull();
+            };
+
+        It should_save_the_patient_name_record = () =>
+            {
+                DataManager.GetPatients().ElementAt(0).Name.ShouldNotBeNull();
+            };
+
+        It should_save_the_patient_name_first_name = () =>
+            {
+                DataManager.GetPatients().ElementAt(0).Name.FirstName.ShouldEqual("Sopoline");
+            };
     }
 }

@@ -23,5 +23,9 @@ namespace core.net.tests.Service
         Because of = () => Result = Subject.Deserialize(File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestData\\SeedData.xml")));
 
         It should_hydrate_the_instance_and_contain_some_patients = () => Result.Patients.Count.ShouldBeGreaterThan(0);
+
+        It should_hydrate_the_instance_and_patient_name = () => Result.Patients[0].Name.ShouldNotBeNull();
+
+        It should_hydate_the_instance_patient_first_name = () => Result.Patients[0].Name.FirstName.ShouldEqual("Sopoline");
     }
 }

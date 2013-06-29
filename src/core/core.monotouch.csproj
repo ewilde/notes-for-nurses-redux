@@ -89,13 +89,19 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\sqlite\src\SQLite.cs">
+      <Link>Xamarin\Data\SQLite.cs</Link>
+    </Compile>
+    <Compile Include="..\sqlite\src\SQLite.MonoTouchAdmin.cs">
+      <Link>Xamarin\Data\SQLite.MonoTouchAdmin.cs</Link>
+    </Compile>
+    <Compile Include="..\sqlite\src\SQLiteAsync.cs">
+      <Link>Xamarin\Data\SQLiteAsync.cs</Link>
+    </Compile>
     <Compile Include="Data\PatientDatabase.cs" />
     <Compile Include="Model\Name.cs" />
     <Compile Include="Service\SerializerService.cs" />
     <Compile Include="System\StringWriterWithEncoding.cs" />
-    <Compile Include="Xamarin\Data\SQLite.cs" />
-    <Compile Include="Xamarin\Data\SQLite.MonoTouchAdmin.cs" />
-    <Compile Include="Xamarin\Data\SQLiteAsync.cs" />
     <Compile Include="Xamarin\Data\XamarinDatabase.cs" />
     <Compile Include="Model\PatientFile.cs" />
     <Compile Include="Model\Patient.cs" />

@@ -16,9 +16,12 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
         /// </summary>
         /// <param name="path">The path.</param>
         protected PatientDatabase (string path) : base (path)
-		{
+        {
+            this.SetForeignKeysPermissions(true);
+
 			// create the tables
-			this.CreateTable<Patient> ();						
+			this.CreateTable<Patient>();
+            this.CreateTable<Name>();
 		}
 
         public const string DatabaseFileName = "Patient.db3";
@@ -49,9 +52,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
         public static Patient GetSpeakerWithKey (string key)
         {
             lock (locker) {
-				Patient patient = (from s in database.Table<Patient> ()
-                        where s.Key == key
-                        select s).FirstOrDefault ();
+				Patient patient = (database.Table<Patient>().Where(s => s.Key == key)).FirstOrDefault ();
 
 				
 				return patient;

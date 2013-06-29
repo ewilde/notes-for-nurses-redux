@@ -1,0 +1,3 @@
+[submodule "src/sqlite"]
+	path = src/sqlite
+	url = git://github.com/ewilde/sqlite-net.git

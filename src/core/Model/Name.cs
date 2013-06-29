@@ -7,11 +7,20 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Model
 {
     using System.Xml.Serialization;
 
+    using Edward.Wilde.Note.For.Nurses.Core.Xamarin.Contracts;
+
+    using SQLite;
+
     /// <summary>
     /// Represents a name of a person
     /// </summary>
-    public class Name
+    public class Name : BusinessEntityBase
     {
+        [References(typeof(Patient))]
+        [ForeignKey]
+        [OnDeleteCascade]
+        public int PatientId { get; set; }
+
         /// <summary>
         /// Gets or sets the persons first name.
         /// </summary>
@@ -36,7 +45,8 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Model
         /// <value>
         /// The display name.
         /// </value>
-        [XmlAttribute]
+        [XmlIgnore]
+        [SQLite.Ignore]
         public string DisplayName
         {
             get

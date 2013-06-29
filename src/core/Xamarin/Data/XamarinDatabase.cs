@@ -31,7 +31,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.DL
         public static IEnumerable<T> GetItems<T> () where T : IBusinessEntity, new ()
         {
             lock (locker) {
-                return (from i in database.Table<T> () select i).ToList ();
+                return (database.Table<T>().Select(i => i)).ToList ();
             }
         }
 
