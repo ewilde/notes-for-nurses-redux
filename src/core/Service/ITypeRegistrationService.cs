@@ -7,6 +7,6 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Service
 {
     public interface ITypeRegistrationService
     {
-        void Register();
+        void RegisterAll();
     }
 }

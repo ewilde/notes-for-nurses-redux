@@ -17,21 +17,25 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
 	///         * SpeakerSessionsMasterDetail
 	///  NOT used on iPhone ~ see Common.iPhone.PatientListViewController which dups some of this
 	/// </summary>
-	public class PatientDetailView : UIView, IImageUpdated {
-		UILabel nameLabel, titleLabel, companyLabel;
+	public class PatientDetailView : UIView, IImageUpdated 
+    {
+        public IPatientManager PatientManager { get; set; }
+
+        UILabel nameLabel, titleLabel, companyLabel;
 		UITextView bioTextView;
 		UIImageView image;
 		
 		int y = 0;
-		int speakerId;
+		int patientId;
 		Patient showPatient;
 		EmptyOverlay emptyOverlay;
 
 		const int ImageSpace = 80;		
 		
-		public PatientDetailView (int speakerID)
+		public PatientDetailView(IPatientManager patientManager, int patientId)
 		{
-			this.speakerId = speakerID;
+		    this.PatientManager = patientManager;
+		    this.patientId = patientId;
 
 			this.BackgroundColor = UIColor.White;
 			
@@ -119,8 +123,8 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
 		// for masterdetail
 		public void Update(int speakerID)
 		{
-			this.speakerId = speakerID;
-			this.showPatient = PatientManager.GetById (this.speakerId);
+			this.patientId = speakerID;
+			this.showPatient = this.PatientManager.GetById(this.patientId);
 			this.Update ();
 			this.LayoutSubviews ();
 		}

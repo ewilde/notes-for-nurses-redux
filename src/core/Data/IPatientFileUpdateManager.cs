@@ -18,13 +18,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
         /// </value>
         bool UpdateInProgress { get; set; }
 
-        /// <summary>
-        /// Gets a value indicating whether data already exists.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if data exists; otherwise, <c>false</c>.
-        /// </value>
-        bool DataExists { get; }
+        void UpdateIfEmpty();
 
         /// <summary>
         /// Updates the database using the specified xml, which is deserialize into a <see cref="PatientFile"/> instance, first.

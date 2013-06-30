@@ -8,23 +8,30 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
     /// <summary>
     /// Responsible for managing the patient entity persistance and retrieval.
     /// </summary>
-    public static class PatientManager
-	{
-        public static void Update(IList<Patient> speakers)
+    public class PatientManager : IPatientManager
+    {
+        public IDataManager DataManager { get; set; }
+
+        public PatientManager(IDataManager dataManager)
         {
-            DataManager.DeletePatients();
-			DataManager.SavePatients (speakers);
+            DataManager = dataManager;
+        }
+
+        public void Update(IList<Patient> speakers)
+        {
+            this.DataManager.DeletePatients();
+            this.DataManager.SavePatients(speakers);
 		}
 	
-		public static IList<Patient> Get() 
+		public IList<Patient> Get() 
 		{
-            var patients = DataManager.GetPatients().OrderBy(x=> x.Name);
+            var patients = this.DataManager.GetPatients().OrderBy(x => x.Name);
 		    return patients.ToList();
 		}
 	
-		public static Patient GetById(int id)
+		public Patient GetById(int id)
 		{
-			return DataManager.GetPatient(id);
+            return this.DataManager.GetPatient(id);
 		}        
 	}
 }

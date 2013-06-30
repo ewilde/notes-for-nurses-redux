@@ -14,23 +14,35 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPhone {
 	/// Displays personal information about the Patient
 	/// </summary>
 	public class PatientDetailViewController : UIViewController, IImageUpdated {
-		UILabel nameLabel, titleLabel, companyLabel;
-		UITextView bioTextView;
-		UIImageView image;
-		UIToolbar toolbar;
-		UIScrollView scrollView;	
-		int y = 0;
-		int speakerId;
-		Patient patient;
-		const int ImageSpace = 80;
+        public IPatientManager PatientManager { get; set; }
+
+        private readonly UILabel nameLabel;
+
+        private readonly UILabel titleLabel;
+
+        private readonly UILabel companyLabel;
+
+        private readonly UITextView bioTextView;
+
+        private readonly UIImageView image;
+
+        private readonly UIToolbar toolbar;
+
+        private readonly UIScrollView scrollView;
+        
+        private int y;
+
+        private readonly int patientId;
+        
+        private Patient patient;
+        
+        private const int ImageSpace = 80;
 		
-		public bool ShouldShowSessions { get; set; }
-
-		public PatientDetailViewController (int speakerID) : base()
+		public PatientDetailViewController(IPatientManager patientManager, int patientId)
 		{
-			this.ShouldShowSessions = true;
+		    this.PatientManager = patientManager;
 
-			this.speakerId = speakerID;
+		    this.patientId = patientId;
 
 			this.View.BackgroundColor = UIColor.White;
 			
@@ -82,7 +94,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPhone {
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-			this.patient = PatientManager.GetById (this.speakerId);
+			this.patient = this.PatientManager.GetById (this.patientId);
 			// this shouldn't be null, but it gets that way when the data
 			// "shifts" underneath it. need to reload the screen or prevent
 			// selection via loading overlay - neither great UIs :-(

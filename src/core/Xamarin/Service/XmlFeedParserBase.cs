@@ -1,15 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
-using System.Linq;
-using System.Diagnostics;
+
 #if SILVERLIGHT
 using System.IO.IsolatedStorage;
 #endif
 
-namespace Edward.Wilde.Note.For.Nurses.Core.SAL {
-	public abstract class XmlFeedParserBase<T> {
+namespace Edward.Wilde.Note.For.Nurses.Core.Xamarin.Service {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Net;
+    using System.Linq;
+    using System.Diagnostics;
+
+    public abstract class XmlFeedParserBase<T> {
 #if !SILVERLIGHT
 		readonly string documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal);	
 #endif
@@ -21,7 +23,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.SAL {
 		public XmlFeedParserBase (string url, string filename)
 		{
 			Debug.WriteLine ("Url: " + url);
-			xmlUrl = url;
+			this.xmlUrl = url;
 
 #if SILVERLIGHT
             localPath = filename;
@@ -31,20 +33,20 @@ namespace Edward.Wilde.Note.For.Nurses.Core.SAL {
             string libraryPath = documentsPath;
 #else
             // we need to put in /tmp/ on iOS5.1 to meet Apple's iCloud terms (don't want this backed-up)
-			string libraryPath = Path.Combine (documentsPath, "../tmp/");
+			string libraryPath = Path.Combine (this.documentsPath, "../tmp/");
 #endif
-            localPath = Path.Combine (libraryPath, filename); // iOS or Android
+            this.localPath = Path.Combine (libraryPath, filename); // iOS or Android
 #endif
-            Debug.WriteLine("XmlFeedParserBase path:" + localPath);
+            Debug.WriteLine("XmlFeedParserBase path:" + this.localPath);
 			
-			if (HasLocalData) {
-                var data = OpenLocal ();
-                items = ParseXml (data);
+			if (this.HasLocalData) {
+                var data = this.OpenLocal ();
+                this.items = this.ParseXml (data);
 			}
 		}
 
 		public List<T> AllItems {
-			get { return items; }
+			get { return this.items; }
 		}
 
         string OpenLocal ()
@@ -55,7 +57,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.SAL {
                 return f.ReadToEnd ();
             }
 #else
-            using (var f = File.OpenText (localPath)) {
+            using (var f = File.OpenText (this.localPath)) {
                 return f.ReadToEnd ();
             }
 #endif
@@ -69,7 +71,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.SAL {
                 f.Write (data);
             }
 #else
-            using (var f = new StreamWriter (localPath)) {
+            using (var f = new StreamWriter (this.localPath)) {
                 f.Write (data);
             }
 #endif
@@ -77,11 +79,11 @@ namespace Edward.Wilde.Note.For.Nurses.Core.SAL {
 
 		public DateTime GetLastRefreshTimeUtc ()
 		{
-			if (HasLocalData) {
+			if (this.HasLocalData) {
 #if SILVERLIGHT
                 return IsolatedStorageFile.GetUserStoreForApplication ().GetLastWriteTime (localPath).UtcDateTime;
 #else
-                return new FileInfo (localPath).LastWriteTimeUtc;
+                return new FileInfo (this.localPath).LastWriteTimeUtc;
 #endif
             } else {
 				return new DateTime (1990, 1, 1);
@@ -93,7 +95,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.SAL {
 #if SILVERLIGHT
                 return IsolatedStorageFile.GetUserStoreForApplication ().FileExists (localPath);
 #else
-                return File.Exists (localPath); 
+                return File.Exists (this.localPath); 
 #endif
             }
 		}
@@ -105,15 +107,15 @@ namespace Edward.Wilde.Note.For.Nurses.Core.SAL {
 			webClient.DownloadStringCompleted += (sender, e) =>
 			{
 				try {
-					SaveLocal (e.Result);
-					items = ParseXml (e.Result);
+					this.SaveLocal (e.Result);
+					this.items = this.ParseXml (e.Result);
 				} catch (Exception ex) {
 					Debug.WriteLine ("ERROR saving downloaded XML: " + ex);
 				}
 				action();
 			};
 			webClient.Encoding = System.Text.Encoding.UTF8;
-			webClient.DownloadStringAsync (new Uri (xmlUrl));
+			webClient.DownloadStringAsync (new Uri (this.xmlUrl));
 		}
 
 		protected abstract List<T> ParseXml (string xml);

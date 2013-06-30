@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D102E44A-1BE6-4B20-906F-F4DD5B1D3AED}</ProjectGuid>
+    <ProjectGuid>{B7ED3825-4F3A-40EE-A1CF-2A81F61744D4}</ProjectGuid>
     <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
     <RootNamespace>Edward.Wilde.Note.For.Nurses.iOS</RootNamespace>
@@ -62,7 +62,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
-    <CodesignKey>iPhone Developer: Craig Dunn (6Q937X2U43)</CodesignKey>
+    <CodesignKey>iPhone Developer: Edward Wilde (8AF7QT599C)</CodesignKey>
     <IpaPackageName />
     <MtouchI18n />
     <MtouchUseLlvm>True</MtouchUseLlvm>
@@ -94,7 +94,7 @@
     <CodesignKey>iPhone Distribution: Xamarin Inc</CodesignKey>
     <CodesignProvision>8DA3CC7B-0646-4545-B9E8-CCE97C7D1074</CodesignProvision>
     <BuildIpa>True</BuildIpa>
-    <IpaPackageName>MWC2012_AdHoc</IpaPackageName>
+    <IpaPackageName>NotesForNurses_AdHoc</IpaPackageName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AdHoc|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -115,6 +115,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="System\FileManager.cs" />
     <Compile Include="UI\Common\NavigationViewController.cs" />
     <Compile Include="Xamarin\Network\NetworkStatus.cs" />
     <Compile Include="Xamarin\UI\Controls\EmptyOverlayType.cs" />

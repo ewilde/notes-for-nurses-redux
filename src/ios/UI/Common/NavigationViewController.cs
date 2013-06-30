@@ -1,29 +1,58 @@
 namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common {
+    using Edward.Wilde.Note.For.Nurses.Core;
+    using Edward.Wilde.Note.For.Nurses.Core.UI;
     using Edward.Wilde.Note.For.Nurses.iOS.UI.iPad;
 
     using MonoTouch.Dialog;
     using MonoTouch.UIKit;
 
+    using TinyIoC;
+
     public class NavigationViewController : UITabBarController {
-		private UINavigationController speakerNav;
+        private UINavigationController speakerNav;
+
         private DialogViewController speakersScreen;
-		private AboutView aboutScreen;
+
+        private AboutView aboutScreen;
+
         private UISplitViewController speakersSplitView;
 
-	    public override void ViewDidLoad ()
+        private readonly bool propertiesAssigned;
+
+        public IObjectFactory ObjectFactory { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NavigationViewController"/> class.
+        /// Note that because the default constructor for <see cref="UITabBarController"/> calls the <see cref="ViewDidLoad"/>
+        /// method we have added a check to call it afterwards instead once properties have been initialized.
+        /// </summary>
+        /// <param name="objectFactory">The view factory.</param>
+        public NavigationViewController(IObjectFactory objectFactory)
+        {
+            this.ObjectFactory = objectFactory;
+            this.propertiesAssigned = true;
+            this.ViewDidLoad();
+        }
+
+        public override void ViewDidLoad ()
 		{
+            if (!this.propertiesAssigned)
+            {
+                return;
+            }
+
 			base.ViewDidLoad ();
 			
 			// speakers tab
 			if (AppDelegate.IsPhone) {
-				this.speakersScreen = new PatientListViewController();			
-				this.speakerNav = new UINavigationController();
-				this.speakerNav.TabBarItem = new UITabBarItem("Speakers"
+                this.speakersScreen = this.ObjectFactory.Create<PatientListViewController>(new NamedParameterOverloads { { "patientSplitViewController", null } });
+				this.speakerNav = this.ObjectFactory.Create<UINavigationController>();
+				this.speakerNav.TabBarItem = new UITabBarItem("Patients"
 											, UIImage.FromBundle("Images/Tabs/speakers.png"), 1);
 				this.speakerNav.PushViewController ( this.speakersScreen, false );
 			} else {
-				this.speakersSplitView = new PatientSplitViewController();
-				this.speakersSplitView.TabBarItem = new UITabBarItem("Speakers"
+                this.speakersSplitView = this.ObjectFactory.Create<PatientSplitViewController>();
+				this.speakersSplitView.TabBarItem = new UITabBarItem("Patients"
 											, UIImage.FromBundle("Images/Tabs/speakers.png"), 1);
 			}
 

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>MWC 2012</string>
+	<string>Notes for nurses</string>
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>Images/Icons/57_icon.png</string>
@@ -15,9 +15,9 @@
 		<string>Images/Icons/512_icon.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.xamarin.sample.mwc12</string>
+	<string>com.edward.wilde.note.for.nurses</string>
 	<key>CFBundleVersion</key>
-	<string>1.4.0</string>
+	<string>1.0.0</string>
 	<key>MinimumOSVersion</key>
 	<string>5.0</string>
 	<key>UIDeviceFamily</key>

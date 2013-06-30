@@ -14,13 +14,17 @@ namespace core.net.integrationtests.Data
 {
     using System.IO;
     using System.Linq;
+    using core.net.tests;
 
-    using Edward.Wilde.Note.For.Nurses.Core.DL;
     using Edward.Wilde.Note.For.Nurses.Core.Data;
+    using Edward.Wilde.Note.For.Nurses.Core.Xamarin.Data;
+
+    using Machine.Fakes;
 
     [Subject(typeof(PatientFileUpdateManager))]
-    public class when_loading_the_database_using_the_seed_data
-    {        
+    public class when_loading_the_database_using_the_seed_data : WithConcreteSubject<PatientFileUpdateManager, IPatientFileUpdateManager>
+    {
+        static IDataManager DataManager;
 
         Establish context = () =>
             {
@@ -30,7 +34,8 @@ namespace core.net.integrationtests.Data
                     File.Delete(databaseFilePath);                        
                 }
 
-                PatientDatabase.Initialize();
+                DataManager = Resolve<IDataManager>();
+                Configure(DataManager);
             };
 
         Because of = () =>
@@ -41,7 +46,7 @@ namespace core.net.integrationtests.Data
                     throw new FileNotFoundException("Seed data not found", path);
                 }
 
-                PatientFileUpdateManager.Update(File.ReadAllText(path));
+                Subject.Update(File.ReadAllText(path));
             };
 
         It should_save_to_sql_lite = () =>

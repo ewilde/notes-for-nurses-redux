@@ -1,4 +1,4 @@
-namespace Edward.Wilde.Note.For.Nurses.Core.DL
+namespace Edward.Wilde.Note.For.Nurses.Core.Xamarin.Data
 {
     using System;
     using System.Collections.Generic;
@@ -9,35 +9,33 @@ namespace Edward.Wilde.Note.For.Nurses.Core.DL
 
     using SQLite;
 
-    public abstract class XamarinDatabase : SQLiteConnection
+    public abstract class XamarinDatabase : SQLiteConnection, IXamarinDatabase
     {
-        protected static XamarinDatabase database = null;
-
-        protected static object locker = new object ();
+        protected static object staticLock = new object ();
 
         protected XamarinDatabase(string databasePath, bool storeDateTimeAsTicks = false)
             : base(databasePath, storeDateTimeAsTicks)
         {
         }
 
-        public static string DatabaseFilePath
+        public string DatabaseFilePath
         {
             get
             {
-                return database.DatabasePath;
+                return this.DatabasePath;
             }
         }
 
-        public static IEnumerable<T> GetItems<T> () where T : IBusinessEntity, new ()
+        public IEnumerable<T> GetItems<T> () where T : IBusinessEntity, new ()
         {
-            lock (locker) {
-                return (database.Table<T>().Select(i => i)).ToList ();
+            lock (staticLock) {
+                return (this.Table<T>().Select(i => i)).ToList();
             }
         }
 
-        public static T GetItem<T> (int id) where T : IBusinessEntity, new ()
+        public T GetItem<T> (int id) where T : IBusinessEntity, new ()
         {
-            lock (locker) {
+            lock (staticLock) {
                 
                 // ---
                 //return (from i in database.Table<T> ()
@@ -46,59 +44,56 @@ namespace Edward.Wilde.Note.For.Nurses.Core.DL
 
                 // +++ To properly use Generic version and eliminate NotSupportedException
                 // ("Cannot compile: " + expr.NodeType.ToString ()); in SQLite.cs
-                return database.Table<T>().FirstOrDefault(x => x.Id == id);
+                return this.Table<T>().FirstOrDefault(x => x.Id == id);
             }
         }
 
-        public static int SaveItem<T> (T item) where T : IBusinessEntity
+        public int SaveItem<T> (T item) where T : IBusinessEntity
         {
-            lock (locker) {
+            lock (staticLock)
+            {
                 if (item.Id != 0) {
-                    database.Update (item);
+                    this.Update(item);
                     return item.Id;
-                } else {
-                    return database.Insert (item);
                 }
+
+
+                return this.Insert(item);
             }
         }
 
-        public static void SaveItems<T> (IEnumerable<T> items) where T : IBusinessEntity
+        public void SaveItems<T> (IEnumerable<T> items) where T : IBusinessEntity
         {
-            lock (locker) {
-                database.BeginTransaction ();
+            lock (staticLock) {
+                this.BeginTransaction();
 
                 foreach (T item in items) {
-                    SaveItem<T> (item);
+                    this.SaveItem<T> (item);
                 }
 
-                database.Commit ();
+                this.Commit();
             }
         }
 
-        public static int DeleteItem<T>(int id) where T : IBusinessEntity, new ()
+        public int DeleteItem<T>(int id) where T : IBusinessEntity, new ()
         {
-            lock (locker) {
-                return database.Delete<T> (new T () { Id = id });
+            lock (staticLock) {
+                return this.Delete<T>(new T() { Id = id });
             }
         }
 
-        public static void ClearTable<T>() where T : IBusinessEntity, new ()
+        public void ClearTable<T>() where T : IBusinessEntity, new ()
         {
-            lock (locker) {
-                database.Execute (string.Format ("delete from \"{0}\"", typeof (T).Name));
+            lock (staticLock) {
+                this.Execute(string.Format("delete from \"{0}\"", typeof(T).Name));
             }
         }
 
-        public static int CountTable<T>() where T : IBusinessEntity, new ()
+        public int CountTable<T>() where T : IBusinessEntity, new ()
         {
-            lock (locker) {
-                if (database == null)
-                {
-                    return 0;
-                }
-
+            lock (staticLock) {
                 string sql = string.Format ("select count (*) from \"{0}\"", typeof (T).Name);
-                var c = database.CreateCommand (sql, new object[0]);
+                var c = this.CreateCommand(sql, new object[0]);
                 return c.ExecuteScalar<int>();
             }
         }

@@ -14,5 +14,19 @@ namespace Edward.Wilde.Note.For.Nurses.Core
         /// <returns>true if the caller has the required permissions and <paramref name="path" /> contains the name of an existing file; otherwise, false. This method also returns false if <paramref name="path" /> is null, an invalid path, or a zero-length string. If the caller does not have sufficient permissions to read the specified file, no exception is thrown and the method returns false regardless of the existence of <paramref name="path" />.</returns>
         /// <param name="path">The file to check. </param>
         bool Exists(string path);
+
+        /// <summary>
+        /// Gets the application resources directory.
+        /// </summary>
+        /// <value>
+        /// The application resources directory.
+        /// </value>
+        string ResourcePath { get; }
+
+        /// <summary>
+        /// Deletes the specified file.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        void Delete(string path);
     }
 }

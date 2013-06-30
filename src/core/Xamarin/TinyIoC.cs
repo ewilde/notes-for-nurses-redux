@@ -2988,6 +2988,8 @@ namespace TinyIoC
             {
                 t => t.FullName.StartsWith("System.", StringComparison.Ordinal),
                 t => t.FullName.StartsWith("Microsoft.", StringComparison.Ordinal),
+                t => t.FullName.StartsWith("JetBrains", StringComparison.Ordinal),
+                t => t.FullName.StartsWith("Machine", StringComparison.Ordinal),
                 t => t.IsPrimitive(),
 #if !UNBOUND_GENERICS_GETCONSTRUCTORS
                 t => t.IsGenericTypeDefinition(),

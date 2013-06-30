@@ -1,50 +1,70 @@
-namespace Edward.Wilde.Note.For.Nurses.Core.Data {
+namespace Edward.Wilde.Note.For.Nurses.Core.Data
+{
     using System.Collections.Generic;
 
     using Edward.Wilde.Note.For.Nurses.Core.Model;
 
     /// <summary>
-	/// [abstracts fromt the underlying data source(s)]
-	/// [if multiple data sources, can agreggate/etc without BL knowing]
-	/// [superflous if only one data source]
-	/// </summary>
-	public static class DataManager 
+    /// Defines an interface between the model and the data access layer.
+    /// Should some entities be retrieved of persisted from a different datasource.
+    /// </summary>
+    public class DataManager : IDataManager
     {
-		
-		public static IEnumerable<Patient> GetPatients()
-		{
-			return PatientDatabase.GetItems<Patient> ();
-		}
-		
-		public static Patient GetPatient(int id)
-		{
-			//return DL.PatientDatabase.GetItem<Patient> (id);
-            return PatientDatabase.GetPatient(id);
-		}
+        public IPatientDatabase PatientDatabase { get; set; }
 
-        public static Patient GetSpeakerWithKey (string key)
+        public IFileManager FileManager { get; set; }
+
+        public DataManager(IPatientDatabase patientDatabase, IFileManager fileManager)
         {
-            return PatientDatabase.GetSpeakerWithKey (key);
+            PatientDatabase = patientDatabase;
+            FileManager = fileManager;
         }
-		
-		public static int SaveSpeaker (Patient item)
-		{
-			return PatientDatabase.SaveItem<Patient> (item);
-		}
-		
-		public static void SavePatients (IEnumerable<Patient> items)
-		{
-			PatientDatabase.SaveItems<Patient> (items);
-		}
-		
-		public static int DeleteSpeaker(int id)
-		{
-			return PatientDatabase.DeleteItem<Patient> (id);
-		}
-		
-		public static void DeletePatients()
-		{
-			PatientDatabase.ClearTable<Patient>();
-		}		
-	}
+
+        public IEnumerable<Patient> GetPatients()
+        {
+            return this.PatientDatabase.GetItems<Patient>();
+        }
+
+        public Patient GetPatient(int id)
+        {
+            return this.PatientDatabase.GetPatient(id);
+        }
+
+        public void SavePatients(IEnumerable<Patient> items)
+        {
+            this.PatientDatabase.SaveItems<Patient>(items);
+        }
+
+        public int DeletePatient(int id)
+        {
+            return this.PatientDatabase.DeleteItem<Patient>(id);
+        }
+
+        public void DeletePatients()
+        {
+            this.PatientDatabase.ClearTable<Patient>();
+        }
+
+        /// <summary>
+        /// Initializes this instance and all it's associated repository managers.
+        /// </summary>
+        public void Initialize()
+        {
+           
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether data already exists.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if data exists otherwise, <c>false</c>.
+        /// </value>
+        public bool DataExists
+        {
+            get
+            {
+                return this.PatientDatabase.CountTable<Patient>() > 0;
+            }
+        }
+    }
 }

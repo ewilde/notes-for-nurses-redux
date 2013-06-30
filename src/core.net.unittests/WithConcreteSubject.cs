@@ -15,7 +15,7 @@ namespace core.net.tests
     /// </summary>
     /// <typeparam name="TInterface">The type of the interface.</typeparam>
     /// <typeparam name="TConcreteType">The type of the concrete type.</typeparam>
-    public class WithConcreteSubject<TConcreteType, TInterface> : WithSubject<TConcreteType>
+    public class WithConcreteSubject<TConcreteType, TInterface> : WithSubjectBase<TConcreteType>
         where TInterface : class
         where TConcreteType : class, TInterface
     {

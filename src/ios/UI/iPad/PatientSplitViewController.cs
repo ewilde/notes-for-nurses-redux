@@ -1,19 +1,27 @@
 namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
+    using Edward.Wilde.Note.For.Nurses.Core;
+    using Edward.Wilde.Note.For.Nurses.Core.UI;
+
     using MonoTouch.UIKit;
 
     using Edward.Wilde.Note.For.Nurses.iOS.UI.Common;
     using Edward.Wilde.Note.For.Nurses.iOS.Xamarin.UI;
 
+    using TinyIoC;
+
     public class PatientSplitViewController : IntelligentSplitViewController {
-		PatientListViewController speakersList;
+        public IObjectFactory ObjectFactory { get; set; }
+
+        PatientListViewController speakersList;
 		PatientDetailViewController speakerDetailViewControllerWithSession;
 		
-		public PatientSplitViewController ()
+		public PatientSplitViewController(IObjectFactory objectFactory)
 		{
-			this.Delegate = new SpeakerSplitViewDelegate();
-			
-			this.speakersList = new PatientListViewController(this);
-			this.speakerDetailViewControllerWithSession = new PatientDetailViewController(-1);
+		    this.ObjectFactory = objectFactory;
+		    this.Delegate = new SpeakerSplitViewDelegate();
+
+            this.speakersList = this.ObjectFactory.Create<PatientListViewController>(new NamedParameterOverloads { { "patientSplitViewController", this } });
+			this.speakerDetailViewControllerWithSession = this.ObjectFactory.Create<PatientDetailViewController>(new NamedParameterOverloads{{"patientId", -1}});
 			
 			this.ViewControllers = new UIViewController[]
 				{this.speakersList, this.speakerDetailViewControllerWithSession};

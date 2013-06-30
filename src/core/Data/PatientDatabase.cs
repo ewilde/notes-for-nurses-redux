@@ -1,23 +1,32 @@
 namespace Edward.Wilde.Note.For.Nurses.Core.Data 
 {
     using System.Diagnostics;
+    using System.Linq;
 
-    using Edward.Wilde.Note.For.Nurses.Core.DL;
     using Edward.Wilde.Note.For.Nurses.Core.Model;
     using Edward.Wilde.Note.For.Nurses.Core.Xamarin;
+    using Edward.Wilde.Note.For.Nurses.Core.Xamarin.Data;
 
-    
+    using SQLite;
+
     /// <summary>
-	/// <see cref="PatientDatabase"/> builds on SQLite.Net and represents a specific database, in our case, the Patient DB.
-	/// It contains methods for retreival and persistance as well as db creation, all based on the underlying ORM.
-	/// </summary>
-	public class PatientDatabase : XamarinDatabase {
+    /// Patient database, responsible for retrieving and updating all entities in the application which
+    /// are persisted in the <see cref="SQLiteConnection"/> database.
+    /// </summary>
+    public class PatientDatabase : XamarinDatabase, IPatientDatabase
+    {
+        /// <summary>
+        /// The name of the database file
+        /// </summary>
+        public const string DatabaseFileName = "Patient.db3";
+
+        public static new readonly string DatabaseFilePath = XamarinDatabase.GetDatabaseFilePath(PatientDatabase.DatabaseFileName);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PatientDatabase"/> class.
+        /// If the database does not already exist it create a new database.
         /// </summary>
-        /// <param name="path">The path.</param>
-        protected PatientDatabase (string path) : base (path)
+        public PatientDatabase() : base(GetDatabaseFilePath(DatabaseFileName))
         {
             this.SetForeignKeysPermissions(true);
 
@@ -26,8 +35,12 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
             this.CreateTable<Name>();
 		}
 
-        public const string DatabaseFileName = "Patient.db3";
-
+        /// <summary>
+        /// Gets a value indicating whether we are in debug mode.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if in debug mode; otherwise, <c>false</c>.
+        /// </value>
         public static bool DebugMode
         {
                 
@@ -42,38 +55,16 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
             }
         }
 
-        public static void Initialize()
-        {
-            string databaseFilePath = GetDatabaseFilePath(DatabaseFileName);
-            ConsoleD.WriteLine("Patient database initializing, using path: " + databaseFilePath);
-            database = new PatientDatabase(databaseFilePath);
-        }
-
         /// <summary>
-		/// Gets the Patient
+		/// Gets the Patient represented by the specified <param name="id"></param>.
 		/// </summary>
-        public static Patient GetPatient(int id)
+        public Patient GetPatient(int id)
         {
-            lock (locker) {
-                Patient patient = (from s in database.Table<Patient> ()
-                        where s.Id == id
-                        select s).FirstOrDefault ();				
-
+            lock (staticLock) 
+            {
+                Patient patient = this.Table<Patient>().FirstOrDefault(s => s.Id == id);
 				return patient;
             }
         }
-		/// <summary>
-		/// Gets the Patient
-		/// </summary>
-        public static Patient GetSpeakerWithKey (string key)
-        {
-            lock (locker) {
-				Patient patient = (database.Table<Patient>().Where(s => s.Key == key)).FirstOrDefault ();
-
-				
-				return patient;
-            }
-        }
-  
 	}
 }

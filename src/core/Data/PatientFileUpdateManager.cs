@@ -1,12 +1,13 @@
 namespace Edward.Wilde.Note.For.Nurses.Core.Data 
 {
     using System;
+    using System.IO;
+    using System.Threading;
 
-    using Edward.Wilde.Note.For.Nurses.Core.DL;
     using Edward.Wilde.Note.For.Nurses.Core.Model;
-    using Edward.Wilde.Note.For.Nurses.Core.SAL;
     using Edward.Wilde.Note.For.Nurses.Core.Service;
     using Edward.Wilde.Note.For.Nurses.Core.Xamarin;
+    using Edward.Wilde.Note.For.Nurses.Core.Xamarin.Data;
 
     /// <summary>
     /// Used to manage saving the initial seed data file which is deserialized into a <see cref="PatientFile"/>
@@ -14,6 +15,10 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
     /// </summary>
     public class PatientFileUpdateManager : IPatientFileUpdateManager
     {
+        public IDataManager DataManager { get; set; }
+
+        public IFileManager FileManager { get; set; }
+
         /// <summary>
         /// The global synchronization object, locks access across all threads in the application whilst updating.
         /// </summary>
@@ -23,6 +28,12 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
 
 		public event EventHandler UpdateFinished = delegate {};
 
+        public PatientFileUpdateManager(IDataManager dataManager, IFileManager fileManager)
+        {
+            this.DataManager = dataManager;
+            this.FileManager = fileManager;
+        }
+
         /// <summary>
         /// Gets or sets a value indicating whether the <see cref="PatientFileUpdateManager"/> is in the process of updating that database.
         /// </summary>
@@ -31,19 +42,22 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
         /// </value>
         public bool UpdateInProgress { get; set; }
 
-        /// <summary>
-        /// Gets a value indicating whether data already exists.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if data exists; otherwise, <c>false</c>.
-        /// </value>
-        public bool DataExists 
+        public void UpdateIfEmpty()
         {
-			get 
-            {
-				return XamarinDatabase.CountTable<Patient>() > 0;
-			}
-		}
+            new Thread(
+                () =>
+                {
+                    bool dataExists = this.DataManager.DataExists;
+                    ConsoleD.WriteLine("Database has seed data {0}.", dataExists);
+                    if (!dataExists)
+                    {
+                        ConsoleD.WriteLine("Loading seed data");
+                        var seedDataFile = this.FileManager.ResourcePath + "/Images/SeedData.xml"; // Note can't use Path.Combine as resource path point to your file app i.e. notes.app
+                        string xml = System.IO.File.ReadAllText(seedDataFile);
+                        this.Update(xml);
+                    }
+                }).Start();
+        }
 
         /// <summary>
         /// Updates the database using the specified xml, which is deserialize into a <see cref="PatientFile"/> instance, first.
@@ -55,22 +69,21 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
 
 			lock (globalSync) 
             {
-				UpdateInProgress = true;
-				UpdateStarted (null, EventArgs.Empty);
+				this.UpdateInProgress = true;
+                this.UpdateStarted(null, EventArgs.Empty);
                 var finishedEventArgs = new UpdateFinishedEventArgs(UpdateType.SeedData, false);
 				
-                //TODO Inject when this is made an instance
-				var patientFile = new PatientFileParser().Deserialize(xml);
+                var patientFile = new PatientFileParser().Deserialize(xml);
 				if (patientFile != null) 
                 {
-					if (SaveToDatabase(patientFile)) 
+                    if (this.SaveToDatabase(patientFile)) 
                     {
 						finishedEventArgs.Success = true;
 					}
 				}
 
-                UpdateFinished(null, finishedEventArgs);
-				UpdateInProgress = false;
+                this.UpdateFinished(null, finishedEventArgs);
+                this.UpdateInProgress = false;
 			}
 		}
         
@@ -83,8 +96,8 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
 			
 				if (patientFile.Patients.Count > 0) 
                 {
-					DataManager.DeletePatients ();
-					DataManager.SavePatients (patientFile.Patients);
+					this.DataManager.DeletePatients ();
+                    this.DataManager.SavePatients(patientFile.Patients);
 				}
 				
 				result = true;

@@ -2,8 +2,10 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common {
     using System.Collections.Generic;
     using System.Linq;
 
+    using Edward.Wilde.Note.For.Nurses.Core;
     using Edward.Wilde.Note.For.Nurses.Core.Data;
     using Edward.Wilde.Note.For.Nurses.Core.Model;
+    using Edward.Wilde.Note.For.Nurses.Core.UI;
     using Edward.Wilde.Note.For.Nurses.iOS.UI.iPad;
     using Edward.Wilde.Note.For.Nurses.iOS.Xamarin.Common;
 
@@ -11,24 +13,41 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common {
     using MonoTouch.Foundation;
     using MonoTouch.UIKit;
 
+    using TinyIoC;
+
     /// <summary>
 	/// Speakers screen. Derives from MonoTouch.Dialog's DialogViewController to do 
 	/// the heavy lifting for table population. Also uses ImageLoader in PatientTableViewCell.cs
 	/// </summary>
 	public partial class PatientListViewController : UpdateManagerLoadingDialogViewController {
-		IList<Patient> speakers;
+        public IPatientManager PatientManager { get; set; }
+
+        public IObjectFactory ObjectFactory { get; set; }
+
+        IList<Patient> patients;
 		
 		/// <summary>If this is null, on iPhone; otherwise on iPad</summary>
-		PatientSplitViewController splitViewController;
+		readonly PatientSplitViewController splitViewController;
 		
 		/// <summary>for iPhone</summary>
-		public PatientListViewController () : this (null)
+        public PatientListViewController(
+            IPatientManager  patientManager,
+            IPatientFileUpdateManager patientFileUpdateManager,
+            IObjectFactory objectFactory) : this(patientManager, null, patientFileUpdateManager, objectFactory)
 		{
 		}
+
 		/// <summary>for iPad</summary>
-		public PatientListViewController (PatientSplitViewController patientSplitViewController) : base ()
+        public PatientListViewController(
+            IPatientManager patientManager,
+            PatientSplitViewController patientSplitViewController, 
+            IPatientFileUpdateManager patientFileUpdateManager,
+            IObjectFactory objectFactory)
+            : base(patientFileUpdateManager)
 		{
-			this.splitViewController = patientSplitViewController;
+		    PatientManager = patientManager;
+		    this.ObjectFactory = objectFactory;
+		    this.splitViewController = patientSplitViewController;
 			this.EnableSearch = true; // requires PatientTableElement to implement Matches()
 		}
 		
@@ -37,18 +56,22 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common {
 		/// </summary>
 		protected override void PopulateTable()
 		{
-			this.speakers = PatientManager.Get();
+			this.patients = this.PatientManager.Get();
 
-			this.Root = new RootElement ("Speakers") {
-					from speaker in this.speakers
-                    group speaker by (speaker.Index) into alpha
+			this.Root = new RootElement("Patients") {
+					from patient in this.patients
+                    group patient by (patient.Index) into alpha
 						orderby alpha.Key
-						select new Section (alpha.Key) {
-						from eachSpeaker in alpha
-						   select (Element) new PatientTableElement (eachSpeaker, this.splitViewController)
-			}};
+						select 
+                            new Section (alpha.Key) 
+                            {
+                                Elements = new List<Element>(
+						            alpha.Select(
+                                        eachSpeaker => (Element) 
+                                            this.ObjectFactory.Create<PatientTableElement>(new NamedParameterOverloads { {"showPatient", eachSpeaker}, {"patientSplitViewController", this.splitViewController}})))
+						    }};
 
-            if (this.speakers.Count > 0)
+            if (this.patients.Count > 0)
             {
                 // hide search until pull-down
                 this.TableView.ScrollToRow (NSIndexPath.FromRowSection (0,0), UITableViewScrollPosition.Top, false);
@@ -58,7 +81,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common {
 		
 		public override DialogViewController.Source CreateSizingSource (bool unevenRows)
 		{
-			return new PatientListTableSource(this, this.speakers);
+			return new PatientListTableSource(this, this.patients);
 		}
 
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)

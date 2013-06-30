@@ -55,8 +55,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\core.net.unittests\WithConcreteSubject.cs">
+      <Link>WithConcreteSubject.cs</Link>
+    </Compile>
+    <Compile Include="..\core.net.unittests\WithSubjectAndResult.cs">
+      <Link>WithSubjectAndResult.cs</Link>
+    </Compile>
+    <Compile Include="..\core.net.unittests\WithSubjectBase.cs">
+      <Link>WithSubjectBase.cs</Link>
+    </Compile>
     <Compile Include="Data\PatientFileUpdateManagerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\TypeRegistrationServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

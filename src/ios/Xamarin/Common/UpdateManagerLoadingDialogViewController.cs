@@ -17,25 +17,28 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.Xamarin.Common {
 	/// method LoadData(), which must call StopLoadingScreen()
 	/// </remarks>
 	public partial class UpdateManagerLoadingDialogViewController : DialogViewController {
-		LoadingOverlay loadingOverlay;
+        public IPatientFileUpdateManager PatientFileUpdateManager { get; set; }
+
+        LoadingOverlay loadingOverlay;
 
 		/// <summary>
 		/// Set pushing=true so that the UINavCtrl 'back' button is enabled
 		/// </summary>
-		public UpdateManagerLoadingDialogViewController () : base (UITableViewStyle.Plain, null, true)
+		public UpdateManagerLoadingDialogViewController (IPatientFileUpdateManager patientFileUpdateManager) : base (UITableViewStyle.Plain, null, true)
 		{
+		    PatientFileUpdateManager = patientFileUpdateManager;
 		}
-		
-		public override void ViewDidLoad ()
+
+        public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			PatientFileUpdateManager.UpdateFinished += this.HandleUpdateFinished;
+			this.PatientFileUpdateManager.UpdateFinished += this.HandleUpdateFinished;
 		}
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
 
-			if(PatientFileUpdateManager.UpdateInProgress) {
+			if(this.PatientFileUpdateManager.UpdateInProgress) {
 				if (this.loadingOverlay == null) {
 					var bounds = new RectangleF(0,0,768,1004);
 					if (this.InterfaceOrientation == UIInterfaceOrientation.LandscapeLeft
