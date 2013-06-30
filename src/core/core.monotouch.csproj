@@ -98,11 +98,18 @@
     <Compile Include="..\sqlite\src\SQLiteAsync.cs">
       <Link>Xamarin\Data\SQLiteAsync.cs</Link>
     </Compile>
+    <Compile Include="Data\IPatientFileUpdateManager.cs" />
     <Compile Include="Data\PatientDatabase.cs" />
     <Compile Include="Model\CompareResult.cs" />
     <Compile Include="Model\Name.cs" />
+    <Compile Include="Service\ITypeRegistrationService.cs" />
     <Compile Include="Service\SerializerService.cs" />
+    <Compile Include="Service\TypeRegistrationService.cs" />
+    <Compile Include="System\FileManager.cs" />
+    <Compile Include="System\IFileManager.cs" />
     <Compile Include="System\StringWriterWithEncoding.cs" />
+    <Compile Include="UI\StartupManager.cs" />
+    <Compile Include="Xamarin\TinyIoC.cs" />
     <Compile Include="Xamarin\Data\XamarinDatabase.cs" />
     <Compile Include="Model\PatientFile.cs" />
     <Compile Include="Model\Patient.cs" />

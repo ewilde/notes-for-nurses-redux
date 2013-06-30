@@ -17,7 +17,9 @@ namespace Edward.Wilde.Note.For.Nurses.iOS {
 
     [Register ("AppDelegate")]
 	public partial class AppDelegate : UIApplicationDelegate {
-		public const string ImageEmptySpeaker  = "Images/Empty/speaker.png";
+        public IPatientFileUpdateManager PatientFileUpdateManager { get; set; }
+
+        public const string ImageEmptySpeaker  = "Images/Empty/speaker.png";
 		
 		public const float Font16pt = 22f;
 		public const float Font10_5pt = 14f;
@@ -38,10 +40,19 @@ namespace Edward.Wilde.Note.For.Nurses.iOS {
 		// class-level declarations
 		UIWindow window;
 		NavigationViewController navigationView;
-		
 
 
-		public static bool IsPhone {
+        public AppDelegate()
+            : this(TinyIoC.TinyIoCContainer.Current.Resolve<IPatientFileUpdateManager>())
+        {            
+        }
+
+        public AppDelegate(IPatientFileUpdateManager patientFileUpdateManager)
+        {
+            this.PatientFileUpdateManager = patientFileUpdateManager;
+        }
+
+        public static bool IsPhone {
 			get {
 				return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone;
 			}

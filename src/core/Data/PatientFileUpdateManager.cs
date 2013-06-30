@@ -12,16 +12,16 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
     /// Used to manage saving the initial seed data file which is deserialized into a <see cref="PatientFile"/>
     /// and save to the database using <see cref="Update"/>.
     /// </summary>
-    public static class PatientFileUpdateManager 
+    public class PatientFileUpdateManager : IPatientFileUpdateManager
     {
         /// <summary>
         /// The global synchronization object, locks access across all threads in the application whilst updating.
         /// </summary>
 		private static readonly object globalSync = new object();
 		
-		public static event EventHandler UpdateStarted = delegate {};
+		public event EventHandler UpdateStarted = delegate {};
 
-		public static event EventHandler UpdateFinished = delegate {};
+		public event EventHandler UpdateFinished = delegate {};
 
         /// <summary>
         /// Gets or sets a value indicating whether the <see cref="PatientFileUpdateManager"/> is in the process of updating that database.
@@ -29,7 +29,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
         /// <value>
         /// <c>true</c> if the data is being updating; otherwise, <c>false</c>.
         /// </value>
-        public static bool UpdateInProgress { get; set; }
+        public bool UpdateInProgress { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether data already exists.
@@ -37,7 +37,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
         /// <value>
         ///   <c>true</c> if data exists; otherwise, <c>false</c>.
         /// </value>
-        public static bool DataExists 
+        public bool DataExists 
         {
 			get 
             {
@@ -49,7 +49,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
         /// Updates the database using the specified xml, which is deserialize into a <see cref="PatientFile"/> instance, first.
         /// </summary>
         /// <param name="xml">The xml representing a <see cref="PatientFile"/> object.</param>
-		public static void Update(string xml)
+		public void Update(string xml)
 		{
 			ConsoleD.WriteLine ("Updating database using xml");
 
@@ -74,7 +74,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
 			}
 		}
         
-		private static bool SaveToDatabase(PatientFile patientFile)
+		private bool SaveToDatabase(PatientFile patientFile)
 		{
 			bool result = false;
 			try  

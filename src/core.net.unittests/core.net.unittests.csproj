@@ -58,6 +58,9 @@
     <Compile Include="Model\PatientFileTests.cs" />
     <Compile Include="Model\PatientTests.cs" />
     <Compile Include="Service\PatientFileParserTests.cs" />
+    <Compile Include="Service\TypeRegistrationServiceTests.cs" />
+    <Compile Include="UI\StartupManagerTests.cs" />
+    <Compile Include="WithConcreteSubject.cs" />
     <Compile Include="WithSubjectAndResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestData\Names.cs" />

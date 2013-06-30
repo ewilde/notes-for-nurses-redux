@@ -1,5 +1,7 @@
 namespace Edward.Wilde.Note.For.Nurses.Core.Data 
 {
+    using System.Diagnostics;
+
     using Edward.Wilde.Note.For.Nurses.Core.DL;
     using Edward.Wilde.Note.For.Nurses.Core.Model;
     using Edward.Wilde.Note.For.Nurses.Core.Xamarin;
@@ -25,7 +27,21 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
 		}
 
         public const string DatabaseFileName = "Patient.db3";
-        
+
+        public static bool DebugMode
+        {
+                
+            get
+            {
+#if DEBUG
+                return true;
+#else
+                return false;
+#endif
+
+            }
+        }
+
         public static void Initialize()
         {
             string databaseFilePath = GetDatabaseFilePath(DatabaseFileName);
