@@ -66,5 +66,10 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
                 return this.PatientDatabase.CountTable<Patient>() > 0;
             }
         }
+
+        public void SavePatient(Patient patient)
+        {
+            this.PatientDatabase.SaveItem(patient);
+        }
     }
 }

@@ -6,7 +6,7 @@
         where TSubject : class
     {
         public static TResult Result { get; set; }
-    }
+    }    
 
     public class WithResult<TResult>
     {

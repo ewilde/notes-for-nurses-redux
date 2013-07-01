@@ -1,5 +1,6 @@
 namespace Edward.Wilde.Note.For.Nurses.Core.Model
 {
+    using System;
     using System.Xml.Serialization;
 
     using Edward.Wilde.Note.For.Nurses.Core.Xamarin.Contracts;
@@ -24,6 +25,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Model
         [XmlAttribute("k")]
         public string Key { get; set; }
 
+        [XmlElement("Name")]
         [One2One(typeof(Name))]
         public Name Name
         {
@@ -36,6 +38,9 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Model
                 this.name = value;
             }
         }
+
+        [XmlAttribute("DateOfBirth")]
+        public DateTime DateOfBirth { get; set; }
 
         [XmlAttribute("t")]
         public string Title { get; set; }

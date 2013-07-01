@@ -67,6 +67,7 @@ namespace core.net.tests.Model
             {
                 Subject.Id = 8;
                 Subject.Name = new Name { FirstName = "Rory", LastName = "Bremner" };
+                Subject.DateOfBirth = new DateTime(2006, 02, 23);
             };
 
         Because of = () => Result = XDocument.Parse(Subject.Serialize());
@@ -76,6 +77,10 @@ namespace core.net.tests.Model
         It should_serialize_the_patient_element = () => Result.Root.Name.ShouldEqual("Patient");
 
         It should_not_include_the_id_property = () => Result.Root.Attribute("Id").ShouldBeNull();
+
+        It should_serialize_include_the_date_of_birth_property = () => Result.Root.Attribute("DateOfBirth").Value.ShouldEqual("2006-02-23T00:00:00");
+
+        It should_not_serialize_the_patient_name_patient_id_property = () => Result.Root.Descendants("Name").Single().Elements("PatientId").Count().ShouldEqual(0);
 
         It should_serialize_the_patient_name_as_an_element = () => Result.Root.Descendants("Name").Single().ShouldNotBeNull();
 

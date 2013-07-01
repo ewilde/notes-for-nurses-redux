@@ -1,18 +1,15 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="WithSubjectBase.cs" company="UBS AG">
-// Copyright (c) 2013.
+// <copyright file="ContextBase.cs">
+// Copyright Edward Wilde (c) 2013.
 // </copyright>
 // -----------------------------------------------------------------------
-namespace core.net.tests
+namespace core.net.integrationtests.Contexts
 {
-    using Machine.Fakes;
-
-    public class WithSubjectBase<TSubject> : WithSubject<TSubject>
-        where TSubject : class
+    public class ContextBase
     {
         private static bool initialized;
 
-        static WithSubjectBase()
+        static ContextBase()
         {
             Initialize();
         }
@@ -21,7 +18,7 @@ namespace core.net.tests
         {
             if (!initialized)
             {
-                Initialize();    
+                Initialize();
             }
 
             return TinyIoC.TinyIoCContainer.Current.Resolve<TType>();
@@ -31,6 +28,6 @@ namespace core.net.tests
         {
             TinyIoC.TinyIoCContainer.Current.AutoRegister();
             initialized = true;
-        }
+        } 
     }
 }

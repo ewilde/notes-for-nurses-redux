@@ -15,5 +15,10 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
         /// Gets the Patient
         /// </summary>
         Patient GetPatient(int id);
+
+        /// <summary>
+        /// Closes the connection to the database.
+        /// </summary>
+        void Close();
     }
 }

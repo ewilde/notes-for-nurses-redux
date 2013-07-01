@@ -14,5 +14,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
         IList<Patient> Get();
 
         Patient GetById(int id);
+
+        void Save(Patient patient);
     }
 }

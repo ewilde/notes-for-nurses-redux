@@ -29,7 +29,13 @@ namespace core.net.tests.TestData
                 PatientFile patientFile = new PatientFile();
                 foreach (var item in names.Descendants("Name"))
                 {
-                    patientFile.Patients.Add(new Patient { Name = new Name { FirstName = item.Value.Split(' ')[0], LastName = item.Value.Split(' ')[1] } });
+                    patientFile.Patients.Add(
+                        new Patient
+                            {
+                                DateOfBirth = new DateTime(Random(2000, 2013), Random(1, 12),  Random(1, 28)),
+                                Name =
+                                    new Name { FirstName = item.Value.Split(' ')[0], LastName = item.Value.Split(' ')[1] }
+                            });
                 }
 
                 Result = patientFile.Serialize();
@@ -37,7 +43,13 @@ namespace core.net.tests.TestData
 
         It should_write_out_a_new_file = () =>
             {
-                File.WriteAllText("c:\\SeedData.xml", Result);
+                File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\ios\images\SeedData.xml"), Result);
             };
+
+        static Random  random = new Random();
+        static int Random(int min, int max)
+        {
+            return random.Next(min, max);
+        }
     }
 }

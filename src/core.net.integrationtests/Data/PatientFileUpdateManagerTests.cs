@@ -14,12 +14,11 @@ namespace core.net.integrationtests.Data
 {
     using System.IO;
     using System.Linq;
+
+    using core.net.integrationtests.Contexts;
     using core.net.tests;
 
     using Edward.Wilde.Note.For.Nurses.Core.Data;
-    using Edward.Wilde.Note.For.Nurses.Core.Xamarin.Data;
-
-    using Machine.Fakes;
 
     [Subject(typeof(PatientFileUpdateManager))]
     public class when_loading_the_database_using_the_seed_data : WithConcreteSubject<PatientFileUpdateManager, IPatientFileUpdateManager>
@@ -28,12 +27,7 @@ namespace core.net.integrationtests.Data
 
         Establish context = () =>
             {
-                string databaseFilePath = XamarinDatabase.GetDatabaseFilePath(PatientDatabase.DatabaseFileName);
-                if (File.Exists(databaseFilePath))
-                {
-                    File.Delete(databaseFilePath);                        
-                }
-
+                With<EmptyDatabase>();
                 DataManager = Resolve<IDataManager>();
                 Configure(DataManager);
             };

@@ -32,7 +32,12 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
 		public Patient GetById(int id)
 		{
             return this.DataManager.GetPatient(id);
-		}        
-	}
+		}
+
+        public void Save(Patient patient)
+        {
+            this.DataManager.SavePatient(patient);
+        }
+    }
 }
 

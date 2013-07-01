@@ -27,5 +27,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
         ///   <c>true</c> if data exists otherwise, <c>false</c>.
         /// </value>
         bool DataExists { get; }
+
+        void SavePatient(Patient patient);
     }
 }

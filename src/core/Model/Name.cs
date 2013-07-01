@@ -20,6 +20,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Model
         [References(typeof(Patient))]
         [ForeignKey]
         [OnDeleteCascade]
+        [XmlIgnore]
         public int PatientId { get; set; }
 
         /// <summary>
