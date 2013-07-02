@@ -1,6 +1,7 @@
 namespace Edward.Wilde.Note.For.Nurses.Core.Model
 {
     using System;
+    using System.Collections.Generic;
     using System.Xml.Serialization;
 
     using Edward.Wilde.Note.For.Nurses.Core.Xamarin.Contracts;
@@ -20,11 +21,9 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Model
         public Patient()
         {
             this.Name = new Name();
+            this.KnownConditions = new List<KnownCondition>();
         }
-
-        [XmlAttribute("k")]
-        public string Key { get; set; }
-
+        
         [XmlElement("Name")]
         [One2One(typeof(Name))]
         public Name Name
@@ -39,17 +38,12 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Model
             }
         }
 
+        [SQLite.Ignore]
+        [XmlArray("KnownConditions"), XmlArrayItem("KnownCondition")]
+        public List<KnownCondition> KnownConditions { get; private set; }
+
         [XmlAttribute("DateOfBirth")]
         public DateTime DateOfBirth { get; set; }
-
-        [XmlAttribute("t")]
-        public string Title { get; set; }
-        [XmlAttribute("c")]
-        public string Company { get; set; }
-        [XmlAttribute("b")]
-        public string Bio { get; set; }
-        [XmlAttribute("i")]
-        public string ImageUrl { get; set; }
 
         [SQLite.Initialized]
         public bool Initialzied

@@ -97,27 +97,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
 
 			this.image.Frame = new RectangleF(13, this.y + 15, 80, 80);
 
-			if (!String.IsNullOrEmpty(this.showPatient.Bio)) {
-				if (AppDelegate.IsPhone) {
-					// for now, hardcode iPhone dimensions to reduce regressions
-					SizeF size = this.bioTextView.StringSize (this.showPatient.Bio
-										, this.bioTextView.Font
-										, new SizeF (310, 580)
-										, UILineBreakMode.WordWrap);
-					this.bioTextView.Frame = new RectangleF(5, this.y + 115, 310, size.Height);
-				} else {
-					var f = new SizeF (full.Width - 13 * 2, full.Height - (this.image.Frame.Y + 80 + 20));
-//					SizeF size = bioTextView.StringSize (showPatient.Bio
-//										, bioTextView.Font
-//										, f
-//										, UILineBreakMode.WordWrap);
-					this.bioTextView.Frame = new RectangleF(5, this.image.Frame.Y + 80 + 10
-										, f.Width
-										, f.Height);
-				}
-			} else {
-				this.bioTextView.Frame = new RectangleF(5, this.y + 115, 310, 30);
-			}
+			this.bioTextView.Frame = new RectangleF(5, this.y + 115, 310, 30);			
 		}
 		
 		// for masterdetail
@@ -145,18 +125,13 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
 			if (this.showPatient == null) {this.nameLabel.Text ="not found"; return;}
 			
 			this.nameLabel.Text = this.showPatient.Name.ToString();
-			this.titleLabel.Text = this.showPatient.Title;
-			this.companyLabel.Text = this.showPatient.Company;
+			this.titleLabel.Text = "TITLE";
+			this.companyLabel.Text = "COMPANY";
 
-			if (!String.IsNullOrEmpty(this.showPatient.Bio)) {
-				this.bioTextView.Text = this.showPatient.Bio;
-				this.bioTextView.Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font10_5pt);
-				this.bioTextView.TextColor = UIColor.Black;
-			} else {
-				this.bioTextView.Font = UIFont.FromName ("Helvetica-LightOblique", AppDelegate.Font10_5pt);
-				this.bioTextView.TextColor = UIColor.Gray;
-				this.bioTextView.Text = "No background information available.";
-			}
+			this.bioTextView.Font = UIFont.FromName ("Helvetica-LightOblique", AppDelegate.Font10_5pt);
+			this.bioTextView.TextColor = UIColor.Gray;
+			this.bioTextView.Text = "No background information available.";
+			
 
             this.image.Image = ImageLoader.DefaultRequestImage(new Uri("https://en.gravatar.com/avatar/196d33ea9cdaf7817b98b981afe62c16?s=100"), this);			
 		}

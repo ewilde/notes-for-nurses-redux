@@ -69,7 +69,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
 
         public void SavePatient(Patient patient)
         {
-            this.PatientDatabase.SaveItem(patient);
+            this.PatientDatabase.SavePatient(patient);
         }
     }
 }

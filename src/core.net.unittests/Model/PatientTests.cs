@@ -19,6 +19,15 @@ namespace core.net.tests.Model
 
     using Machine.Fakes;
 
+    public class when_defining_a_patient_entity : WithSubject<Patient>
+    {
+        It should_have_a_date_of_birth_property = () => Subject.DateOfBirth.ShouldBeOfType<DateTime>();
+
+        It should_have_a_name_property = () => Subject.Name.ShouldBeOfType<Name>();
+
+        It should_have_a_list_of_known_conditions_property = () => Subject.KnownConditions.ShouldBeOfType<List<KnownCondition>>();
+    }
+
     [Subject(typeof(Patient))]
     public class when_a_patient_sort_order_is_being_determined : WithSubjectAndResult<Patient, string>
     {
@@ -68,6 +77,7 @@ namespace core.net.tests.Model
                 Subject.Id = 8;
                 Subject.Name = new Name { FirstName = "Rory", LastName = "Bremner" };
                 Subject.DateOfBirth = new DateTime(2006, 02, 23);
+                Subject.KnownConditions.Add(new KnownCondition());
             };
 
         Because of = () => Result = XDocument.Parse(Subject.Serialize());
@@ -87,5 +97,7 @@ namespace core.net.tests.Model
         It should_serialize_the_patient_name_first_name_property = () => Result.Root.Descendants("Name").Single().Attribute("FirstName").Value.ShouldEqual("Rory");
 
         It should_serialize_the_patient_name_last_name_property = () => Result.Root.Descendants("Name").Single().Attribute("LastName").Value.ShouldEqual("Bremner");
+
+        It should_seruakuze_the_list_of_patient_known_conditions_property = () => Result.Root.Descendants("KnownConditions").SingleOrDefault().ShouldNotBeNull();
     }
 }

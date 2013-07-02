@@ -104,7 +104,9 @@
     <Compile Include="Data\IPatientManager.cs" />
     <Compile Include="Data\PatientDatabase.cs" />
     <Compile Include="Model\CompareResult.cs" />
+    <Compile Include="Model\KnownCondition.cs" />
     <Compile Include="Model\Name.cs" />
+    <Compile Include="Model\PatientKnownCondition.cs" />
     <Compile Include="Service\ITypeRegistrationService.cs" />
     <Compile Include="Service\SerializerService.cs" />
     <Compile Include="Service\TypeRegistrationService.cs" />
@@ -115,6 +117,7 @@
     <Compile Include="UI\StartupManager.cs" />
     <Compile Include="System\ObjectFactory.cs" />
     <Compile Include="Xamarin\Data\IXamarinDatabase.cs" />
+    <Compile Include="Xamarin\System\ForEach.cs" />
     <Compile Include="Xamarin\TinyIoC.cs" />
     <Compile Include="Xamarin\Data\XamarinDatabase.cs" />
     <Compile Include="Model\PatientFile.cs" />

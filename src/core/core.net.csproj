@@ -51,7 +51,9 @@
     <Compile Include="Data\IPatientManager.cs" />
     <Compile Include="Data\PatientManager.cs" />
     <Compile Include="Model\CompareResult.cs" />
+    <Compile Include="Model\KnownCondition.cs" />
     <Compile Include="Model\Name.cs" />
+    <Compile Include="Model\PatientKnownCondition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Data\DataManager.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="Xamarin\Data\XamarinDatabase.cs" />
     <Compile Include="Xamarin\Service\XmlFeedParserBase.cs" />
     <Compile Include="Xamarin\System\ConsoleD.cs" />
+    <Compile Include="Xamarin\System\ForEach.cs" />
     <Compile Include="Xamarin\TinyIoC.cs" />
   </ItemGroup>
   <ItemGroup />

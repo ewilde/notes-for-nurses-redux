@@ -20,5 +20,13 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
         /// Closes the connection to the database.
         /// </summary>
         void Close();
+
+        /// <summary>
+        /// Saves the patient.
+        /// </summary>
+        /// <param name="patient">The patient.</param>
+        void SavePatient(Patient patient);
+
+        KnownCondition GetKnownCondition(int id);
     }
 }

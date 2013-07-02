@@ -71,15 +71,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common {
 		public void UpdateCell (Patient patient)
 		{
 			this.nameLabel.Text = patient.Name.ToString();
-			string subtitle = "";
-			if (String.IsNullOrEmpty (patient.Title))
-				subtitle = String.Format ("{0}", patient.Company);
-			else if (String.IsNullOrEmpty(patient.Company))
-				subtitle = String.Format("{0}", patient.Title);
-			else
-				subtitle = String.Format ("{0}, {1}", patient.Title, patient.Company);
-
-			this.companyLabel.Text = subtitle;
+			this.companyLabel.Text = "COMPANY NAME?";
 
             this.image.Image = ImageLoader.DefaultRequestImage(new Uri("https://en.gravatar.com/avatar/196d33ea9cdaf7817b98b981afe62c16?s=100"), this);			
 		}

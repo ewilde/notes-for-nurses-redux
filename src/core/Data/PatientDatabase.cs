@@ -1,5 +1,6 @@
 namespace Edward.Wilde.Note.For.Nurses.Core.Data 
 {
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
 
@@ -31,7 +32,9 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
             this.SetForeignKeysPermissions(true);
 
 			// create the tables
-			this.CreateTable<Patient>();
+            this.CreateTable<KnownCondition>();
+            this.CreateTable<Patient>();
+            this.CreateTable<PatientKnownCondition>();
             this.CreateTable<Name>();
 		}
 
@@ -63,8 +66,43 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
             lock (staticLock) 
             {
                 Patient patient = this.Table<Patient>().FirstOrDefault(s => s.Id == id);
+                
+                // Look up known conditions stored for this patient in table PatientKnownCondition
+                patient.KnownConditions.AddRange(
+                    this.Table<PatientKnownCondition>()
+                        .Where(condition => condition.PatientId == patient.Id)
+                        .Select(condition => this.GetKnownCondition(condition.KnownConditionId)));
+
 				return patient;
             }
         }
-	}
+
+        public KnownCondition GetKnownCondition(int id)
+        {
+            return this.Table<KnownCondition>().FirstOrDefault(s => s.Id == id);
+        }
+
+        public void SavePatient(Patient patient)
+        {
+            lock (staticLock)
+            {
+                // update list of known conditions
+                this.Table<PatientKnownCondition>()
+                    .Where(x => x.PatientId == patient.Id)
+                    .ForEach(x=> this.Delete(x));
+
+                this.SaveItem(patient);
+
+                patient.KnownConditions
+                       .ForEach(
+                           condition =>
+                               {
+                                   this.SaveItem(condition);
+                                   this.Insert(new PatientKnownCondition { PatientId = patient.Id, KnownConditionId = condition.Id });
+                               });
+                
+            }
+
+        }
+    }
 }

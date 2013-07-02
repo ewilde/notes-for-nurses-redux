@@ -131,9 +131,9 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPhone {
 			
 			this.bioTextView.Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font10_5pt);
 			
-			if (!String.IsNullOrEmpty(this.patient.Bio)) {
+			if (!String.IsNullOrEmpty(this.patient.DateOfBirth.ToString())) {
 				var f = new SizeF (full.Width - 13 * 2, 4000);
-				SizeF size = this.bioTextView.StringSize (this.patient.Bio
+				SizeF size = this.bioTextView.StringSize (this.patient.DateOfBirth.ToString()
 									, this.bioTextView.Font
 									, f);
 				this.bioTextView.Frame = new RectangleF(5
@@ -153,20 +153,13 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPhone {
 		void Update()
 		{
 			this.nameLabel.Text = this.patient.Name.ToString();
-			this.titleLabel.Text = this.patient.Title;
-			this.companyLabel.Text = this.patient.Company;
+			this.titleLabel.Text = "PATIENT TITLE";
+			this.companyLabel.Text = "PATIENT COMPANY?";
 			
-			if (!String.IsNullOrEmpty(this.patient.Bio)) {
-				this.bioTextView.Text = this.patient.Bio;
-				this.bioTextView.TextColor = UIColor.Black;
-			} else {
-				this.bioTextView.TextColor = UIColor.Gray;
-				this.bioTextView.Text = "No background information available.";
-			}
-			if (this.patient.ImageUrl != "http://www.mobileworldcongress.com") {
-				var u = new Uri(this.patient.ImageUrl);
-				this.image.Image = ImageLoader.DefaultRequestImage (u, this);
-			}
+			this.bioTextView.TextColor = UIColor.Gray;
+			this.bioTextView.Text = "No background information available.";
+			
+			this.image.Image = ImageLoader.DefaultRequestImage (new Uri("https://en.gravatar.com/avatar/196d33ea9cdaf7817b98b981afe62c16?s=100"), this);			
 		}
 
 		public void UpdatedImage (Uri uri)
