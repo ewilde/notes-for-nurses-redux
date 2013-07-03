@@ -1,305 +1,405 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PatientFile xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Patients>
-    <Patient DateOfBirth="2007-08-12T00:00:00">
+    <Patient DateOfBirth="2011-03-20T00:00:00">
       <Name FirstName="Sopoline" LastName="Houston" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2009-02-06T00:00:00">
+    <Patient DateOfBirth="2012-07-16T00:00:00">
       <Name FirstName="Kaseem" LastName="Shaw" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2008-04-03T00:00:00">
+    <Patient DateOfBirth="2001-11-05T00:00:00">
       <Name FirstName="Priscilla" LastName="Benjamin" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2007-04-13T00:00:00">
+    <Patient DateOfBirth="2008-07-07T00:00:00">
       <Name FirstName="Karina" LastName="Hyde" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2007-07-09T00:00:00">
+    <Patient DateOfBirth="2011-03-20T00:00:00">
       <Name FirstName="Ignacia" LastName="Bray" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2006-04-09T00:00:00">
+    <Patient DateOfBirth="2001-10-08T00:00:00">
       <Name FirstName="Portia" LastName="Hogan" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2010-04-11T00:00:00">
+    <Patient DateOfBirth="2009-04-08T00:00:00">
       <Name FirstName="Britanney" LastName="Gentry" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2011-06-21T00:00:00">
+    <Patient DateOfBirth="2003-04-13T00:00:00">
       <Name FirstName="Davis" LastName="Howard" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2010-07-18T00:00:00">
+    <Patient DateOfBirth="2003-05-02T00:00:00">
       <Name FirstName="Jayme" LastName="Farrell" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2010-06-23T00:00:00">
+    <Patient DateOfBirth="2012-08-11T00:00:00">
       <Name FirstName="Troy" LastName="Hendricks" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2004-09-06T00:00:00">
+    <Patient DateOfBirth="2000-11-27T00:00:00">
       <Name FirstName="Zenaida" LastName="Peterson" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2002-03-03T00:00:00">
+    <Patient DateOfBirth="2008-07-01T00:00:00">
       <Name FirstName="Jenette" LastName="Guerra" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2006-03-04T00:00:00">
+    <Patient DateOfBirth="2003-07-21T00:00:00">
       <Name FirstName="Gabriel" LastName="Dejesus" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2005-11-04T00:00:00">
+    <Patient DateOfBirth="2002-03-10T00:00:00">
       <Name FirstName="Leila" LastName="Pitts" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2012-09-11T00:00:00">
+    <Patient DateOfBirth="2005-03-07T00:00:00">
       <Name FirstName="Ayanna" LastName="Pitts" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2002-07-02T00:00:00">
+    <Patient DateOfBirth="2009-04-14T00:00:00">
       <Name FirstName="Sybill" LastName="Weber" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2005-01-07T00:00:00">
+    <Patient DateOfBirth="2006-10-14T00:00:00">
       <Name FirstName="Chadwick" LastName="Hawkins" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2002-11-13T00:00:00">
+    <Patient DateOfBirth="2009-09-22T00:00:00">
       <Name FirstName="Rebecca" LastName="Walter" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2005-08-06T00:00:00">
+    <Patient DateOfBirth="2004-07-25T00:00:00">
       <Name FirstName="Jamalia" LastName="Fox" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2008-10-17T00:00:00">
+    <Patient DateOfBirth="2003-09-07T00:00:00">
       <Name FirstName="Hilel" LastName="Strickland" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2007-10-22T00:00:00">
+    <Patient DateOfBirth="2006-02-07T00:00:00">
       <Name FirstName="Hilary" LastName="Chandler" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2003-03-14T00:00:00">
+    <Patient DateOfBirth="2009-07-16T00:00:00">
       <Name FirstName="Eve" LastName="Leon" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2003-05-11T00:00:00">
+    <Patient DateOfBirth="2003-03-17T00:00:00">
       <Name FirstName="Josephine" LastName="Maddox" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2002-11-04T00:00:00">
+    <Patient DateOfBirth="2009-10-07T00:00:00">
       <Name FirstName="Yetta" LastName="Whitley" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2002-05-10T00:00:00">
+    <Patient DateOfBirth="2006-06-03T00:00:00">
       <Name FirstName="Scarlett" LastName="Tanner" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2003-11-18T00:00:00">
+    <Patient DateOfBirth="2012-10-04T00:00:00">
       <Name FirstName="Halee" LastName="Sears" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2004-08-01T00:00:00">
+    <Patient DateOfBirth="2002-07-03T00:00:00">
       <Name FirstName="Lynn" LastName="Simon" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2007-04-13T00:00:00">
+    <Patient DateOfBirth="2007-05-24T00:00:00">
       <Name FirstName="Christen" LastName="Watson" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2007-02-23T00:00:00">
+    <Patient DateOfBirth="2011-04-07T00:00:00">
       <Name FirstName="Aurelia" LastName="Robles" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2009-09-14T00:00:00">
+    <Patient DateOfBirth="2002-04-01T00:00:00">
       <Name FirstName="Mohammad" LastName="Chandler" />
-    </Patient>
-    <Patient DateOfBirth="2011-10-10T00:00:00">
-      <Name FirstName="Kameko" LastName="Mann" />
-    </Patient>
-    <Patient DateOfBirth="2006-10-03T00:00:00">
-      <Name FirstName="Brandon" LastName="Oneill" />
-    </Patient>
-    <Patient DateOfBirth="2004-08-16T00:00:00">
-      <Name FirstName="Wing" LastName="Travis" />
-    </Patient>
-    <Patient DateOfBirth="2011-11-05T00:00:00">
-      <Name FirstName="Maia" LastName="Hewitt" />
-    </Patient>
-    <Patient DateOfBirth="2008-03-03T00:00:00">
-      <Name FirstName="Clio" LastName="Baldwin" />
-    </Patient>
-    <Patient DateOfBirth="2001-01-15T00:00:00">
-      <Name FirstName="Emi" LastName="Medina" />
-    </Patient>
-    <Patient DateOfBirth="2001-02-22T00:00:00">
-      <Name FirstName="Cheyenne" LastName="Mcmahon" />
-    </Patient>
-    <Patient DateOfBirth="2006-04-07T00:00:00">
-      <Name FirstName="Cadman" LastName="Ortega" />
-    </Patient>
-    <Patient DateOfBirth="2007-11-15T00:00:00">
-      <Name FirstName="Carol" LastName="Burnett" />
-    </Patient>
-    <Patient DateOfBirth="2004-08-03T00:00:00">
-      <Name FirstName="May" LastName="Acevedo" />
-    </Patient>
-    <Patient DateOfBirth="2008-07-17T00:00:00">
-      <Name FirstName="Adrian" LastName="Baird" />
-    </Patient>
-    <Patient DateOfBirth="2011-04-04T00:00:00">
-      <Name FirstName="Samson" LastName="Miller" />
-    </Patient>
-    <Patient DateOfBirth="2010-08-16T00:00:00">
-      <Name FirstName="Stone" LastName="Avila" />
-    </Patient>
-    <Patient DateOfBirth="2003-11-06T00:00:00">
-      <Name FirstName="Latifah" LastName="Weber" />
-    </Patient>
-    <Patient DateOfBirth="2000-05-20T00:00:00">
-      <Name FirstName="Roanna" LastName="Duncan" />
-    </Patient>
-    <Patient DateOfBirth="2010-10-02T00:00:00">
-      <Name FirstName="Breanna" LastName="Fulton" />
-    </Patient>
-    <Patient DateOfBirth="2004-06-03T00:00:00">
-      <Name FirstName="Ross" LastName="Delacruz" />
-    </Patient>
-    <Patient DateOfBirth="2003-07-17T00:00:00">
-      <Name FirstName="Adara" LastName="Rivera" />
-    </Patient>
-    <Patient DateOfBirth="2009-05-14T00:00:00">
-      <Name FirstName="Buffy" LastName="Moody" />
+      <KnownConditions />
     </Patient>
     <Patient DateOfBirth="2001-11-24T00:00:00">
+      <Name FirstName="Kameko" LastName="Mann" />
+      <KnownConditions />
+    </Patient>
+    <Patient DateOfBirth="2006-08-03T00:00:00">
+      <Name FirstName="Brandon" LastName="Oneill" />
+      <KnownConditions />
+    </Patient>
+    <Patient DateOfBirth="2001-07-17T00:00:00">
+      <Name FirstName="Wing" LastName="Travis" />
+      <KnownConditions />
+    </Patient>
+    <Patient DateOfBirth="2008-06-04T00:00:00">
+      <Name FirstName="Maia" LastName="Hewitt" />
+      <KnownConditions />
+    </Patient>
+    <Patient DateOfBirth="2011-09-01T00:00:00">
+      <Name FirstName="Clio" LastName="Baldwin" />
+      <KnownConditions />
+    </Patient>
+    <Patient DateOfBirth="2002-02-06T00:00:00">
+      <Name FirstName="Emi" LastName="Medina" />
+      <KnownConditions />
+    </Patient>
+    <Patient DateOfBirth="2008-05-19T00:00:00">
+      <Name FirstName="Cheyenne" LastName="Mcmahon" />
+      <KnownConditions />
+    </Patient>
+    <Patient DateOfBirth="2009-01-05T00:00:00">
+      <Name FirstName="Cadman" LastName="Ortega" />
+      <KnownConditions />
+    </Patient>
+    <Patient DateOfBirth="2001-11-19T00:00:00">
+      <Name FirstName="Carol" LastName="Burnett" />
+      <KnownConditions />
+    </Patient>
+    <Patient DateOfBirth="2005-10-07T00:00:00">
+      <Name FirstName="May" LastName="Acevedo" />
+      <KnownConditions />
+    </Patient>
+    <Patient DateOfBirth="2004-01-23T00:00:00">
+      <Name FirstName="Adrian" LastName="Baird" />
+      <KnownConditions />
+    </Patient>
+    <Patient DateOfBirth="2007-07-23T00:00:00">
+      <Name FirstName="Samson" LastName="Miller" />
+      <KnownConditions />
+    </Patient>
+    <Patient DateOfBirth="2004-01-24T00:00:00">
+      <Name FirstName="Stone" LastName="Avila" />
+      <KnownConditions />
+    </Patient>
+    <Patient DateOfBirth="2012-10-08T00:00:00">
+      <Name FirstName="Latifah" LastName="Weber" />
+      <KnownConditions />
+    </Patient>
+    <Patient DateOfBirth="2006-07-03T00:00:00">
+      <Name FirstName="Roanna" LastName="Duncan" />
+      <KnownConditions />
+    </Patient>
+    <Patient DateOfBirth="2012-08-18T00:00:00">
+      <Name FirstName="Breanna" LastName="Fulton" />
+      <KnownConditions />
+    </Patient>
+    <Patient DateOfBirth="2011-08-05T00:00:00">
+      <Name FirstName="Ross" LastName="Delacruz" />
+      <KnownConditions />
+    </Patient>
+    <Patient DateOfBirth="2000-06-27T00:00:00">
+      <Name FirstName="Adara" LastName="Rivera" />
+      <KnownConditions />
+    </Patient>
+    <Patient DateOfBirth="2004-04-25T00:00:00">
+      <Name FirstName="Buffy" LastName="Moody" />
+      <KnownConditions />
+    </Patient>
+    <Patient DateOfBirth="2009-05-19T00:00:00">
       <Name FirstName="Chester" LastName="Golden" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2007-11-02T00:00:00">
+    <Patient DateOfBirth="2005-08-21T00:00:00">
       <Name FirstName="Meredith" LastName="Kelley" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2006-03-10T00:00:00">
+    <Patient DateOfBirth="2004-04-11T00:00:00">
       <Name FirstName="Winter" LastName="Sparks" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2007-09-26T00:00:00">
+    <Patient DateOfBirth="2003-04-07T00:00:00">
       <Name FirstName="Berk" LastName="Briggs" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2012-04-10T00:00:00">
+    <Patient DateOfBirth="2002-10-05T00:00:00">
       <Name FirstName="Kirby" LastName="Edwards" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2012-10-07T00:00:00">
+    <Patient DateOfBirth="2004-08-15T00:00:00">
       <Name FirstName="Cora" LastName="Craig" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2007-06-25T00:00:00">
+    <Patient DateOfBirth="2005-03-15T00:00:00">
       <Name FirstName="Dexter" LastName="Deleon" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2006-09-03T00:00:00">
+    <Patient DateOfBirth="2001-02-08T00:00:00">
       <Name FirstName="Daniel" LastName="Bradshaw" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2006-11-05T00:00:00">
+    <Patient DateOfBirth="2000-06-05T00:00:00">
       <Name FirstName="Skyler" LastName="Buckley" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2012-05-26T00:00:00">
+    <Patient DateOfBirth="2000-04-15T00:00:00">
       <Name FirstName="Brenden" LastName="Hooper" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2000-02-25T00:00:00">
+    <Patient DateOfBirth="2011-03-07T00:00:00">
       <Name FirstName="Arsenio" LastName="Velez" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2008-08-21T00:00:00">
+    <Patient DateOfBirth="2012-08-18T00:00:00">
       <Name FirstName="Nehru" LastName="Coffey" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2009-08-26T00:00:00">
+    <Patient DateOfBirth="2002-07-04T00:00:00">
       <Name FirstName="David" LastName="Koch" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2002-07-05T00:00:00">
+    <Patient DateOfBirth="2006-02-07T00:00:00">
       <Name FirstName="Hyatt" LastName="Duke" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2004-04-03T00:00:00">
+    <Patient DateOfBirth="2009-08-11T00:00:00">
       <Name FirstName="Edward" LastName="Mack" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2001-05-05T00:00:00">
+    <Patient DateOfBirth="2005-08-23T00:00:00">
       <Name FirstName="Tanek" LastName="Johnston" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2009-04-20T00:00:00">
+    <Patient DateOfBirth="2012-08-23T00:00:00">
       <Name FirstName="Teagan" LastName="Malone" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2004-02-25T00:00:00">
+    <Patient DateOfBirth="2005-10-04T00:00:00">
       <Name FirstName="Xenos" LastName="Sparks" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2007-07-05T00:00:00">
+    <Patient DateOfBirth="2004-07-06T00:00:00">
       <Name FirstName="Ignacia" LastName="Bird" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2010-01-27T00:00:00">
+    <Patient DateOfBirth="2005-05-05T00:00:00">
       <Name FirstName="Wyoming" LastName="Wilkinson" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2011-06-24T00:00:00">
+    <Patient DateOfBirth="2007-04-26T00:00:00">
       <Name FirstName="Gabriel" LastName="Cole" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2005-06-18T00:00:00">
+    <Patient DateOfBirth="2010-05-01T00:00:00">
       <Name FirstName="Channing" LastName="Mckay" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2000-04-18T00:00:00">
+    <Patient DateOfBirth="2000-03-06T00:00:00">
       <Name FirstName="Ignacia" LastName="Hicks" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2008-04-05T00:00:00">
+    <Patient DateOfBirth="2006-02-04T00:00:00">
       <Name FirstName="Nathaniel" LastName="Fernandez" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2003-05-24T00:00:00">
+    <Patient DateOfBirth="2005-11-03T00:00:00">
       <Name FirstName="Kelly" LastName="Sandoval" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2009-02-13T00:00:00">
+    <Patient DateOfBirth="2003-05-14T00:00:00">
       <Name FirstName="Odette" LastName="Mckenzie" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2012-04-17T00:00:00">
+    <Patient DateOfBirth="2011-08-24T00:00:00">
       <Name FirstName="Pamela" LastName="Hester" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2000-03-02T00:00:00">
+    <Patient DateOfBirth="2004-01-19T00:00:00">
       <Name FirstName="Raven" LastName="Woodward" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2002-08-01T00:00:00">
+    <Patient DateOfBirth="2009-05-10T00:00:00">
       <Name FirstName="Vanna" LastName="Cooper" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2000-01-03T00:00:00">
+    <Patient DateOfBirth="2001-07-02T00:00:00">
       <Name FirstName="Darius" LastName="Curry" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2007-11-17T00:00:00">
+    <Patient DateOfBirth="2005-09-06T00:00:00">
       <Name FirstName="Piper" LastName="Camacho" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2012-04-03T00:00:00">
+    <Patient DateOfBirth="2012-11-23T00:00:00">
       <Name FirstName="Nehru" LastName="Myers" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2003-11-21T00:00:00">
+    <Patient DateOfBirth="2003-10-08T00:00:00">
       <Name FirstName="Nathaniel" LastName="Nicholson" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2005-02-01T00:00:00">
+    <Patient DateOfBirth="2004-05-13T00:00:00">
       <Name FirstName="Katell" LastName="Bullock" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2006-02-01T00:00:00">
+    <Patient DateOfBirth="2008-06-14T00:00:00">
       <Name FirstName="Owen" LastName="Joyner" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2007-01-20T00:00:00">
+    <Patient DateOfBirth="2009-01-27T00:00:00">
       <Name FirstName="Barrett" LastName="Black" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2000-10-12T00:00:00">
+    <Patient DateOfBirth="2000-02-06T00:00:00">
       <Name FirstName="Micah" LastName="Espinoza" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2008-09-20T00:00:00">
+    <Patient DateOfBirth="2009-07-20T00:00:00">
       <Name FirstName="Michael" LastName="Boyle" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2004-10-07T00:00:00">
+    <Patient DateOfBirth="2004-03-07T00:00:00">
       <Name FirstName="Nasim" LastName="Griffith" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2010-03-24T00:00:00">
+    <Patient DateOfBirth="2003-02-27T00:00:00">
       <Name FirstName="Hall" LastName="Davidson" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2007-01-08T00:00:00">
+    <Patient DateOfBirth="2008-10-19T00:00:00">
       <Name FirstName="Chancellor" LastName="Branch" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2006-01-10T00:00:00">
+    <Patient DateOfBirth="2001-01-12T00:00:00">
       <Name FirstName="Sage" LastName="Vasquez" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2007-04-03T00:00:00">
+    <Patient DateOfBirth="2011-06-01T00:00:00">
       <Name FirstName="Karen" LastName="Meadows" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2010-05-06T00:00:00">
+    <Patient DateOfBirth="2003-11-15T00:00:00">
       <Name FirstName="Timon" LastName="Horn" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2009-06-07T00:00:00">
+    <Patient DateOfBirth="2002-06-07T00:00:00">
       <Name FirstName="Rooney" LastName="Carver" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2007-06-04T00:00:00">
+    <Patient DateOfBirth="2005-08-17T00:00:00">
       <Name FirstName="Megan" LastName="Mathews" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2000-08-15T00:00:00">
+    <Patient DateOfBirth="2002-01-12T00:00:00">
       <Name FirstName="Eleanor" LastName="Gould" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2004-11-07T00:00:00">
+    <Patient DateOfBirth="2005-02-13T00:00:00">
       <Name FirstName="Cyrus" LastName="Witt" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2008-11-03T00:00:00">
+    <Patient DateOfBirth="2011-09-05T00:00:00">
       <Name FirstName="Alden" LastName="Ramsey" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2011-07-13T00:00:00">
+    <Patient DateOfBirth="2006-07-19T00:00:00">
       <Name FirstName="Belle" LastName="Reyes" />
+      <KnownConditions />
     </Patient>
-    <Patient DateOfBirth="2010-06-21T00:00:00">
+    <Patient DateOfBirth="2008-01-21T00:00:00">
       <Name FirstName="Dalton" LastName="Cohen" />
+      <KnownConditions />
     </Patient>
   </Patients>
 </PatientFile>

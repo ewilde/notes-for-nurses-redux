@@ -1,4 +1,4 @@
-namespace Edward.Wilde.Note.For.Nurses.Core.Data 
+namespace Edward.Wilde.Note.For.Nurses.Core.Data
 {
     using System.Collections.Generic;
     using System.Diagnostics;
@@ -27,16 +27,17 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
         /// Initializes a new instance of the <see cref="PatientDatabase"/> class.
         /// If the database does not already exist it create a new database.
         /// </summary>
-        public PatientDatabase() : base(GetDatabaseFilePath(DatabaseFileName))
+        public PatientDatabase()
+            : base(GetDatabaseFilePath(DatabaseFileName))
         {
             this.SetForeignKeysPermissions(true);
 
-			// create the tables
+            // create the tables
             this.CreateTable<KnownCondition>();
             this.CreateTable<Patient>();
             this.CreateTable<PatientKnownCondition>();
             this.CreateTable<Name>();
-		}
+        }
 
         /// <summary>
         /// Gets a value indicating whether we are in debug mode.
@@ -46,7 +47,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
         /// </value>
         public static bool DebugMode
         {
-                
+
             get
             {
 #if DEBUG
@@ -59,22 +60,34 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
         }
 
         /// <summary>
-		/// Gets the Patient represented by the specified <param name="id"></param>.
-		/// </summary>
+        /// Gets the Patient represented by the specified <param name="id"></param>.
+        /// </summary>
         public Patient GetPatient(int id)
         {
-            lock (staticLock) 
+            lock (staticLock)
             {
                 Patient patient = this.Table<Patient>().FirstOrDefault(s => s.Id == id);
-                
+
                 // Look up known conditions stored for this patient in table PatientKnownCondition
                 patient.KnownConditions.AddRange(
                     this.Table<PatientKnownCondition>()
                         .Where(condition => condition.PatientId == patient.Id)
                         .Select(condition => this.GetKnownCondition(condition.KnownConditionId)));
 
-				return patient;
+                return patient;
             }
+        }
+
+        public KnownCondition GetKnownConditionByName(string name)
+        {
+            return this.Table<KnownCondition>().FirstOrDefault(s => s.Name.Equals(name));
+        }
+
+        public void DeleteAllData()
+        {
+            this.DeleteAll<PatientKnownCondition>();
+            this.DeleteAll<Patient>();
+            this.DeleteAll<KnownCondition>();
         }
 
         public KnownCondition GetKnownCondition(int id)
@@ -89,20 +102,36 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
                 // update list of known conditions
                 this.Table<PatientKnownCondition>()
                     .Where(x => x.PatientId == patient.Id)
-                    .ForEach(x=> this.Delete(x));
+                    .ForEach(x => this.Delete(x));
 
                 this.SaveItem(patient);
 
                 patient.KnownConditions
                        .ForEach(
                            condition =>
+                           {
+                               var existingCondition = this.GetKnownConditionByName(condition.Name);
+                               if (existingCondition == null)
                                {
                                    this.SaveItem(condition);
-                                   this.Insert(new PatientKnownCondition { PatientId = patient.Id, KnownConditionId = condition.Id });
-                               });
-                
+                                   existingCondition = condition;
+                               }
+
+                               this.Insert(new PatientKnownCondition { PatientId = patient.Id, KnownConditionId = existingCondition.Id });
+                           });
+
             }
 
+        }
+
+        public bool DataExists
+        {
+            get
+            {
+                return 
+                    this.CountTable<Patient>() > 0 ||
+                    this.CountTable<KnownCondition>() > 0;
+            }
         }
     }
 }

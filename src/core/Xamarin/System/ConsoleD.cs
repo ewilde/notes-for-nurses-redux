@@ -24,7 +24,12 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Xamarin {
 
         public static void WriteError(string message, Exception exception, params object[] arg)
         {
-            Console.WriteLine("ERROR: " + string.Format(message, arg) + Environment.NewLine + exception);
+            WriteError(string.Format(message, arg) + Environment.NewLine + exception);
+        }
+
+        public static void WriteError(string message)
+        {
+            Console.WriteLine("ERROR: " + message);
         }
 	}
 }

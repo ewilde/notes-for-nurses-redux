@@ -70,6 +70,7 @@
     <Compile Include="System\IFileManager.cs" />
     <Compile Include="System\IObjectFactory.cs" />
     <Compile Include="System\ObjectFactory.cs" />
+    <Compile Include="System\Retry.cs" />
     <Compile Include="System\StringWriterWithEncoding.cs" />
     <Compile Include="UI\StartupManager.cs" />
     <Compile Include="Xamarin\Contracts\BusinessEntityBase.cs" />

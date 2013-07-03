@@ -5,26 +5,24 @@
     using System.IO;
     using System.Threading;
 
+    using Edward.Wilde.Note.For.Nurses.Core;
     using Edward.Wilde.Note.For.Nurses.Core.Data;
     using Edward.Wilde.Note.For.Nurses.Core.Xamarin.Data;
 
     using Machine.Fakes;
 
+    using core.net.tests.Util;
+
     public class EmptyDatabase : ContextBase
     {
+        static readonly string databaseFilePath = XamarinDatabase.GetDatabaseFilePath(PatientDatabase.DatabaseFileName);
+        static IPatientDatabase database;
+        
         OnEstablish context = engine =>
             {
-                string databaseFilePath = XamarinDatabase.GetDatabaseFilePath(PatientDatabase.DatabaseFileName);
-                if (File.Exists(databaseFilePath))
-                {
-                    File.Delete(databaseFilePath);
-                }
-            };
-
-        OnCleanup shut_down_database_connection = x =>
-            {
-                Resolve<IPatientDatabase>().Close();
-                Debug.WriteLine("Closed database connection.");
-            };
+                database = Resolve<IPatientDatabase>();
+                database.DeleteAllData();
+                Debug.Assert(!database.DataExists);
+            };      
     }
 }

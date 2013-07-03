@@ -112,6 +112,7 @@
     <Compile Include="Service\TypeRegistrationService.cs" />
     <Compile Include="System\FileManager.cs" />
     <Compile Include="System\IFileManager.cs" />
+    <Compile Include="System\Retry.cs" />
     <Compile Include="System\StringWriterWithEncoding.cs" />
     <Compile Include="System\IObjectFactory.cs" />
     <Compile Include="UI\StartupManager.cs" />

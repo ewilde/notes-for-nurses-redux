@@ -63,7 +63,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
         {
             get
             {
-                return this.PatientDatabase.CountTable<Patient>() > 0;
+                return this.PatientDatabase.DataExists;
             }
         }
 

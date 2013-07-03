@@ -27,6 +27,12 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
         /// <param name="patient">The patient.</param>
         void SavePatient(Patient patient);
 
+        bool DataExists { get; }
+
         KnownCondition GetKnownCondition(int id);
+
+        KnownCondition GetKnownConditionByName(string name);
+
+        void DeleteAllData();
     }
 }
