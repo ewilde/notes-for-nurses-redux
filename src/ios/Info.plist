@@ -38,5 +38,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+  <key>NSLocationUsageDescription</key>
+  <string>we require to know your location in order to secure this application and only allow it to operate near your designated work place.</string>
 </dict>
 </plist>

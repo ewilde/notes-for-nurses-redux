@@ -107,7 +107,14 @@
     <Compile Include="Model\KnownCondition.cs" />
     <Compile Include="Model\Name.cs" />
     <Compile Include="Model\PatientKnownCondition.cs" />
+    <Compile Include="Service\Location\IDistanceCalculatorService.cs" />
+    <Compile Include="Service\Location\ILocationService.cs" />
     <Compile Include="Service\ITypeRegistrationService.cs" />
+    <Compile Include="Service\Location\Location.cs" />
+    <Compile Include="Service\Location\LocationAccuracy.cs" />
+    <Compile Include="Service\Location\LocationChangedEventArgs.cs" />
+    <Compile Include="Service\Location\LocationCoordinate.cs" />
+    <Compile Include="Service\Location\LocationSettings.cs" />
     <Compile Include="Service\SerializerService.cs" />
     <Compile Include="Service\TypeRegistrationService.cs" />
     <Compile Include="System\FileManager.cs" />

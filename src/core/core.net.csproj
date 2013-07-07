@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Device" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,6 +64,14 @@
     <Compile Include="Model\Patient.cs" />
     <Compile Include="Model\PatientFile.cs" />
     <Compile Include="Service\ITypeRegistrationService.cs" />
+    <Compile Include="Service\Location\DistanceCalculatorService.cs" />
+    <Compile Include="Service\Location\IDistanceCalculatorService.cs" />
+    <Compile Include="Service\Location\ILocationService.cs" />
+    <Compile Include="Service\Location\Location.cs" />
+    <Compile Include="Service\Location\LocationAccuracy.cs" />
+    <Compile Include="Service\Location\LocationChangedEventArgs.cs" />
+    <Compile Include="Service\Location\LocationCoordinate.cs" />
+    <Compile Include="Service\Location\LocationSettings.cs" />
     <Compile Include="Service\PatientFileParser.cs" />
     <Compile Include="Service\SerializerService.cs" />
     <Compile Include="Service\TypeRegistrationService.cs" />

@@ -115,6 +115,10 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Services\AppleTypeRegistrationService.cs" />
+    <Compile Include="Services\DistanceCalculatorService.cs" />
+    <Compile Include="Services\LocationDelegate.cs" />
+    <Compile Include="Services\LocationService.cs" />
     <Compile Include="System\FileManager.cs" />
     <Compile Include="UI\Common\NavigationViewController.cs" />
     <Compile Include="Xamarin\Network\NetworkStatus.cs" />

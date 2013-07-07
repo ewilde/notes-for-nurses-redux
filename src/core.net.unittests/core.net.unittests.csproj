@@ -59,6 +59,8 @@
     <Compile Include="Model\NameTests.cs" />
     <Compile Include="Model\PatientFileTests.cs" />
     <Compile Include="Model\PatientTests.cs" />
+    <Compile Include="Service\DistanceCalculatorServiceTests.cs" />
+    <Compile Include="Service\LocationTests.cs" />
     <Compile Include="Service\PatientFileParserTests.cs" />
     <Compile Include="UI\StartupManagerTests.cs" />
     <Compile Include="WithConcreteSubject.cs" />

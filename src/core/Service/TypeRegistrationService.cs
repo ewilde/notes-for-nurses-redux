@@ -12,14 +12,17 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Service
     {
         public void RegisterAll()
         {
-            TinyIoC.TinyIoCContainer.Current.Register<IFileManager, FileManager>().AsSingleton();
-            TinyIoC.TinyIoCContainer.Current.Register<IDataManager, DataManager>().AsSingleton();
-            TinyIoC.TinyIoCContainer.Current.Register<IPatientDatabase, PatientDatabase>().AsSingleton();
-            TinyIoC.TinyIoCContainer.Current.Register<IPatientFileUpdateManager, PatientFileUpdateManager>().AsSingleton();
-            TinyIoC.TinyIoCContainer.Current.Register<IPatientManager, PatientManager>().AsSingleton();
-            TinyIoC.TinyIoCContainer.Current.Register<ITypeRegistrationService>((container, overload) => this);
-            TinyIoC.TinyIoCContainer.Current.Register<IObjectFactory, ObjectFactory>().AsSingleton();
-            TinyIoC.TinyIoCContainer.Current.Register<IStartupManager, StartupManager>().AsSingleton();
+            var container = TinyIoC.TinyIoCContainer.Current;
+            
+           
+            container.Register<IFileManager, FileManager>().AsSingleton();
+            container.Register<IDataManager, DataManager>().AsSingleton();
+            container.Register<IPatientDatabase, PatientDatabase>().AsSingleton();
+            container.Register<IPatientFileUpdateManager, PatientFileUpdateManager>().AsSingleton();
+            container.Register<IPatientManager, PatientManager>().AsSingleton();
+            container.Register<ITypeRegistrationService>((x, overload) => this);
+            container.Register<IObjectFactory, ObjectFactory>().AsSingleton();
+            container.Register<IStartupManager, StartupManager>().AsSingleton();
         }
     }
 }
