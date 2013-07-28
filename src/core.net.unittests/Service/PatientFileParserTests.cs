@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="PatientFileParserTests.cs" company="UBS AG">
+// <copyright file="PatientFileParserTests.cs">
 // Copyright (c) 2013.
 // </copyright>
 // -----------------------------------------------------------------------

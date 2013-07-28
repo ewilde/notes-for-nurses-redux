@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="ITypeRegistrationService.cs" company="UBS AG">
+// <copyright file="ITypeRegistrationService.cs">
 // Copyright (c) 2013.
 // </copyright>
 // -----------------------------------------------------------------------

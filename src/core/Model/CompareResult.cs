@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="CompareResult.cs" company="UBS AG">
+// <copyright file="CompareResult.cs">
 // Copyright (c) 2013.
 // </copyright>
 // -----------------------------------------------------------------------

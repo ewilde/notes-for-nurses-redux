@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="StringWriterWithEncoding.cs" company="UBS AG">
+// <copyright file="StringWriterWithEncoding.cs">
 // Copyright (c) 2013.
 // </copyright>
 // -----------------------------------------------------------------------

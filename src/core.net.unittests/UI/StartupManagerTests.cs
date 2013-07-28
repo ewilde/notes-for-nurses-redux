@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="StartupManagerTests.cs" company="UBS AG">
+// <copyright file="StartupManagerTests.cs">
 // Copyright (c) 2013.
 // </copyright>
 // -----------------------------------------------------------------------

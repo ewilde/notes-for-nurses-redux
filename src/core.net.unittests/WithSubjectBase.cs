@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="WithSubjectBase.cs" company="UBS AG">
+// <copyright file="WithSubjectBase.cs">
 // Copyright (c) 2013.
 // </copyright>
 // -----------------------------------------------------------------------

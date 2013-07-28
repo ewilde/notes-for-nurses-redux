@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="PatientFileUpdateManager.cs" company="UBS AG">
+// <copyright file="PatientFileUpdateManager.cs">
 // Copyright (c) 2013.
 // </copyright>
 // -----------------------------------------------------------------------

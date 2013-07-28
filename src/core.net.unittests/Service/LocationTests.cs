@@ -30,6 +30,7 @@ namespace core.net.tests.Service
                 Result = london - paris;
             };
 
-        It should_provide_call_the_distance_calculator_service = () => The<IDistanceCalculatorService>().WasToldTo(call => call.DistanceBetween(london.Coordinate, paris.Coordinate));
+        It should_call_the_distance_calculator_service_to_work_out_the_distance_between_locations 
+            = () => The<IDistanceCalculatorService>().WasToldTo(call => call.DistanceBetween(london.Coordinate, paris.Coordinate));
     }
 }

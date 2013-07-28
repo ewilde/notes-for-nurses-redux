@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="SerializerService.cs" company="UBS AG">
+// <copyright file="SerializerService.cs">
 // Copyright (c) 2013.
 // </copyright>
 // -----------------------------------------------------------------------

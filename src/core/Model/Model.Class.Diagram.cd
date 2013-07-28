@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Edward.Wilde.Note.For.Nurses.Core.Model.KnownCondition">
+    <Position X="9" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\KnownCondition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Edward.Wilde.Note.For.Nurses.Core.Model.Name" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEEAAAQAAAAQEAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Model\Name.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Edward.Wilde.Note.For.Nurses.Core.Model.Patient">
+    <Position X="6" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAAAAAAAQAAAAUAAAAAAEACAAAAAA=</HashCode>
+      <FileName>Model\Patient.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Name" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="KnownConditions" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Edward.Wilde.Note.For.Nurses.Core.Model.PatientFile">
+    <Position X="2.75" Y="4" Width="1.5" />
+    <AssociationLine Name="Patients" Type="Edward.Wilde.Note.For.Nurses.Core.Model.Patient" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.25" Y="4.469" />
+        <Point X="6.812" Y="4.469" />
+        <Point X="6.812" Y="3.771" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Model\PatientFile.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Patients" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Edward.Wilde.Note.For.Nurses.Core.Model.PatientKnownCondition">
+    <Position X="9" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Model\PatientKnownCondition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
