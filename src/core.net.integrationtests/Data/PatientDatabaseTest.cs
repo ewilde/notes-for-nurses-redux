@@ -22,7 +22,7 @@ namespace core.net.integrationtests.Data
     using core.net.tests;
 
     [Subject(typeof(PatientDatabase), "saving")]
-    public class When_saving_a_patient_to_the_patient_database : WithConcreteSubjectAndResult<PatientDatabase, IPatientDatabase, Patient>
+    public class When_saving_a_patient_to_the_patient_database : WithConcreteUnmockedSubjectAndResult<PatientDatabase, IPatientDatabase, Patient>
     {
         static Patient patient;
 
@@ -63,7 +63,7 @@ namespace core.net.integrationtests.Data
     }
 
     [Subject(typeof(PatientDatabase), "saving")]
-    public class When_saving_a_patient_to_the_patient_database_with_existing_store_conditions : WithConcreteSubjectAndResult<PatientDatabase, IPatientDatabase, Patient>
+    public class When_saving_a_patient_to_the_patient_database_with_existing_store_conditions : WithConcreteUnmockedSubjectAndResult<PatientDatabase, IPatientDatabase, Patient>
     {
         static Patient patient;
 
@@ -93,5 +93,5 @@ namespace core.net.integrationtests.Data
 
         It should_use_the_existing_conditions_in_the_link_table = () =>
             Subject.GetItems<KnownCondition>().Count().ShouldEqual(2);        
-    }
+    }    
 }

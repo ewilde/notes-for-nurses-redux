@@ -7,7 +7,6 @@
 
     using Edward.Wilde.Note.For.Nurses.Core;
     using Edward.Wilde.Note.For.Nurses.Core.Data;
-    using Edward.Wilde.Note.For.Nurses.Core.Xamarin.Data;
 
     using Machine.Fakes;
 
@@ -15,7 +14,6 @@
 
     public class EmptyDatabase : ContextBase
     {
-        static readonly string databaseFilePath = XamarinDatabase.GetDatabaseFilePath(PatientDatabase.DatabaseFileName);
         static IPatientDatabase database;
         
         OnEstablish context = engine =>

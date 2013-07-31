@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\SettingsManagerTests.cs" />
     <Compile Include="Data\DataManagerTests.cs" />
     <Compile Include="Data\PatientManagerTests.cs" />
     <Compile Include="Model\NameTests.cs" />

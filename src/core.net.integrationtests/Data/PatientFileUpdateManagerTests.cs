@@ -21,7 +21,7 @@ namespace core.net.integrationtests.Data
     using Edward.Wilde.Note.For.Nurses.Core.Data;
 
     [Subject(typeof(PatientFileUpdateManager))]
-    public class when_loading_the_database_using_the_seed_data : WithConcreteSubject<PatientFileUpdateManager, IPatientFileUpdateManager>
+    public class when_loading_the_database_using_the_seed_data : WithConcreteUnmockedSubject<PatientFileUpdateManager, IPatientFileUpdateManager>
     {
         static IDataManager DataManager;
 

@@ -37,6 +37,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
             this.CreateTable<Patient>();
             this.CreateTable<PatientKnownCondition>();
             this.CreateTable<Name>();
+            this.CreateTable<Setting>();
         }
 
         /// <summary>
@@ -88,6 +89,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
             this.DeleteAll<PatientKnownCondition>();
             this.DeleteAll<Patient>();
             this.DeleteAll<KnownCondition>();
+            this.DeleteAll<Setting>();
         }
 
         public KnownCondition GetKnownCondition(int id)
@@ -130,7 +132,8 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
             {
                 return 
                     this.CountTable<Patient>() > 0 ||
-                    this.CountTable<KnownCondition>() > 0;
+                    this.CountTable<KnownCondition>() > 0 ||
+                    this.CountTable<Setting>() > 0;
             }
         }
     }

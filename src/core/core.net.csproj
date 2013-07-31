@@ -50,11 +50,14 @@
     <Compile Include="Data\IPatientDatabase.cs" />
     <Compile Include="Data\IPatientFileUpdateManager.cs" />
     <Compile Include="Data\IPatientManager.cs" />
+    <Compile Include="Data\ISettingsManager.cs" />
     <Compile Include="Data\PatientManager.cs" />
+    <Compile Include="Data\SettingsManager.cs" />
     <Compile Include="Model\CompareResult.cs" />
     <Compile Include="Model\KnownCondition.cs" />
     <Compile Include="Model\Name.cs" />
     <Compile Include="Model\PatientKnownCondition.cs" />
+    <Compile Include="Model\Setting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Data\DataManager.cs" />

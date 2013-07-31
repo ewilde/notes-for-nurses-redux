@@ -19,7 +19,7 @@ namespace core.net.integrationtests.Service
     using core.net.tests;
 
     [Subject(typeof(TypeRegistrationService), "registration")]
-    public class when_registration_service_has_completed : WithConcreteSubject<TypeRegistrationService, ITypeRegistrationService>
+    public class when_registration_service_has_completed : WithConcreteUnmockedSubject<TypeRegistrationService, ITypeRegistrationService>
     {
         Because of = () => Subject.RegisterAll();
 
@@ -81,6 +81,19 @@ namespace core.net.integrationtests.Service
                 Object.ReferenceEquals(
                     TinyIoCContainer.Current.Resolve<IPatientManager>(),
                     TinyIoCContainer.Current.Resolve<IPatientManager>()).ShouldBeTrue();
+            };
+
+
+        It should_be_possible_to_resolve_settings_manager = () =>
+            {
+                TinyIoCContainer.Current.CanResolve<ISettingsManager>();
+            };
+
+        It should_have_registered_settings_manager_as_a_singleton = () =>
+            {
+                Object.ReferenceEquals(
+                    TinyIoCContainer.Current.Resolve<ISettingsManager>(),
+                    TinyIoCContainer.Current.Resolve<ISettingsManager>()).ShouldBeTrue();
             };
 
         It should_be_possible_to_resolve_type_registration_service = () =>

@@ -20,6 +20,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Service
             container.Register<IPatientDatabase, PatientDatabase>().AsSingleton();
             container.Register<IPatientFileUpdateManager, PatientFileUpdateManager>().AsSingleton();
             container.Register<IPatientManager, PatientManager>().AsSingleton();
+            container.Register<ISettingsManager, SettingsManager>().AsSingleton();
             container.Register<ITypeRegistrationService>((x, overload) => this);
             container.Register<IObjectFactory, ObjectFactory>().AsSingleton();
             container.Register<IStartupManager, StartupManager>().AsSingleton();

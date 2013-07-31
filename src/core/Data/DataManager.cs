@@ -71,5 +71,15 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
         {
             this.PatientDatabase.SavePatient(patient);
         }
+
+        public void SaveSetting(Setting setting)
+        {
+            this.PatientDatabase.SaveItem(setting);
+        }
+
+        public IEnumerable<Setting> GetSettings()
+        {
+            return this.PatientDatabase.GetItems<Setting>();
+        }
     }
 }

@@ -28,6 +28,21 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
         /// </value>
         bool DataExists { get; }
 
+        /// <summary>
+        /// Saves the patient entity. If it already exists it updates the entity; otherwise it inserts it.
+        /// </summary>
+        /// <param name="patient">The patient.</param>
         void SavePatient(Patient patient);
+
+        /// <summary>
+        /// Saves the setting. If it already exists it updates the entity; otherwise it inserts it.
+        /// </summary>        
+        /// <param name="setting">The setting.</param>
+        void SaveSetting(Setting setting);
+
+        /// <summary>
+        /// Gets all of the settings.
+        /// </summary>
+        IEnumerable<Setting> GetSettings();
     }
 }

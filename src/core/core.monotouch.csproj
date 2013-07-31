@@ -102,11 +102,14 @@
     <Compile Include="Data\IPatientDatabase.cs" />
     <Compile Include="Data\IPatientFileUpdateManager.cs" />
     <Compile Include="Data\IPatientManager.cs" />
+    <Compile Include="Data\ISettingsManager.cs" />
     <Compile Include="Data\PatientDatabase.cs" />
+    <Compile Include="Data\SettingsManager.cs" />
     <Compile Include="Model\CompareResult.cs" />
     <Compile Include="Model\KnownCondition.cs" />
     <Compile Include="Model\Name.cs" />
     <Compile Include="Model\PatientKnownCondition.cs" />
+    <Compile Include="Model\Setting.cs" />
     <Compile Include="Service\Location\IDistanceCalculatorService.cs" />
     <Compile Include="Service\Location\ILocationService.cs" />
     <Compile Include="Service\ITypeRegistrationService.cs" />
