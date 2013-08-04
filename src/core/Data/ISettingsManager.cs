@@ -17,5 +17,9 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
         IEnumerable<Setting> Get();
 
         void Save(Setting value);
+
+        bool DataExists { get; }
+
+        TValue Get<TValue>(SettingKey key) where TValue : class;
     }
 }

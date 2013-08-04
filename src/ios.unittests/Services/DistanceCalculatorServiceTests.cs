@@ -5,6 +5,7 @@
 // -----------------------------------------------------------------------
 namespace ios.unittests.Services
 {
+    using Edward.Wilde.Note.For.Nurses.Core.Model;
     using Edward.Wilde.Note.For.Nurses.Core.Service;
 
     using NUnit.Framework;

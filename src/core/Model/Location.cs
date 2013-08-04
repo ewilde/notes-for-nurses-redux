@@ -3,11 +3,15 @@
 // Copyright Edward Wilde (c) 2013.
 // </copyright>
 // -----------------------------------------------------------------------
-namespace Edward.Wilde.Note.For.Nurses.Core.Service
+namespace Edward.Wilde.Note.For.Nurses.Core.Model
 {
+    using System.Diagnostics;
+
+    using Edward.Wilde.Note.For.Nurses.Core.Service;
+
     public class Location
     {
-        private static IDistanceCalculatorService distanceCalculator;
+        public static IDistanceCalculatorService DistanceCalculator;
 
         /// <summary>
         /// Gets or sets the direction. 0 through to 356 degrees.
@@ -21,15 +25,15 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Service
 
         public Location(IDistanceCalculatorService distanceCalculator)
         {
-            if (Location.distanceCalculator == null)
+            if (Location.DistanceCalculator == null)
             {
-                Location.distanceCalculator = distanceCalculator;
+                Location.DistanceCalculator = distanceCalculator;
             }
         }
 
         public static double operator -(Location location1, Location location2)
         {
-            return distanceCalculator.DistanceBetween(location1.Coordinate, location2.Coordinate);
+            return DistanceCalculator.DistanceBetween(location1.Coordinate, location2.Coordinate);
         }
     }
 }

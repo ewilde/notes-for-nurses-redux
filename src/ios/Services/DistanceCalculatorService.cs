@@ -5,6 +5,7 @@
 // -----------------------------------------------------------------------
 namespace Edward.Wilde.Note.For.Nurses.iOS.Services
 {
+    using Edward.Wilde.Note.For.Nurses.Core.Model;
     using Edward.Wilde.Note.For.Nurses.Core.Service;
 
     using MonoTouch.CoreLocation;

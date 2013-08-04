@@ -1,14 +1,12 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="IDistanceCalculatorService.cs">
+// <copyright file="ISessionContext.cs">
 // Copyright Edward Wilde (c) 2013.
 // </copyright>
 // -----------------------------------------------------------------------
 namespace Edward.Wilde.Note.For.Nurses.Core.Service
 {
-    using Edward.Wilde.Note.For.Nurses.Core.Model;
-
-    public interface IDistanceCalculatorService
+    public interface ISessionContext
     {
-        double DistanceBetween(LocationCoordinate coordinateA, LocationCoordinate coordinateB);
+        void Initialize();
     }
 }

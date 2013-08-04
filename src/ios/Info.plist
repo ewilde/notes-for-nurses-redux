@@ -25,20 +25,17 @@
 		<integer>1</integer>
 		<integer>2</integer>
 	</array>
-	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleOpaqueBlack</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-  <key>NSLocationUsageDescription</key>
-  <string>we require to know your location in order to secure this application and only allow it to operate near your designated work place.</string>
+	<array/>
+	<key>NSLocationUsageDescription</key>
+	<string>we require to know your location in order to secure this application and only allow it to operate near your designated work place.</string>
+	<key>NSMainNibFile</key>
+	<string></string>
+	<key>NSMainNibFile~ipad</key>
+	<string></string>
 </dict>
 </plist>

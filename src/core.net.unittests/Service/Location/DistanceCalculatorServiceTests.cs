@@ -5,6 +5,7 @@
 // -----------------------------------------------------------------------
 namespace core.net.tests.Service
 {
+    using Edward.Wilde.Note.For.Nurses.Core.Model;
     using Edward.Wilde.Note.For.Nurses.Core.Service;
 
     using Machine.Specifications;

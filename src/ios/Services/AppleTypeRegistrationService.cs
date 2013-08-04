@@ -15,7 +15,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.Services
             var container = TinyIoC.TinyIoCContainer.Current;
            
             container.Register<IFileManager, Edward.Wilde.Note.For.Nurses.iOS.FileManager>().AsSingleton();
-            container.Register<ILocationService, Edward.Wilde.Note.For.Nurses.iOS.Services.LocationService>().AsSingleton();
+            container.Register<ILocationListener, Edward.Wilde.Note.For.Nurses.iOS.Services.LocationListener>().AsSingleton();
             container.Register<IDistanceCalculatorService, Edward.Wilde.Note.For.Nurses.iOS.Services.DistanceCalculatorService>().AsSingleton();
         }
     }

@@ -1,18 +1,15 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="ILocationService.cs">
+// <copyright file="IGeofenceService.cs">
 // Copyright Edward Wilde (c) 2013.
 // </copyright>
 // -----------------------------------------------------------------------
 namespace Edward.Wilde.Note.For.Nurses.Core.Service
 {
-    using System;
+    using Edward.Wilde.Note.For.Nurses.Core.Model;
 
-    public interface ILocationService
+    public interface IGeofenceService
     {
-        event EventHandler<LocationChangedEventArgs> LocationChanged;
- 
-        void StartListening(LocationSettings settings);
-
-        void StopListening();        
+        bool Initialize();
+        bool InsidePerimeter(LocationCoordinate currentLocation, LocationCoordinate centreOfPerimeter);
     }
 }

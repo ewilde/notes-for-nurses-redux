@@ -8,6 +8,8 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Service
     using System;
     using System.Collections.Generic;
 
+    using Edward.Wilde.Note.For.Nurses.Core.Model;
+
     public class LocationChangedEventArgs : EventArgs
     {
         public IList<Location> Locations { get; set; }

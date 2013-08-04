@@ -5,6 +5,9 @@
 // -----------------------------------------------------------------------
 namespace Edward.Wilde.Note.For.Nurses.Core.Model
 {
+    using System;
+    using System.ComponentModel;
+
     using Edward.Wilde.Note.For.Nurses.Core.Xamarin.Contracts;
 
     /// <summary>
@@ -20,6 +23,13 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Model
         [SQLite.Unique]
         public string Key { get; set; }
 
-        public string Value { get; set; }
+        [SQLite.Column("Value")]
+        public string StringValue { get; set; }
+
+        public TValue Value<TValue>()
+        {
+            TypeConverter conv = TypeDescriptor.GetConverter(typeof(TValue));
+            return (TValue)conv.ConvertFromString(this.StringValue);            
+        }
     }
 }

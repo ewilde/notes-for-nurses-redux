@@ -7,6 +7,8 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Service
 {
     using System.Device.Location;
 
+    using Edward.Wilde.Note.For.Nurses.Core.Model;
+
     public class DistanceCalculatorService : IDistanceCalculatorService
     {
         /// <summary>

@@ -45,7 +45,7 @@ namespace core.net.tests.Data
     {
         static Setting setting;
 
-        Establish context = () => setting = new Setting { Key = "Location.Coordinates", Value = "(12.00,-2.67)" };
+        Establish context = () => setting = new Setting { Key = "Location.Coordinates", StringValue = "(12.00,-2.67)" };
 
         Because of = () => Subject.SaveSetting(setting);
 

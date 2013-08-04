@@ -86,6 +86,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <ItemGroup>
+    <None Include="Model\Model.Class.Diagram.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -107,24 +108,31 @@
     <Compile Include="Data\SettingsManager.cs" />
     <Compile Include="Model\CompareResult.cs" />
     <Compile Include="Model\KnownCondition.cs" />
+    <Compile Include="Model\Location.cs" />
+    <Compile Include="Model\LocationCoordinate.cs" />
+    <Compile Include="Model\LocationCoordinateTypeConverter.cs" />
     <Compile Include="Model\Name.cs" />
     <Compile Include="Model\PatientKnownCondition.cs" />
     <Compile Include="Model\Setting.cs" />
+    <Compile Include="Model\SettingKey.cs" />
+    <Compile Include="Model\SettingKeyExtension.cs" />
+    <Compile Include="Service\ISessionContext.cs" />
     <Compile Include="Service\Location\IDistanceCalculatorService.cs" />
-    <Compile Include="Service\Location\ILocationService.cs" />
+    <Compile Include="Service\Location\IGeofenceService.cs" />
+    <Compile Include="Service\Location\ILocationListener.cs" />
     <Compile Include="Service\ITypeRegistrationService.cs" />
-    <Compile Include="Service\Location\Location.cs" />
     <Compile Include="Service\Location\LocationAccuracy.cs" />
     <Compile Include="Service\Location\LocationChangedEventArgs.cs" />
-    <Compile Include="Service\Location\LocationCoordinate.cs" />
     <Compile Include="Service\Location\LocationSettings.cs" />
     <Compile Include="Service\SerializerService.cs" />
+    <Compile Include="Service\SessionContext.cs" />
     <Compile Include="Service\TypeRegistrationService.cs" />
     <Compile Include="System\FileManager.cs" />
     <Compile Include="System\IFileManager.cs" />
     <Compile Include="System\Retry.cs" />
     <Compile Include="System\StringWriterWithEncoding.cs" />
     <Compile Include="System\IObjectFactory.cs" />
+    <Compile Include="UI\IScreenController.cs" />
     <Compile Include="UI\StartupManager.cs" />
     <Compile Include="System\ObjectFactory.cs" />
     <Compile Include="Xamarin\Data\IXamarinDatabase.cs" />

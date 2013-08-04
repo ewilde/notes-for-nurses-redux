@@ -10,25 +10,25 @@
 
     public class LocationDelegate : CLLocationManagerDelegate
     {
-        private readonly LocationService locationService;
+        private readonly LocationListener locationListener;
 
-        public LocationDelegate(LocationService locationService)
+        public LocationDelegate(LocationListener locationListener)
         {
-            this.locationService = locationService;
+            this.locationListener = locationListener;
         }
 
         // called for iOS5.x and earlier
         [Obsolete("Deprecated in iOS 6.0", false)]
         public override void UpdatedLocation(CLLocationManager manager, CLLocation newLocation, CLLocation oldLocation)
         {
-            this.locationService.OnLocationChanged(new[] { newLocation });
+            this.locationListener.OnLocationChanged(new[] { newLocation });
         }
 
         // called for iOS6 and later
 
         public override void LocationsUpdated(CLLocationManager manager, CLLocation[] locations)
         {
-            this.locationService.OnLocationChanged(locations);
+            this.locationListener.OnLocationChanged(locations);
         }
 
        

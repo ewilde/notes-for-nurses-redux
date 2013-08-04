@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="LocationService.cs">
+// <copyright file="LocationListener.cs">
 // Copyright Edward Wilde (c) 2013.
 // </copyright>
 // -----------------------------------------------------------------------
@@ -10,11 +10,12 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.Services
     using System.Linq;
 
     using Edward.Wilde.Note.For.Nurses.Core;
+    using Edward.Wilde.Note.For.Nurses.Core.Model;
     using Edward.Wilde.Note.For.Nurses.Core.Service;
 
     using MonoTouch.CoreLocation;
 
-    public class LocationService : ILocationService
+    public class LocationListener : ILocationListener
     {
         private CLLocationManager locationManager;
         
@@ -22,7 +23,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.Services
 
         public event EventHandler<LocationChangedEventArgs> LocationChanged;
 
-        public LocationService(IObjectFactory objectFactory)
+        public LocationListener(IObjectFactory objectFactory)
         {
             this.objectFactory = objectFactory;
         }

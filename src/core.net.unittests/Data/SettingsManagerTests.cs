@@ -30,7 +30,7 @@ namespace core.net.tests.Data
     {
         static Setting setting;
 
-        Establish context = () => setting = new Setting { Key = "Location", Value = "London" };
+        Establish context = () => setting = new Setting { Key = "Location", StringValue = "London" };
 
         Because of = () => Subject.Save(setting);
 

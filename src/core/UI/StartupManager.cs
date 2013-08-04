@@ -6,6 +6,7 @@ using System.Text;
 namespace Edward.Wilde.Note.For.Nurses.Core.UI
 {
     using Edward.Wilde.Note.For.Nurses.Core.Data;
+    using Edward.Wilde.Note.For.Nurses.Core.Service;
     using Edward.Wilde.Note.For.Nurses.Core.Xamarin.Data;
 
     public interface IStartupManager
@@ -22,12 +23,30 @@ namespace Edward.Wilde.Note.For.Nurses.Core.UI
 
         public IObjectFactory ObjectFactory { get; set; }
 
+        public IScreenController ScreenController { get; set; }
+
+        public ISettingsManager SettingsManager { get; set; }
+
+        public IGeofenceService GeofenceService { get; set; }
+
+        public ISessionContext SessionContext { get; set; }
+
         public IPatientFileUpdateManager PatientFileUpdateManager { get; set; }
 
-        public StartupManager(IFileManager fileManager, IObjectFactory objectFactory)
+        public StartupManager(
+            IFileManager fileManager, 
+            IObjectFactory objectFactory, 
+            IScreenController screenController, 
+            ISettingsManager settingsManager,
+            IGeofenceService geofenceService,
+            ISessionContext sessionContext)
         {
             FileManager = fileManager;
             ObjectFactory = objectFactory;
+            ScreenController = screenController;
+            SettingsManager = settingsManager;
+            GeofenceService = geofenceService;
+            SessionContext = sessionContext;
         }
 
         public void Run()
@@ -39,6 +58,22 @@ namespace Edward.Wilde.Note.For.Nurses.Core.UI
 
             this.PatientFileUpdateManager = this.ObjectFactory.Create<IPatientFileUpdateManager>();
             this.PatientFileUpdateManager.UpdateIfEmpty();
+
+            if (!this.SettingsManager.DataExists)
+            {
+                this.ScreenController.ShowConfigurationScreen();
+                return;
+            }
+
+            this.SessionContext.Initialize();
+
+            if (!this.GeofenceService.Initialize())
+            {
+                this.ScreenController.ShowExitScreen("Your device is outside it's allowed home area.");
+                return;
+            }
+
+            this.ScreenController.ShowHomeScreen();
         }
     }
 }
