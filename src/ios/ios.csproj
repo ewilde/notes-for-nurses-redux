@@ -103,15 +103,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mono.Data.Sqlcipher, Version=2.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Components\sqlcipher-for-xamarin-2.1.1.4\lib\ios\Mono.Data.Sqlcipher.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
     <Reference Include="MonoTouch.Dialog-1" />
+    <Reference Include="Mono.Data.Sqlcipher">
+      <HintPath>..\Components\sqlcipher-for-xamarin-2.1.1.4\lib\ios\Mono.Data.Sqlcipher.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -149,8 +148,9 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <ItemGroup>
     <XamarinComponentReference Include="sqlcipher-for-xamarin">
-      <Visible>False</Visible>
+      <InstallationInProgress>False</InstallationInProgress>
       <Version>2.1.1.4</Version>
+      <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup>
@@ -166,7 +166,6 @@
     <Content Include="Images\Icons\58_icon.png" />
     <Content Include="Images\Icons\72_icon.png" />
     <Content Include="Images\Icons\114_icon.png" />
-    <Content Include="Images\Icons\512_icon.png" />
     <Content Include="Default.png" />
     <Content Include="Default%402x.png" />
     <Content Include="Images\Tabs\speakers.png" />
@@ -207,5 +206,8 @@
     <Content Include="Images\About\iPad\layout.css" />
     <Content Include="Default-568h%402x.png" />
     <Content Include="Images\Home-568h%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="Images\Icons\512_icon.png" />
   </ItemGroup>
 </Project>

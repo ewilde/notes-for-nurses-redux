@@ -9,11 +9,20 @@ namespace Edward.Wilde.Note.For.Nurses.iOS
 
     using MonoTouch.Foundation;
 
+	using System;
+
     public class ApplicationSettingsProvider : IApplicationSettingsProvider
     {
         public string ReadValue(string key)
         {
-            return NSBundle.MainBundle.InfoDictionary.ValueForKey(new NSString(key)).ToString();
+			var keyObject = new NSString(key);
+
+			if (NSBundle.MainBundle.InfoDictionary.ContainsKey(keyObject))
+			{
+				return NSBundle.MainBundle.InfoDictionary.ValueForKey(keyObject).ToString();
+			}
+            
+			throw new Exception(string.Format("Key {0} not found", key));
         }
     }
 }
