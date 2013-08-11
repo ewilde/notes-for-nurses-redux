@@ -11,6 +11,8 @@
     <RootNamespace>Edward.Wilde.Note.For.Nurses.Core</RootNamespace>
     <ReleaseVersion>1.4</ReleaseVersion>
     <AssemblyName>NotesForNursesCore</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Distribution|iPhone' ">
     <DebugType>none</DebugType>
@@ -152,4 +154,5 @@
     <Compile Include="Data\UpdateFinishedEventArgs.cs" />
     <Compile Include="Xamarin\System\ConsoleD.cs" />
   </ItemGroup>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
 </Project>

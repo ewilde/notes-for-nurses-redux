@@ -58,7 +58,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
 			};
 			 this.bioTextView = new UITextView () {
 				TextAlignment = UITextAlignment.Left,
-				Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font10_5pt),
+				Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font10_5Pt),
 				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f),
 				ScrollEnabled = true,
 				Editable = false
@@ -128,7 +128,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
 			this.titleLabel.Text = "TITLE";
 			this.companyLabel.Text = "COMPANY";
 
-			this.bioTextView.Font = UIFont.FromName ("Helvetica-LightOblique", AppDelegate.Font10_5pt);
+			this.bioTextView.Font = UIFont.FromName ("Helvetica-LightOblique", AppDelegate.Font10_5Pt);
 			this.bioTextView.TextColor = UIColor.Gray;
 			this.bioTextView.Text = "No background information available.";
 			

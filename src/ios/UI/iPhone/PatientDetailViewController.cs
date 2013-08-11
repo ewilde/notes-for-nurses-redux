@@ -72,7 +72,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPhone {
 			};
 			 this.bioTextView = new UITextView () {
 				TextAlignment = UITextAlignment.Left,
-				Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font10_5pt),
+				Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font10_5Pt),
 				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f),
 				ScrollEnabled = true,
 				Editable = false
@@ -129,7 +129,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPhone {
 
 			this.image.Frame = new RectangleF(13, this.y + 15, 80, 80);
 			
-			this.bioTextView.Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font10_5pt);
+			this.bioTextView.Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font10_5Pt);
 			
 			if (!String.IsNullOrEmpty(this.patient.DateOfBirth.ToString())) {
 				var f = new SizeF (full.Width - 13 * 2, 4000);

@@ -17,6 +17,8 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Service
         private Stopwatch timer;
         public ILocationListener Listener { get; set; }
 
+        public bool IsInitialized { get; private set; }
+
         public IDistanceCalculatorService DistanceCalculatorService { get; set; }
 
         public ISessionContext SessionContext { get; private set; }
@@ -69,6 +71,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Service
             try
             {
                 Execute.Until(() => this.CurrentLocation != null || this.Timedout);
+                this.IsInitialized = true;
             }
             finally
             {
