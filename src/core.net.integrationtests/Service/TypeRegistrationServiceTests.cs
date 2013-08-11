@@ -110,7 +110,7 @@ namespace core.net.integrationtests.Service
                     TinyIoCContainer.Current.Resolve<ITypeRegistrationService>(),
                     TinyIoCContainer.Current.Resolve<ITypeRegistrationService>()).ShouldBeTrue();
             };
-
+          
         It should_be_possible_to_resolve_view_factory = () =>
             {
                 TinyIoCContainer.Current.CanResolve<ITypeRegistrationService>();
