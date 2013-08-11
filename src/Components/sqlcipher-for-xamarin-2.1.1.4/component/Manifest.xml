@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="sqlcipher-for-xamarin">
+  <name>SQLCipher</name>
+  <publisher>Zetetic LLC</publisher>
+  <publisher-url>http://sqlcipher.net/</publisher-url>
+  <version>2.1.1.4</version>
+  <summary>Full database encryption using 256-bit AES.</summary>
+  <samples>
+    <sample id="sqlcipher-monodroid-demo">
+      <name>SQLCipher for Android Demo.</name>
+      <summary>Demonstrates the usage of SQLCipher on Android.</summary>
+    </sample>
+    <sample id="sqlcipher-monotouch-demo">
+      <name>SQLCipher for iOS Demo.</name>
+      <summary>Demonstrates the usage of SQLCipher on iOS.</summary>
+    </sample>
+  </samples>
+</component>

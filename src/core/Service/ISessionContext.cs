@@ -5,8 +5,14 @@
 // -----------------------------------------------------------------------
 namespace Edward.Wilde.Note.For.Nurses.Core.Service
 {
+    using Edward.Wilde.Note.For.Nurses.Core.Model;
+
     public interface ISessionContext
     {
         void Initialize();
+
+        LocationCoordinate GeofenceLocationCentre { get; }
+
+        int GeofenceRadiusSizeInMeters { get; }
     }
 }

@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Device" />
     <Reference Include="System.Xml.Linq" />
@@ -70,6 +71,10 @@
     <Compile Include="Data\UpdateFinishedEventArgs.cs" />
     <Compile Include="Model\Patient.cs" />
     <Compile Include="Model\PatientFile.cs" />
+    <Compile Include="Service\Location\GeofenceState.cs" />
+    <Compile Include="Service\Settings\ApplicationSettingsService.cs" />
+    <Compile Include="Service\Settings\IApplicationSettingsProvider.cs" />
+    <Compile Include="Service\Settings\IApplicationSettingsService.cs" />
     <Compile Include="Service\ISessionContext.cs" />
     <Compile Include="Service\ITypeRegistrationService.cs" />
     <Compile Include="Service\Location\DistanceCalculatorService.cs" />
@@ -91,6 +96,7 @@
     <Compile Include="System\ObjectFactory.cs" />
     <Compile Include="System\Retry.cs" />
     <Compile Include="System\StringWriterWithEncoding.cs" />
+    <Compile Include="System\WindowsApplicationSettingsProvider.cs" />
     <Compile Include="UI\IScreenController.cs" />
     <Compile Include="UI\StartupManager.cs" />
     <Compile Include="Xamarin\Contracts\BusinessEntityBase.cs" />
@@ -106,6 +112,7 @@
     <None Include="Data\Data.Class.Diagram.cd" />
     <None Include="Model\Model.Class.Diagram.cd" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

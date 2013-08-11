@@ -8,6 +8,8 @@ namespace core.net.tests.Data
 {
     using System.Collections.Generic;
 
+    using Edward.Wilde.Note.For.Nurses.Core.Service;
+
     using Machine.Fakes;
     using Machine.Specifications;
 
@@ -38,6 +40,9 @@ namespace core.net.tests.Data
 
         It should_call_patient_database_to_load_the_settings = () => 
             The<IPatientDatabase>().WasToldTo(call => call.GetItems<Setting>());
+
+        It should_call_application_settings_service_to_get_geofence_perimeter_size_in_kilometers = () =>
+            The<IApplicationSettingsService>().WasToldTo(call => call.GetValue(SettingKey.GeofenceRadiusSizeInMeters.ToKeyString()));
     }
 
     [Subject(typeof(DataManager), "settings")]

@@ -19,9 +19,6 @@ namespace core.net.tests.Service
     [Subject(typeof(SessionContext))]
     public class When_the_session_context_is_initialized : WithConcreteSubject<SessionContext, ISessionContext>
     {
-        Because of = () => Subject.Initialize();
-
-        It should_get_the_location_of_geofence_from_the_database = () => 
-            The<ISettingsManager>().WasToldTo(call => call.Get<LocationCoordinate>(SettingKey.GeofenceLocation));
+        Because of = () => Subject.Initialize();        
     }
 }

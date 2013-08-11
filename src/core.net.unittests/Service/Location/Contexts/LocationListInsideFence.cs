@@ -21,6 +21,12 @@ namespace core.net.tests.Service.Contexts
         OnEstablish context = engine =>
         {
             NewLocations = new List<Location> {Locations.JackTizard};
+
+            // new location will be inside geofence
+            engine
+                .The<IDistanceCalculatorService>()
+                .WhenToldTo(call=>call.DistanceBetween(Param<LocationCoordinate>.IsAnything, Param<LocationCoordinate>.IsAnything))
+                .Return(-10);                    
         };
  
     }

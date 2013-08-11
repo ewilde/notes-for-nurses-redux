@@ -40,6 +40,35 @@ namespace Edward.Wilde.Note.For.Nurses.Core
 
             return result;
         }
+        
+        public static ExecuteResult Until(Func<bool> method)
+        {
+            
+                var timer = new System.Diagnostics.Stopwatch();
+                timer.Start();
+                var sleepTime = 100;
+                var result = new ExecuteResult();
+                do
+                {
+                    try
+                    {
+                        if (method.Invoke())
+                        {
+                            return result;
+                        }
+                    }
+                    catch (Exception exception)
+                    {
+                        Thread.Sleep(sleepTime);
+                        sleepTime = sleepTime + sleepTime; // increase waits between retry attempts
+                        result.LastException = exception;
+                        ConsoleD.WriteError(exception.ToString());
+                    }
+                }
+                while (timer.ElapsedMilliseconds <= DefaultTimeout );
+
+            return result;
+        }
     }
 
     public class ExecuteResult

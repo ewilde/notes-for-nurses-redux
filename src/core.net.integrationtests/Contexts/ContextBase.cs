@@ -5,6 +5,10 @@
 // -----------------------------------------------------------------------
 namespace core.net.integrationtests.Contexts
 {
+    using System;
+
+    using Machine.Fakes;
+
     public class ContextBase
     {
         private static bool initialized;
@@ -22,6 +26,18 @@ namespace core.net.integrationtests.Contexts
             }
 
             return TinyIoC.TinyIoCContainer.Current.Resolve<TType>();
+        }
+
+        public static IFakeAccessor FakeAccessor { get; set; }     
+   
+        public static TSubject Subject<TSubject>()
+        {
+            if (FakeAccessor == null)
+            {
+                throw new Exception("Please assign FakeAccessor before calling Subject()");
+            }
+
+            return (TSubject)FakeAccessor.GetType().GetProperty("Subject").GetGetMethod().Invoke(FakeAccessor, null);
         }
 
         private static void Initialize()

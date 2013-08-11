@@ -38,10 +38,8 @@ namespace Edward.Wilde.Note.For.Nurses.iOS {
 		public static readonly NSString NotificationDidChangeStatusBarOrientation = new NSString("UIApplicationDidChangeStatusBarOrientationNotification");		
 		public static readonly NSString NotificationOrientationDidChange = new NSString("UIDeviceOrientationDidChangeNotification");
 		public static readonly NSString NotificationFavoriteUpdated = new NSString("NotificationFavoriteUpdated");
-		// class-level declarations
-		UIWindow window;
-		NavigationViewController navigationView;
-
+		
+            
 
         public AppDelegate()
             : this(TinyIoC.TinyIoCContainer.Current.Resolve<IObjectFactory>()
@@ -75,23 +73,26 @@ namespace Edward.Wilde.Note.For.Nurses.iOS {
 
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
-			// create a new window instance based on the screen size
-			window = new UIWindow (UIScreen.MainScreen.Bounds);
-            
-            this.ObjectFactory.Create<IStartupManager>().Run();
 
-			this.navigationView = this.ObjectFactory.Create<NavigationViewController>();
-			
-			// couldn't do RespondsToSelector() on static 'Appearance' property)
-			var majorVersionString = UIDevice.CurrentDevice.SystemVersion.Substring (0,1);
-			var majorVersion = Convert.ToInt16(majorVersionString);
-			if (majorVersion >= 5) { // gotta love Appearance in iOS5
-				UINavigationBar.Appearance.TintColor = ColorNavBarTint;			
-			}
-			window.RootViewController = this.navigationView;
-			window.MakeKeyAndVisible ();
+		    try
+		    {
+		        // couldn't do RespondsToSelector() on static 'Appearance' property)
+		        var majorVersionString = UIDevice.CurrentDevice.SystemVersion.Substring(0, 1);
+		        var majorVersion = Convert.ToInt16(majorVersionString);
+		        if (majorVersion >= 5)
+		        {
+		            // gotta love Appearance in iOS5
+		            UINavigationBar.Appearance.TintColor = ColorNavBarTint;
+		        }
 
-			return true;
+		        this.ObjectFactory.Create<IStartupManager>().Run();
+		    }
+		    catch (Exception exception)
+		    {
+		        new UIAlertView("Unhandled error", exception.ToString(), null, "OK").Show();
+		    }
+
+            return true;
 		}
 		
 		public override void WillTerminate (UIApplication application)

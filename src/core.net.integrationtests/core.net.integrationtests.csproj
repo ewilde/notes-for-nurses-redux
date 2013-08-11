@@ -65,6 +65,7 @@
     <Compile Include="Contexts\ContextBase.cs" />
     <Compile Include="Contexts\EmptyDatabase.cs" />
     <Compile Include="Contexts\DatabaseWithSettings.cs" />
+    <Compile Include="Contexts\WindowsPlatformSpecificTypeRegistrations.cs" />
     <Compile Include="Data\PatientDatabaseTest.cs" />
     <Compile Include="Data\PatientFileUpdateManagerTests.cs" />
     <Compile Include="Data\SettingsManagerTest.cs" />

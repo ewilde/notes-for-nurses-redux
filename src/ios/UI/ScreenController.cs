@@ -5,23 +5,43 @@
 // -----------------------------------------------------------------------
 namespace Edward.Wilde.Note.For.Nurses.iOS.UI
 {
+    using Edward.Wilde.Note.For.Nurses.Core;
     using Edward.Wilde.Note.For.Nurses.Core.UI;
+    using Edward.Wilde.Note.For.Nurses.iOS.UI.Common;
+
+    using MonoTouch.UIKit;
 
     public class ScreenController : IScreenController
     {
+        public IObjectFactory ObjectFactory { get; set; }
+
+        private UIWindow window;
+        
+        public ScreenController(IObjectFactory objectFactory)
+        {
+            this.ObjectFactory = objectFactory;
+        }
+
+        protected void Initialize()
+        {
+            // create a new window instance based on the screen size
+            this.window = new UIWindow(UIScreen.MainScreen.Bounds);
+            
+        }
         public void ShowConfigurationScreen()
         {
-            throw new System.NotImplementedException();
+            new UIAlertView("Configuration", "Must configure the application", null, "OK", null).Show();
         }
 
         public void ShowHomeScreen()
         {
-            throw new System.NotImplementedException();
+            this.window.RootViewController = this.ObjectFactory.Create<NavigationViewController>();
+            window.MakeKeyAndVisible();
         }
 
         public void ShowExitScreen(string message)
         {
-            throw new System.NotImplementedException();
+            new UIAlertView("Exiting application", message, null, "OK", null).Show();
         }
     }
 }

@@ -7,7 +7,9 @@
 
     using Machine.Fakes;
 
-    internal class DatabaseWithSettings
+    using core.net.integrationtests.Contexts;
+
+    internal class DatabaseWithSettings : ContextBase
     {
         static IEnumerable<Setting> Settings;
         public DatabaseWithSettings(IEnumerable<Setting> settings)
@@ -17,9 +19,11 @@
 
         OnEstablish context = engine =>
             {
+                FakeAccessor = engine;
+                ContextBase.Subject<SettingsManager>().Initialize();
                 foreach (var setting in Settings)
                 {
-                    engine.The<ISettingsManager>().Save(setting);
+                    ContextBase.Subject<SettingsManager>().Save(setting);
                 }
             };
     }

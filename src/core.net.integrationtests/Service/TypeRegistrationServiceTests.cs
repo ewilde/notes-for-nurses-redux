@@ -14,8 +14,11 @@ namespace core.net.integrationtests.Service
     using Edward.Wilde.Note.For.Nurses.Core.Data;
     using Edward.Wilde.Note.For.Nurses.Core.Service;
 
+    using Machine.Specifications.Model;
+
     using TinyIoC;
 
+    using core.net.integrationtests.Contexts;
     using core.net.tests;
 
     [Subject(typeof(TypeRegistrationService), "registration")]
@@ -119,5 +122,19 @@ namespace core.net.integrationtests.Service
                     TinyIoCContainer.Current.Resolve<ITypeRegistrationService>(),
                     TinyIoCContainer.Current.Resolve<ITypeRegistrationService>()).ShouldBeTrue();
             };
+    }
+
+    [Subject(typeof(TypeRegistrationService))]
+    public class When_resolving_geo_fence_service : WithConcreteUnmockedSubjectAndResult<TypeRegistrationService, ITypeRegistrationService, IGeofenceService>
+    {
+        Establish context = () =>
+            {
+                With<WindowsPlatformSpecificTypeRegistrations>();
+                Subject.RegisterAll(); ;
+            };
+
+        Because of = () => Result = TinyIoC.TinyIoCContainer.Current.Resolve<IGeofenceService>();
+
+        It should_create_the_type_using_session_context = () => Result.ShouldNotBeNull();
     }
 }

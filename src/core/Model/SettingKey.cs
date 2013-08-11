@@ -8,6 +8,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Model
     public enum SettingKey
     {
         Unknown,
-        GeofenceLocation
+        GeofenceLocationCentre,
+        GeofenceRadiusSizeInMeters
     }
 }

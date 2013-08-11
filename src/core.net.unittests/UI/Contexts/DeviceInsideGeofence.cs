@@ -18,7 +18,7 @@ namespace core.net.tests.UI
                   .WhenToldTo(call => call.Initialize()).Return(true);
 
             engine.The<IGeofenceService>()
-                  .WhenToldTo(call => call.InsidePerimeter(Param<LocationCoordinate>.IsAnything, Param<LocationCoordinate>.IsAnything)).Return(true);
+                  .WhenToldTo(call => call.InsidePerimeter()).Return(true);
 
         };
 

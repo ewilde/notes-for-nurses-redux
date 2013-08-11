@@ -14,12 +14,7 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
+	<array/>
 	<key>MinimumOSVersion</key>
 	<string>5.0</string>
 	<key>CFBundleDisplayName</key>
@@ -32,7 +27,7 @@
 	<string></string>
 	<key>NSMainNibFile~ipad</key>
 	<string></string>
-	<key>MKDirectionsApplicationSupportedModes</key>
-	<array/>
+  <key>NotesForNursesPerimeterRadius</key>
+  <string>8</string>
 </dict>
 </plist>

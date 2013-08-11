@@ -9,6 +9,12 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Service
 
     public interface IDistanceCalculatorService
     {
+        /// <summary>
+        /// Distances the between to location measured in meters.
+        /// </summary>
+        /// <param name="coordinateA">The coordinate A.</param>
+        /// <param name="coordinateB">The coordinate B.</param>
+        /// <returns>The distance between <paramref name="coordinateA"/> - <paramref name="coordinateB"/>.</returns>
         double DistanceBetween(LocationCoordinate coordinateA, LocationCoordinate coordinateB);
     }
 }

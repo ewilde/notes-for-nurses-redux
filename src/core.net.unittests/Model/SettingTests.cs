@@ -20,7 +20,7 @@ namespace core.net.tests.Model
     [Subject(typeof(Setting), "Parsing values")]
     public class When_a_setting_is_a_location : WithSubjectAndResult<Setting, LocationCoordinate>
     {
-        Establish context = () => Subject = new Setting { Key = SettingKey.GeofenceLocation.ToKeyString(), StringValue = Locations.London.Coordinate.ToString()};
+        Establish context = () => Subject = new Setting { Key = SettingKey.GeofenceLocationCentre.ToKeyString(), StringValue = Locations.London.Coordinate.ToString()};
 
         Because of = () => Result = Subject.Value<LocationCoordinate>();
 
@@ -31,7 +31,7 @@ namespace core.net.tests.Model
     [Subject(typeof(Setting), "Parsing values")]
     public class When_a_setting_is_a_string : WithSubjectAndResult<Setting, String>
     {
-        Establish context = () => Subject = new Setting { Key = SettingKey.GeofenceLocation.ToKeyString(), StringValue = "Bob"};
+        Establish context = () => Subject = new Setting { Key = SettingKey.GeofenceLocationCentre.ToKeyString(), StringValue = "Bob"};
 
         Because of = () => Result = Subject.Value<string>();
 
@@ -43,7 +43,7 @@ namespace core.net.tests.Model
     [Subject(typeof(Setting), "Parsing values")]
     public class When_a_setting_is_an_integer : WithSubjectAndResult<Setting, int>
     {
-        Establish context = () => Subject = new Setting { Key = SettingKey.GeofenceLocation.ToKeyString(), StringValue = "909"};
+        Establish context = () => Subject = new Setting { Key = SettingKey.GeofenceLocationCentre.ToKeyString(), StringValue = "909"};
 
         Because of = () => Result = Subject.Value<int>();
 

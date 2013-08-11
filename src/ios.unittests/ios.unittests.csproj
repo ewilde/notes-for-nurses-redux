@@ -87,7 +87,10 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Services\DistanceCalculatorServiceTests.cs" />
-    <None Include="Info.plist" />
+    <Compile Include="System\ApplicationSettingsProviderTests.cs" />
+    <None Include="Info.plist">
+      <SubType>Designer</SubType>
+    </None>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

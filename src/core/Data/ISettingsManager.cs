@@ -14,12 +14,16 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
     /// </summary>
     public interface ISettingsManager
     {
-        IEnumerable<Setting> Get();
-
-        void Save(Setting value);
-
         bool DataExists { get; }
 
-        TValue Get<TValue>(SettingKey key) where TValue : class;
+        IEnumerable<Setting> AllSettings { get; }
+
+        void Initialize();
+
+        IEnumerable<Setting> Get();
+
+        TValue Get<TValue>(SettingKey key);
+
+        void Save(Setting value);
     }
 }

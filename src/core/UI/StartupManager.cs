@@ -59,6 +59,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.UI
             this.PatientFileUpdateManager = this.ObjectFactory.Create<IPatientFileUpdateManager>();
             this.PatientFileUpdateManager.UpdateIfEmpty();
 
+            this.SettingsManager.Initialize();
             if (!this.SettingsManager.DataExists)
             {
                 this.ScreenController.ShowConfigurationScreen();

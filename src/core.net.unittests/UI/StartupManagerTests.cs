@@ -36,6 +36,9 @@ namespace core.net.tests.UI
         It should_call_the_patient_update_file_manager_inorder_to_load_seed_data_if_the_database_is_empty = () =>
             The<IPatientFileUpdateManager>().WasToldTo(call => call.UpdateIfEmpty());
 
+        It should_initialize_the_settings_manager = () => 
+            The<ISettingsManager>().WasToldTo(call => call.Initialize());
+
         It should_initialize_the_geofence_service_so_that_we_can_check_to_see_if_device_is_within_allowed_area = () =>
             {
                 The<IGeofenceService>().WasToldTo(call => call.Initialize());

@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContextBase.cs" />
+    <Compile Include="Data\Contexts\DataManagerWithSomeSettings.cs" />
     <Compile Include="Data\SettingsManagerTests.cs" />
     <Compile Include="Data\DataManagerTests.cs" />
     <Compile Include="Data\PatientManagerTests.cs" />
@@ -68,6 +69,9 @@
     <Compile Include="Model\PatientTests.cs" />
     <Compile Include="Model\SettingKeyExtentionTests.cs" />
     <Compile Include="Model\SettingTests.cs" />
+    <Compile Include="Service\ApplicationSettingsServiceTests.cs" />
+    <Compile Include="Service\Contexts\SettingsFileWithEntries.cs" />
+    <Compile Include="Service\Location\Contexts\LocationListOutsideFence.cs" />
     <Compile Include="Service\Location\Contexts\LocationListInsideFence.cs" />
     <Compile Include="Service\Location\DistanceCalculatorServiceTests.cs" />
     <Compile Include="Service\Location\GeofenceServiceTests.cs" />

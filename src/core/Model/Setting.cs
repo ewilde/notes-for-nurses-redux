@@ -20,6 +20,8 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Model
     /// </example>
     public class Setting : BusinessEntityBase
     {
+        private object value;
+
         [SQLite.Unique]
         public string Key { get; set; }
 
@@ -28,8 +30,13 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Model
 
         public TValue Value<TValue>()
         {
-            TypeConverter conv = TypeDescriptor.GetConverter(typeof(TValue));
-            return (TValue)conv.ConvertFromString(this.StringValue);            
+            if (this.value == null)
+            {
+                TypeConverter conv = TypeDescriptor.GetConverter(typeof(TValue));
+                this.value = conv.ConvertFromString(this.StringValue);
+            }
+
+            return (TValue)this.value;
         }
     }
 }

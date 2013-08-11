@@ -103,6 +103,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Mono.Data.Sqlcipher, Version=2.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Components\sqlcipher-for-xamarin-2.1.1.4\lib\ios\Mono.Data.Sqlcipher.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -119,6 +123,7 @@
     <Compile Include="Services\DistanceCalculatorService.cs" />
     <Compile Include="Services\LocationDelegate.cs" />
     <Compile Include="Services\LocationListener.cs" />
+    <Compile Include="System\ApplicationSettingsProvider.cs" />
     <Compile Include="System\FileManager.cs" />
     <Compile Include="UI\Common\NavigationViewController.cs" />
     <Compile Include="UI\ScreenController.cs" />
@@ -142,7 +147,12 @@
     <Compile Include="Xamarin\UI\IntelligentSplitViewController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
-  <ItemGroup />
+  <ItemGroup>
+    <XamarinComponentReference Include="sqlcipher-for-xamarin">
+      <Visible>False</Visible>
+      <Version>2.1.1.4</Version>
+    </XamarinComponentReference>
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\core\core.monotouch.csproj">
       <Project>{CAA47381-0DBB-461D-8EB6-4D00AC453656}</Project>

@@ -15,11 +15,33 @@ namespace core.net.tests.UI
 
     public class NewGeofenceService : ContextBase
     {
+        public static bool OutsideFenceEventFired = false;
+        public static int OutsideFenceEventFiredCount = 0;
+
+        public static bool InsideFenceEventFired = false;
+        public static int InsideFenceEventFiredCount = 0;
+
         OnEstablish context = engine =>
             {
+                OutsideFenceEventFired = false;
+                OutsideFenceEventFiredCount = 0;
+                InsideFenceEventFired = false;
+                InsideFenceEventFiredCount = 0;
+                
                 FakeAccessor = engine;
                 FakeAccessor.Configure<ILocationListener>(new MockLocationListener());
-        };  
+
+                ContextBase.Subject<GeofenceService>().OutsideFence += (sender, args) =>
+                    { 
+                        OutsideFenceEventFired = true;
+                        OutsideFenceEventFiredCount = OutsideFenceEventFiredCount + 1;
+                    };
+                ContextBase.Subject<GeofenceService>().InsideFence += (sender, args) =>
+                    {
+                        InsideFenceEventFired = true;
+                        InsideFenceEventFiredCount = InsideFenceEventFiredCount + 1;
+                    };
+            };
 
         public static void LocationChanged(IEnumerable<Location> locations)
         {

@@ -27,7 +27,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
         ///   <c>true</c> if data exists otherwise, <c>false</c>.
         /// </value>
         bool DataExists { get; }
-
+        
         /// <summary>
         /// Saves the patient entity. If it already exists it updates the entity; otherwise it inserts it.
         /// </summary>

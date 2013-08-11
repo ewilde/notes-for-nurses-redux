@@ -7,6 +7,7 @@
 namespace core.net.tests.Data
 {
     using System.Collections.Generic;
+    using System.Linq;
 
     using Machine.Fakes;
     using Machine.Specifications;
@@ -15,6 +16,32 @@ namespace core.net.tests.Data
     using Edward.Wilde.Note.For.Nurses.Core.Model;
 
     using core.net.tests;
+    using core.net.tests.Data.Contexts;
+
+    [Subject(typeof(SettingsManager), "initialization")]
+    public class when_initializing_the_settings_manager : WithConcreteSubject<SettingsManager, ISettingsManager>
+    {
+        private Establish context =
+            () =>
+            With(
+                new DataManagerWithSomeSettings(
+                    new[]
+                        {
+                            new Setting
+                                {
+                                    Key = SettingKey.GeofenceRadiusSizeInMeters.ToKeyString(),
+                                    StringValue = "34"
+                                }
+                        }));
+        Because of = () => Subject.Initialize();
+
+        It should_retrieve_all_the_setting_from_the_data_manager = () =>
+            The<IDataManager>().WasToldTo(call => call.GetSettings());
+
+        It should_store_the_results_in_the_all_settings_property = () =>
+            Subject.AllSettings.ElementAt(0).Value<int>().ShouldEqual(34);
+
+    }
 
     [Subject(typeof(SettingsManager), "loading")]
     public class When_retrieving_all_setting_entities : WithConcreteSubjectAndResult<SettingsManager, ISettingsManager, IEnumerable<Setting>>

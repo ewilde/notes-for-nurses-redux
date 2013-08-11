@@ -70,13 +70,13 @@ namespace core.net.integrationtests.Data
                             {
                                 new Setting
                                     {
-                                        Key = SettingKey.GeofenceLocation.ToKeyString(),
+                                        Key = SettingKey.GeofenceLocationCentre.ToKeyString(),
                                         StringValue = Locations.ParisCoordinate.ToString()
                                     }
                             }));
             };
 
-        Because of = () => Result = Subject.Get<LocationCoordinate>(SettingKey.GeofenceLocation);
+        Because of = () => Result = Subject.Get<LocationCoordinate>(SettingKey.GeofenceLocationCentre);
 
         It should_retrieve_the_underlying_value = () => Result.ShouldEqual(Locations.ParisCoordinate);
     }

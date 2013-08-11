@@ -117,6 +117,8 @@
     <Compile Include="Model\SettingKey.cs" />
     <Compile Include="Model\SettingKeyExtension.cs" />
     <Compile Include="Service\ISessionContext.cs" />
+    <Compile Include="Service\Location\GeofenceService.cs" />
+    <Compile Include="Service\Location\GeofenceState.cs" />
     <Compile Include="Service\Location\IDistanceCalculatorService.cs" />
     <Compile Include="Service\Location\IGeofenceService.cs" />
     <Compile Include="Service\Location\ILocationListener.cs" />
@@ -126,6 +128,9 @@
     <Compile Include="Service\Location\LocationSettings.cs" />
     <Compile Include="Service\SerializerService.cs" />
     <Compile Include="Service\SessionContext.cs" />
+    <Compile Include="Service\Settings\ApplicationSettingsService.cs" />
+    <Compile Include="Service\Settings\IApplicationSettingsProvider.cs" />
+    <Compile Include="Service\Settings\IApplicationSettingsService.cs" />
     <Compile Include="Service\TypeRegistrationService.cs" />
     <Compile Include="System\FileManager.cs" />
     <Compile Include="System\IFileManager.cs" />

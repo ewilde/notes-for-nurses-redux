@@ -3,6 +3,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
     using System.Collections.Generic;
 
     using Edward.Wilde.Note.For.Nurses.Core.Model;
+    using Edward.Wilde.Note.For.Nurses.Core.Service;
 
     /// <summary>
     /// Defines an interface between the model and the data access layer.
@@ -14,10 +15,13 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
 
         public IFileManager FileManager { get; set; }
 
-        public DataManager(IPatientDatabase patientDatabase, IFileManager fileManager)
+        public IApplicationSettingsService ApplicationSettingsService { get; set; }
+
+        public DataManager(IPatientDatabase patientDatabase, IFileManager fileManager, IApplicationSettingsService applicationSettingsService)
         {
             PatientDatabase = patientDatabase;
             FileManager = fileManager;
+            ApplicationSettingsService = applicationSettingsService;
         }
 
         public IEnumerable<Patient> GetPatients()
@@ -79,7 +83,18 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
 
         public IEnumerable<Setting> GetSettings()
         {
-            return this.PatientDatabase.GetItems<Setting>();
+            var list = new List<Setting>(this.PatientDatabase.GetItems<Setting>());
+            list.AddRange(
+                new[]
+                    {
+                        new Setting
+                            {
+                                Key = SettingKey.GeofenceRadiusSizeInMeters.ToKeyString(),
+                                StringValue = this.ApplicationSettingsService.GetValue(SettingKey.GeofenceRadiusSizeInMeters.ToKeyString())
+                            }
+                    });
+
+            return list;
         }
     }
 }

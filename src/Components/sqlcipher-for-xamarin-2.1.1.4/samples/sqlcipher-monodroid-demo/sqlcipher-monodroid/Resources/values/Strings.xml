@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="run">Run</string>
+	<string name="clear">Clear</string>
+	<string name="app_name">demo</string>
+	<string name="library_name">demo</string>
+</resources>

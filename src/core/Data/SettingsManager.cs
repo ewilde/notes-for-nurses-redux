@@ -12,11 +12,22 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
 
     public class SettingsManager : ISettingsManager
     {
+        private Dictionary<string, Setting> allSettings;
+
         public IDataManager DataManager { get; set; }
 
         public SettingsManager(IDataManager dataManager)
         {
             this.DataManager = dataManager;
+            this.allSettings = new Dictionary<string, Setting>();
+        }
+
+        public void Initialize()
+        {
+            foreach (var setting in this.Get())
+            {
+                this.allSettings.Add(setting.Key, setting);
+            }            
         }
 
         public IEnumerable<Setting> Get()
@@ -27,6 +38,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
         public void Save(Setting value)
         {
             this.DataManager.SaveSetting(value);
+            this.allSettings[value.Key] = value;
         }
 
         public bool DataExists
@@ -37,10 +49,23 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
             }
         }
 
-        public TValue Get<TValue>(SettingKey key) where TValue : class
+        public IEnumerable<Setting> AllSettings
+        {
+            get
+            {
+                return this.allSettings.Values;
+            }
+        }
+
+        public TValue Get<TValue>(SettingKey key)
         {
             var keyString = key.ToKeyString();
-            Setting setting = this.Get().SingleOrDefault(item => item.Key.Equals(keyString));
+            
+            Setting setting = null;
+            if (this.allSettings.ContainsKey(keyString))
+            {
+                setting = this.allSettings[keyString];
+            }
 
             if (setting == null)
             {
