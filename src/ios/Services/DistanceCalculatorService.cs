@@ -14,8 +14,8 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.Services
     {
         public double DistanceBetween(LocationCoordinate locationA, LocationCoordinate locationB)
         {
-            return new CLLocation(locationA.Latitude, locationA.Longitude)
-                .DistanceFrom(new CLLocation(locationB.Latitude, locationB.Longitude));
+            return new CLLocation(locationA != null ? locationA.Latitude : 0, locationA != null ? locationA.Longitude : 0)
+                .DistanceFrom(new CLLocation(locationB != null ? locationB.Latitude : 0, locationB != null ? locationB.Longitude : 0));
         }
     }
 }

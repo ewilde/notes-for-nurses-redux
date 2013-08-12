@@ -29,7 +29,7 @@ namespace core.net.tests.UI
                 InsideFenceEventFiredCount = 0;
                 
                 FakeAccessor = engine;
-                FakeAccessor.Configure<ILocationListener>(new MockLocationListener());
+                FakeAccessor.Configure<ILocationListener>(engine.An<MockLocationListener>());
 
                 ContextBase.Subject<GeofenceService>().OutsideFence += (sender, args) =>
                     { 
@@ -71,7 +71,7 @@ namespace core.net.tests.UI
             }
         }
 
-        internal virtual void OnLocationChanged(LocationChangedEventArgs e)
+        internal void OnLocationChanged(LocationChangedEventArgs e)
         {
             var handler = eventHandler;
             if (handler != null)
@@ -80,12 +80,12 @@ namespace core.net.tests.UI
             }
         }
 
-        public void StartListening(LocationSettings settings)
+        public virtual void StartListening(LocationSettings settings)
         {
             throw new NotImplementedException();
         }
 
-        public void StopListening()
+        public virtual void StopListening()
         {
             throw new NotImplementedException();
         }

@@ -38,11 +38,15 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.Services
             this.locationManager = new CLLocationManager
                 {
                     DesiredAccuracy = this.GetAccuracyFromSetting(settings.DesiredAccuracy),
-                    ActivityType = CLActivityType.Other,
                     Delegate = new LocationDelegate(this)
                 };
 
             this.locationManager.StartMonitoringSignificantLocationChanges();
+            var currentLocation = this.locationManager.Location;
+            if (currentLocation != null)
+            {
+                this.OnLocationChanged(new List<CLLocation> {currentLocation});
+            }
         }               
 
         public void StopListening()

@@ -67,6 +67,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Service
         public bool Initialize()
         {
             this.State = GeofenceState.Initializing;
+            this.Listener.StartListening(new LocationSettings() { DesiredAccuracy = LocationAccuracy.AccuracyHundredMeters, IncludeHeading = false, ReasonForListening = "required to determine allowed bounds of operation"});
             this.StartTimer();
             try
             {
@@ -155,5 +156,38 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Service
                 this.OnInsideFence();
             }
         }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                    // Dispose managed resources here
+                    if (this.Listener != null)
+                    {
+                        this.Listener.StopListening();
+                        this.Listener = null;
+                    }
+                }
+
+                // Dispose unmanaged resources here
+
+                disposed = true;
+            }
+        }
+
+        ~GeofenceService()
+        {
+            Dispose(false);
+        }
+
+        private bool disposed;
     }
 }

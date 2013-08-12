@@ -9,7 +9,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Service
 
     using Edward.Wilde.Note.For.Nurses.Core.Model;
 
-    public interface IGeofenceService
+    public interface IGeofenceService : IDisposable
     {
         bool Initialize();
         bool InsidePerimeter();

@@ -106,7 +106,40 @@ namespace core.net.tests.Service
 
     }
 
-    [Subject(typeof(GeofenceService), "Subject")]
+    [Subject(typeof(GeofenceService), "initializing")]
+    public class when_initialize_is_called : WithConcreteSubjectAndResult<GeofenceService, IGeofenceService, bool>
+    {
+        Establish context = () =>
+            {
+                With<NewGeofenceService>();
+                With<LocationListInsideFence>();                
+            };
+        
+        Because of = () =>
+            {
+                Result = Subject.Initialize();
+            };
+
+        It should_tell_the_location_listener_to_start_listening = () =>
+            The<MockLocationListener>().WasToldTo(call => call.StartListening(Param<LocationSettings>.IsAnything));
+    }
+
+    [Subject(typeof(GeofenceService), "disposing")]
+    public class When_disposing : WithConcreteSubjectAndResult<GeofenceService, IGeofenceService, bool>
+    {
+        Establish context = () =>
+        {
+            With<NewGeofenceService>();
+            With<LocationListInsideFence>();
+        };
+
+        Because of = () => Subject.Dispose();
+
+        It should_tell_the_location_listener_to_stop_listening = () => 
+            The<MockLocationListener>().WasNotToldTo(call=> call.StopListening());
+    }
+
+    [Subject(typeof(GeofenceService), "initialize")]
     public class when_initialize_is_called_and_device_recieves_location_update : WithConcreteSubjectAndResult<GeofenceService, IGeofenceService, bool>
     {
         static Task InitializeTask;
@@ -131,6 +164,7 @@ namespace core.net.tests.Service
         It should_return_true = () => Result.ShouldEqual(true);
     }
 
+    [Subject(typeof(GeofenceService), "initialize")]
     public class when_initialize_is_called_and_device_does_not_recieve_a_location_update :
         WithConcreteSubjectAndResult<GeofenceService, IGeofenceService, bool>
     {

@@ -34,7 +34,7 @@ namespace core.net.tests.UI
         It should_check_to_see_if_a_database_exists_already = () => The<IFileManager>().WasToldTo(message => message.Exists(Param.IsAny<string>()));
 
         It should_call_the_patient_update_file_manager_inorder_to_load_seed_data_if_the_database_is_empty = () =>
-            The<IPatientFileUpdateManager>().WasToldTo(call => call.UpdateIfEmpty());
+            The<IPatientFileUpdateManager>().WasToldTo(call => call.UpdateIfEmpty(Param<bool>.IsAnything));
 
         It should_initialize_the_settings_manager = () => 
             The<ISettingsManager>().WasToldTo(call => call.Initialize());
