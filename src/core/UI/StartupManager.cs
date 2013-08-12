@@ -36,17 +36,11 @@ namespace Edward.Wilde.Note.For.Nurses.Core.UI
         public StartupManager(
             IFileManager fileManager, 
             IObjectFactory objectFactory, 
-            IScreenController screenController, 
-            ISettingsManager settingsManager,
-            IGeofenceService geofenceService,
-            ISessionContext sessionContext)
+            IScreenController screenController)
         {
             FileManager = fileManager;
             ObjectFactory = objectFactory;
             ScreenController = screenController;
-            SettingsManager = settingsManager;
-            GeofenceService = geofenceService;
-            SessionContext = sessionContext;
         }
 
         public void Run()
@@ -56,9 +50,11 @@ namespace Edward.Wilde.Note.For.Nurses.Core.UI
                 this.FileManager.Delete(PatientDatabase.DatabaseFilePath);
             }
 
+            // Create these objects after possibly deleting the database
             this.PatientFileUpdateManager = this.ObjectFactory.Create<IPatientFileUpdateManager>();
             this.PatientFileUpdateManager.UpdateIfEmpty();
 
+            this.SettingsManager = this.ObjectFactory.Create<ISettingsManager>();
             this.SettingsManager.Initialize();
             if (!this.SettingsManager.DataExists)
             {
@@ -66,8 +62,11 @@ namespace Edward.Wilde.Note.For.Nurses.Core.UI
                 return;
             }
 
+
+            this.SessionContext = this.ObjectFactory.Create<ISessionContext>();
             this.SessionContext.Initialize();
 
+            this.GeofenceService = ObjectFactory.Create<IGeofenceService>();
             if (!this.GeofenceService.Initialize())
             {
                 this.ScreenController.ShowExitScreen("Your device is outside it's allowed home area.");

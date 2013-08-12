@@ -18,7 +18,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
         /// </value>
         bool UpdateInProgress { get; set; }
 
-        void UpdateIfEmpty();
+        void UpdateIfEmpty(bool async = true);
 
         /// <summary>
         /// Updates the database using the specified xml, which is deserialize into a <see cref="PatientFile"/> instance, first.

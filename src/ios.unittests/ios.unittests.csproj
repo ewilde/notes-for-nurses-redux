@@ -79,6 +79,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="BaseTest.cs" />
+    <Compile Include="Data\PatientFileUpdateManagerTests.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Services\DistanceCalculatorServiceTests.cs" />
@@ -107,6 +108,11 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\ios\Images\SeedData.xml">
+      <Link>Images\SeedData.xml</Link>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
 </Project>

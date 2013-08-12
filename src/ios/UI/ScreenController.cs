@@ -8,6 +8,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI
     using Edward.Wilde.Note.For.Nurses.Core;
     using Edward.Wilde.Note.For.Nurses.Core.UI;
     using Edward.Wilde.Note.For.Nurses.iOS.UI.Common;
+    using Edward.Wilde.Note.For.Nurses.iOS.UI.Common.Map;
 
     using MonoTouch.UIKit;
 
@@ -22,25 +23,37 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI
             this.ObjectFactory = objectFactory;
         }
 
+        protected bool Initialized { get; set; }
+
         protected void Initialize()
         {
+            if (this.Initialized)
+            {
+                return;
+            }
+
             // create a new window instance based on the screen size
             this.window = new UIWindow(UIScreen.MainScreen.Bounds);
-            
+            this.Initialized = true;
         }
+
         public void ShowConfigurationScreen()
         {
-            new UIAlertView("Configuration", "Must configure the application", null, "OK", null).Show();
+            this.Initialize();
+            this.window.RootViewController = this.ObjectFactory.Create<MapConfigurationViewController>();
+            window.MakeKeyAndVisible();
         }
 
         public void ShowHomeScreen()
         {
+            this.Initialize();
             this.window.RootViewController = this.ObjectFactory.Create<NavigationViewController>();
             window.MakeKeyAndVisible();
         }
 
         public void ShowExitScreen(string message)
         {
+            this.Initialize();
             new UIAlertView("Exiting application", message, null, "OK", null).Show();
         }
     }

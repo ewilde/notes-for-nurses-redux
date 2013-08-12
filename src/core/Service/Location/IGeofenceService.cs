@@ -23,7 +23,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Service
 
         double RadiusOfGeofenceInMeters { get; }
 
-        bool IsInitialized { get; set; }
+        bool IsInitialized { get; }
 
         event EventHandler<EventArgs> OutsideFence;
 

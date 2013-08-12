@@ -42,21 +42,30 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
         /// </value>
         public bool UpdateInProgress { get; set; }
 
-        public void UpdateIfEmpty()
+        public void UpdateIfEmpty(bool async = true)
         {
-            new Thread(
-                () =>
+            Action updateAction = () =>
                 {
                     bool dataExists = this.DataManager.DataExists;
                     ConsoleD.WriteLine("Database has seed data {0}.", dataExists);
                     if (!dataExists)
                     {
                         ConsoleD.WriteLine("Loading seed data");
-                        var seedDataFile = this.FileManager.ResourcePath + "/Images/SeedData.xml"; // Note can't use Path.Combine as resource path point to your file app i.e. notes.app
+                        var seedDataFile = this.FileManager.ResourcePath + "/Images/SeedData.xml";
+                            // Note can't use Path.Combine as resource path point to your file app i.e. notes.app
                         string xml = System.IO.File.ReadAllText(seedDataFile);
                         this.Update(xml);
                     }
-                }).Start();
+                };
+
+            if (async)
+            {
+                new Thread(updateAction.Invoke).Start();
+            }
+            else
+            {
+                updateAction.Invoke();
+            }
         }
 
         /// <summary>
