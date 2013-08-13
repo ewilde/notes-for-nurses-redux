@@ -49,7 +49,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common.Map
         {
             var view = new MKMapView()
             {
-                ShowsUserLocation = showUserLocation
+                ShowsUserLocation = showUserLocation, ZoomEnabled = true
             };
 
             view.SizeToFit();
@@ -59,9 +59,9 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common.Map
 
         private MKCoordinateRegion BuildVisibleRegion(LocationCoordinate currentLocation)
         {
-            var span = new MKCoordinateSpan(0.2, 0.2);
+            var span = new MKCoordinateSpan(0.003125, 0.003125);
             var region = new MKCoordinateRegion(new CLLocationCoordinate2D(currentLocation.Latitude, currentLocation.Longitude), span);
-
+            
             return region;
         }
     }

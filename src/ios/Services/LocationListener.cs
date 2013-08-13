@@ -65,7 +65,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.Services
                             x =>
                             {
                                 var location = objectFactory.Create<Location>();
-                                location.Coordinate = new LocationCoordinate(x.Coordinate.Longitude, x.Coordinate.Latitude);
+                                location.Coordinate = new LocationCoordinate(x.Coordinate.Latitude, x.Coordinate.Longitude);
                                 location.Direction = Convert.ToInt32(x.Course);
                                 return location;
                             })));
