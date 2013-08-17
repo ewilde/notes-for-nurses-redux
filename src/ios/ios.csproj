@@ -125,7 +125,10 @@
     <Compile Include="Services\LocationListener.cs" />
     <Compile Include="System\ApplicationSettingsProvider.cs" />
     <Compile Include="System\FileManager.cs" />
+    <Compile Include="UI\Common\Gestures\GestureRecognizerDelegate.cs" />
+    <Compile Include="UI\Common\Map\GeofenceMapDelegate.cs" />
     <Compile Include="UI\Common\Map\MapConfigurationViewController.cs" />
+    <Compile Include="UI\Common\Map\SimpleAnnotation.cs" />
     <Compile Include="UI\Common\NavigationViewController.cs" />
     <Compile Include="UI\ScreenController.cs" />
     <Compile Include="Xamarin\Network\NetworkStatus.cs" />
