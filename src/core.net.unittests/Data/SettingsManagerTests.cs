@@ -21,7 +21,7 @@ namespace core.net.tests.Data
     [Subject(typeof(SettingsManager), "initialization")]
     public class when_initializing_the_settings_manager : WithConcreteSubject<SettingsManager, ISettingsManager>
     {
-        private Establish context =
+        Establish context =
             () =>
             With(
                 new DataManagerWithSomeSettings(
@@ -41,6 +41,31 @@ namespace core.net.tests.Data
         It should_store_the_results_in_the_all_settings_property = () =>
             Subject.AllSettings.ElementAt(0).Value<int>().ShouldEqual(34);
 
+    }
+
+    public class when_saving_an_existing_setting : WithConcreteSubject<SettingsManager, ISettingsManager>
+    {
+        static int IdCalledWith, ExistingSettingId;
+
+        Establish context =
+            () =>
+                {
+                    IdCalledWith = 0;
+                    ExistingSettingId = 202;
+                    With(new DataManagerWithSomeSettings(new[]
+                                                             {
+                                                                 new Setting{ 
+                                                                        Id = ExistingSettingId,
+                                                                        Key = SettingKey.GeofenceRadiusSizeInMeters.ToKeyString(),  
+                                                                        StringValue = "34"}
+                                                             }));
+                    Subject.Initialize();
+                    The<IDataManager>().WhenToldTo(call => call.SaveSetting(Param<Setting>.IsAnything)).Callback<Setting>(setting=> IdCalledWith = setting.Id);
+                };
+
+        Because of = () => Subject.Save(new Setting { Key = SettingKey.GeofenceRadiusSizeInMeters.ToKeyString(), StringValue = "35"});
+
+        It should_call_datamanager_using_the_id_of_the_existing_value = () => IdCalledWith.ShouldEqual(ExistingSettingId);
     }
 
     [Subject(typeof(SettingsManager), "loading")]

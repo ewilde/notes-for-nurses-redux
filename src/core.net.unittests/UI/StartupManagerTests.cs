@@ -58,7 +58,7 @@ namespace core.net.tests.UI
 
         It should_show_the_configuration_screen = () =>
             {
-                The<IScreenController>().WasToldTo(call => call.ShowConfigurationScreen());
+                The<IScreenController>().WasToldTo(call => call.StartConfiguration());
             };
 
         It should_not_show_the_home_screen = () =>
@@ -90,7 +90,7 @@ namespace core.net.tests.UI
 
         It should_not_show_the_configuration_screen = () =>
             {
-                The<IScreenController>().WasNotToldTo(call => call.ShowConfigurationScreen());
+                The<IScreenController>().WasNotToldTo(call => call.StartConfiguration());
             };
     }
 

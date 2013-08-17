@@ -58,7 +58,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.UI
             this.SettingsManager.Initialize();
             if (!this.SettingsManager.DataExists)
             {
-                this.ScreenController.ShowConfigurationScreen();
+                this.ScreenController.StartConfiguration();
                 return;
             }
 

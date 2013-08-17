@@ -6,6 +6,7 @@
 namespace Edward.Wilde.Note.For.Nurses.iOS.UI
 {
     using Edward.Wilde.Note.For.Nurses.Core;
+    using Edward.Wilde.Note.For.Nurses.Core.Model;
     using Edward.Wilde.Note.For.Nurses.Core.UI;
     using Edward.Wilde.Note.For.Nurses.iOS.UI.Common;
     using Edward.Wilde.Note.For.Nurses.iOS.UI.Common.Map;
@@ -37,11 +38,17 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI
             this.Initialized = true;
         }
 
-        public void ShowConfigurationScreen()
+        public void StartConfiguration()
         {
             this.Initialize();
             this.window.RootViewController = this.ObjectFactory.Create<MapConfigurationViewController>();
             window.MakeKeyAndVisible();
+        }
+
+        public void MapConfigurationCompleted()
+        {
+            this.ShowMessage("Configuration", "Now configure password.");
+            //this.window.RootViewController = this.ObjectFactory.Create<PasswordConfigurationViewController>(SettingKey.ReadPassword);
         }
 
         public void ShowHomeScreen()
@@ -55,6 +62,11 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI
         {
             this.Initialize();
             new UIAlertView("Exiting application", message, null, "OK", null).Show();
+        }
+
+        public void ShowMessage(string title, string message)
+        {
+            new UIAlertView(title, message, null, "OK", null).Show();
         }
     }
 }

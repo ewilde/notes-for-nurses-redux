@@ -37,8 +37,17 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
 
         public void Save(Setting value)
         {
-            this.DataManager.SaveSetting(value);
-            this.allSettings[value.Key] = value;
+            if (allSettings.ContainsKey(value.Key))
+            {
+                this.allSettings[value.Key].StringValue = value.StringValue;
+            }
+            else
+            {
+                this.allSettings[value.Key] = value;
+            }
+
+            this.DataManager.SaveSetting(this.allSettings[value.Key]);
+                
         }
 
         public bool DataExists

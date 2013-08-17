@@ -8,8 +8,10 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common.Map
     using System;
     using System.Drawing;
 
+    using Edward.Wilde.Note.For.Nurses.Core.Data;
     using Edward.Wilde.Note.For.Nurses.Core.Model;
     using Edward.Wilde.Note.For.Nurses.Core.Service;
+    using Edward.Wilde.Note.For.Nurses.Core.UI;
     using Edward.Wilde.Note.For.Nurses.iOS.UI.Common.Gestures;
 
     using MonoTouch.CoreLocation;
@@ -23,14 +25,26 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common.Map
     {
         public IGeofenceService GeofenceService { get; set; }
 
+        public ISessionContext SessionContext { get; set; }
+
+        public IScreenController ScreenController { get; set; }
+
         private MKMapView mapView;
         private SimpleAnnotation droppedPin;
         private UILongPressGestureRecognizer longPress;
 
-        public MapConfigurationViewController(IGeofenceService geofenceService)
+        private UIToolbar toolbar;
+
+        public MapConfigurationViewController(
+            IGeofenceService geofenceService, 
+            ISessionContext sessionContext,
+            IScreenController screenController)
         {
             this.GeofenceService = geofenceService;
+            this.SessionContext = sessionContext;
+            this.ScreenController = screenController;
             this.GeofenceMapDelegate = new GeofenceMapDelegate();
+
             if (!this.GeofenceService.IsInitialized)
             {
                 this.GeofenceService.Initialize();
@@ -48,27 +62,67 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common.Map
             base.ViewDidLoad();
 
             var currentLocation = this.GeofenceService.CurrentLocation;
-            var visibleRegion = BuildVisibleRegion(currentLocation);
-
-            mapView = BuildMapView(true);
-            mapView.SetRegion(visibleRegion, true);
-            mapView.Delegate = this.GeofenceMapDelegate;
-
-            this.View.AddSubview(mapView);
-            this.SetupGestureInteraction();
+            this.BuildToolbar();
+            this.BuildMapView(currentLocation);
         }
 
-        private MKMapView BuildMapView(bool showUserLocation)
+        private void BuildMapView(LocationCoordinate currentLocation)
         {
-            var view = new MKMapView()
+            var visibleRegion = this.BuildVisibleRegion(currentLocation);
+            this.mapView = new MKMapView()
             {
-                ShowsUserLocation = showUserLocation,
+                ShowsUserLocation = true,
                 ZoomEnabled = true
             };
 
-            view.SizeToFit();
-            view.Frame = new RectangleF(0, 0, this.View.Frame.Width, this.View.Frame.Height);
-            return view;
+            this.mapView.SizeToFit();
+            this.mapView.Frame = new RectangleF(0, this.toolbar.Bounds.Height, this.View.Frame.Width, this.View.Frame.Height - this.toolbar.Bounds.Height);
+            this.mapView.SetRegion(visibleRegion, true);
+            this.mapView.Delegate = this.GeofenceMapDelegate;
+            
+            this.View.AddSubview(this.toolbar);
+            this.View.AddSubview(this.mapView);
+            this.SetupGestureInteraction();
+        }
+
+        private void BuildToolbar()
+        {
+            this.toolbar = new UIToolbar
+                               {
+                                   AutoresizingMask = UIViewAutoresizing.FlexibleBottomMargin | UIViewAutoresizing.FlexibleWidth
+                               };
+            var doneButton = new UIBarButtonItem(UIBarButtonSystemItem.Done, this.TappedDone);
+
+            this.toolbar.SetItems(new[] {
+				doneButton
+			}, true);
+            this.toolbar.SizeToFit();
+            this.toolbar.Frame = new RectangleF(0, 0, View.Bounds.Size.Width, toolbar.Bounds.Height);
+        }
+
+        public void TappedDone(object sender, EventArgs args)
+        {
+            if (this.GeofenceMapDelegate.Circle == null)
+            {
+                this.ScreenController.ShowMessage("Configuration", "Please choose a location, within which the application will operate.");
+                return;                
+            }
+
+            this.UpdateConfiguration();
+            this.Close();
+        }
+
+        private void Close()
+        {
+            this.ScreenController.MapConfigurationCompleted();
+        }
+
+        private void UpdateConfiguration()
+        {
+            this.SessionContext.GeofenceLocationCentre = 
+                new LocationCoordinate(
+                        this.GeofenceMapDelegate.Circle.Coordinate.Latitude,
+                        this.GeofenceMapDelegate.Circle.Coordinate.Longitude);           
         }
 
         private MKCoordinateRegion BuildVisibleRegion(LocationCoordinate currentLocation)
@@ -122,6 +176,17 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common.Map
                 PointF longPressPoint = recognizer.LocationInView(this.mapView);
                 this.DropGeofenceCircle(longPressPoint);
             }
+        }
+
+        /// <summary>
+        /// Only allow iPad application to rotate, iPhone is always portrait
+        /// </summary>
+        public override bool ShouldAutorotateToInterfaceOrientation(UIInterfaceOrientation toInterfaceOrientation)
+        {
+            if (AppDelegate.IsPad)
+                return true;
+            else
+                return toInterfaceOrientation == UIInterfaceOrientation.Portrait;
         }
     }
 }

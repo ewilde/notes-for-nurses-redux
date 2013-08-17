@@ -12,8 +12,13 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Service
     {
         public ISettingsManager SettingsManager { get; set; }
 
+        public SessionContext(ISettingsManager settingsManager)
+        {
+            this.SettingsManager = settingsManager;
+        }
+
         public void Initialize()
-        {            
+        {
         }
 
         public LocationCoordinate GeofenceLocationCentre
@@ -21,6 +26,15 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Service
             get
             {
                 return this.SettingsManager.Get<LocationCoordinate>(SettingKey.GeofenceLocationCentre);
+            }
+            set
+            {
+                this.SettingsManager.Save(
+                   new Setting
+                   {
+                       Key = SettingKey.GeofenceLocationCentre.ToKeyString(),
+                       StringValue = value.ToString()
+                   });
             }
         }
 
@@ -31,10 +45,5 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Service
                 return this.SettingsManager.Get<int>(SettingKey.GeofenceRadiusSizeInMeters);
             }
         }
-
-        public SessionContext(ISettingsManager settingsManager)
-        {
-            this.SettingsManager = settingsManager;
-        }        
     }
 }
