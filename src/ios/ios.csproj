@@ -103,9 +103,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mono.Data.Sqlcipher, Version=2.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Mono.Data.Sqlcipher">
       <HintPath>..\Components\sqlcipher-for-xamarin-2.1.1.4\lib\ios\Mono.Data.Sqlcipher.dll</HintPath>
+    </Reference>
+    <Reference Include="PincodeBinding">
+      <HintPath>..\pincode\PincodeBinding\builds\debug\PincodeBinding.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
@@ -130,6 +132,7 @@
     <Compile Include="UI\Common\Map\MapConfigurationViewController.cs" />
     <Compile Include="UI\Common\Map\SimpleAnnotation.cs" />
     <Compile Include="UI\Common\NavigationViewController.cs" />
+    <Compile Include="UI\Common\PasswordViewController.cs" />
     <Compile Include="UI\ScreenController.cs" />
     <Compile Include="Xamarin\Network\NetworkStatus.cs" />
     <Compile Include="Xamarin\UI\Controls\EmptyOverlayType.cs" />
