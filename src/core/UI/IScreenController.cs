@@ -15,6 +15,8 @@ namespace Edward.Wilde.Note.For.Nurses.Core.UI
 
         void ShowMessage(string title, string message);
 
+        void ShowSetPassword();
+
         void MapConfigurationCompleted();
     }
 }

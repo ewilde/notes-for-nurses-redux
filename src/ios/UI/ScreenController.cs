@@ -13,6 +13,8 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI
 
     using MonoTouch.UIKit;
 
+    using PincodeBinding;
+
     public class ScreenController : IScreenController
     {
         public IObjectFactory ObjectFactory { get; set; }
@@ -45,10 +47,16 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI
             window.MakeKeyAndVisible();
         }
 
+        public void ShowSetPassword()
+        {
+            var lockController = new CPLockController();
+            this.window.RootViewController = lockController;
+            window.MakeKeyAndVisible();
+        }
+
         public void MapConfigurationCompleted()
         {
-            this.ShowMessage("Configuration", "Now configure password.");
-            //this.window.RootViewController = this.ObjectFactory.Create<PasswordConfigurationViewController>(SettingKey.ReadPassword);
+            this.ShowSetPassword();
         }
 
         public void ShowHomeScreen()
