@@ -1,4 +1,4 @@
-﻿<Properties>
+﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
   <MonoDevelop.Ide.Workbench ActiveDocument="ios/UI/ScreenController.cs">
     <Files>
@@ -10,9 +10,7 @@
           <Node name="core.monotouch" expanded="True">
             <Node name="UI" expanded="True" />
           </Node>
-          <Node name="ios" expanded="True" selected="True">
-            <Node name="References" expanded="True" />
-          </Node>
+          <Node name="ios" expanded="True" />
           <Node name="ios.unittests" expanded="True">
             <Node name="Services" expanded="True" />
           </Node>

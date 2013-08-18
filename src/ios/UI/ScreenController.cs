@@ -49,9 +49,15 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI
 
         public void ShowSetPassword()
         {
-            var lockController = new CPLockController();
-            this.window.RootViewController = lockController;
-            window.MakeKeyAndVisible();
+            var lockController = new CPLockController
+			{
+
+				Style = PincodeBinding.CPLockControllerStyle.TypeSet
+			};
+
+			lockController.ModalPresentationStyle = UIModalPresentationStyle.FormSheet;
+			lockController.Delegate = new PincodeSetPasswordDelegate(this);
+			this.window.RootViewController.PresentModalViewController (lockController, true);
         }
 
         public void MapConfigurationCompleted()
