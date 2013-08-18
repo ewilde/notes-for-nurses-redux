@@ -1,3 +1,6 @@
 [submodule "src/sqlite"]
 	path = src/sqlite
 	url = git://github.com/ewilde/sqlite-net.git
+[submodule "src/pincode"]
+	path = src/pincode
+	url = git://github.com/ewilde/Pincode.git
