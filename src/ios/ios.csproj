@@ -103,6 +103,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PincodeBinding, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\pincode\PincodeBinding\builds\debug\PincodeBinding.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -152,7 +156,6 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <ItemGroup>
     <XamarinComponentReference Include="sqlcipher-for-xamarin">
-      <InstallationInProgress>False</InstallationInProgress>
       <Version>2.1.1.4</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
