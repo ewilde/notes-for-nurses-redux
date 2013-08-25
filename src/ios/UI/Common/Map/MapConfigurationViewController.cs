@@ -62,6 +62,11 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common.Map
             base.ViewDidLoad();
 
             var currentLocation = this.GeofenceService.CurrentLocation;
+			if (currentLocation == null) 
+			{
+				currentLocation = this.SessionContext.GeofenceDefaultLocationCentre;
+			}
+
             this.BuildToolbar();
             this.BuildMapView(currentLocation);
         }
@@ -102,9 +107,17 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common.Map
 
         public void TappedDone(object sender, EventArgs args)
         {
+			if (this.GeofenceService.CurrentLocation == null) 
+			{
+				this.ScreenController.ShowMessage("Configuration", "Please allow this application to access your location.");
+                this.GeofenceService.Initialize();
+				return;                
+			}
+
             if (this.GeofenceMapDelegate.Circle == null)
             {
-                this.ScreenController.ShowMessage("Configuration", "Please choose a location, within which the application will operate.");
+                
+				this.ScreenController.ShowMessage("Configuration", "Please choose a location, within which the application will operate.");
                 return;                
             }
 

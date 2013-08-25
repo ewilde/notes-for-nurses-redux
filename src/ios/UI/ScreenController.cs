@@ -7,6 +7,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI
 {
     using Edward.Wilde.Note.For.Nurses.Core;
     using Edward.Wilde.Note.For.Nurses.Core.Model;
+    using Edward.Wilde.Note.For.Nurses.Core.Service;
     using Edward.Wilde.Note.For.Nurses.Core.UI;
     using Edward.Wilde.Note.For.Nurses.iOS.UI.Common;
     using Edward.Wilde.Note.For.Nurses.iOS.UI.Common.Map;
@@ -28,6 +29,8 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI
 
         protected bool Initialized { get; set; }
 
+        protected ISessionContext SessionContext { get; set; }
+
         protected void Initialize()
         {
             if (this.Initialized)
@@ -37,17 +40,18 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI
 
             // create a new window instance based on the screen size
             this.window = new UIWindow(UIScreen.MainScreen.Bounds);
+            this.SessionContext = this.ObjectFactory.Create<ISessionContext>();
             this.Initialized = true;
         }
 
-        public void StartConfiguration()
+        public void ConfigurationStart()
         {
             this.Initialize();
             this.window.RootViewController = this.ObjectFactory.Create<MapConfigurationViewController>();
             window.MakeKeyAndVisible();
         }
 
-        public void ShowSetPassword()
+        public void SetPasswordStart()
         {
             var lockController = new CPLockController
 			{
@@ -56,13 +60,28 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI
 			};
 
 			lockController.ModalPresentationStyle = UIModalPresentationStyle.FormSheet;
-			lockController.Delegate = new PincodeSetPasswordDelegate(this);
+            var passwordDelegate = this.ObjectFactory.Create<PincodeSetPasswordDelegate>();
+            passwordDelegate.Finished += (sender, args) =>
+            {
+                this.SessionContext.Password = args.Pincode;
+                this.ConfigurationEnd();
+            };
+
+            passwordDelegate.Cancelled += (sender, args) => 
+                this.ShowMessage("Configuration", "You must choose a password");
+            lockController.Delegate = passwordDelegate;
+
 			this.window.RootViewController.PresentModalViewController (lockController, true);
+        }
+
+        private void ConfigurationEnd()
+        {
+            this.ShowHomeScreen();
         }
 
         public void MapConfigurationCompleted()
         {
-            this.ShowSetPassword();
+            this.SetPasswordStart();
         }
 
         public void ShowHomeScreen()

@@ -6,6 +6,8 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common
 	public class PincodeSetPasswordDelegate : PincodeBinding.CPLockControllerDelegate
 	{
 		IScreenController screenController;
+        public event EventHandler<PincodeEventArgs> Finished;
+        public event EventHandler<PincodeEventArgs> Cancelled;
 
 		public PincodeSetPasswordDelegate(IScreenController screenController)
 		{
@@ -14,12 +16,18 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common
 
 		public override void DidFinish (PincodeBinding.CPLockController lockController, string passcode)
 		{
-			this.screenController.ShowMessage ("Configuration", "Set password: " + passcode);
+            if (this.Finished != null)
+            {
+                this.Finished(this, new PincodeEventArgs(passcode, false));
+            }
 		}
 
 		public override void DidCancel (PincodeBinding.CPLockController lockController)
 		{
-			this.screenController.ShowMessage ("Configuration", "canceled set password");			
+            if (this.Cancelled != null)
+            {
+                this.Cancelled(this, new PincodeEventArgs(string.Empty, true));
+            }
 		}
 
 		public override bool ShouldAcceptPasscode (PincodeBinding.CPLockController lockController, string passcode)

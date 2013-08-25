@@ -1,5 +1,6 @@
 namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
     using System;
+    using System.Globalization;
 
     using Edward.Wilde.Note.For.Nurses.Core.Data;
     using Edward.Wilde.Note.For.Nurses.Core.Model;
@@ -10,135 +11,133 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
 
     using System.Drawing;
 
-
     /// <summary>
 	/// Used in:
 	///  iPad   * SessionSpeakersMasterDetail
 	///         * SpeakerSessionsMasterDetail
 	///  NOT used on iPhone ~ see Common.iPhone.PatientListViewController which dups some of this
 	/// </summary>
-	public class PatientDetailView : UIView, IImageUpdated 
+	public class PatientDetailView : ViewBase, IImageUpdated 
     {
-        public IPatientManager PatientManager { get; set; }
+        private readonly UITextField nameField;
 
-        UILabel nameLabel, titleLabel, companyLabel;
-		UITextView bioTextView;
-		UIImageView image;
-		
-		int y = 0;
-		int patientId;
-		Patient showPatient;
-		EmptyOverlay emptyOverlay;
+        private readonly UILabel dateOfBirthField;
+        private readonly UILabel dateOfBirthLabel;
 
-		const int ImageSpace = 80;		
-		
-		public PatientDetailView(IPatientManager patientManager, int patientId)
+        private readonly UIImageView image;
+
+        private int patientId;
+
+        private Patient patient;
+
+        private EmptyOverlay emptyOverlay;
+
+        public PatientDetailView(IPatientManager patientManager, int patientId)
 		{
 		    this.PatientManager = patientManager;
 		    this.patientId = patientId;
 
 			this.BackgroundColor = UIColor.White;
-			
-			this.nameLabel = new UILabel () {
-				TextAlignment = UITextAlignment.Left,
-				Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font16pt),
-				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f)
-			};
-			this.titleLabel = new UILabel () {
-				TextAlignment = UITextAlignment.Left,
-				Font = UIFont.FromName ("Helvetica-LightOblique", AppDelegate.Font10pt),
-				TextColor = UIColor.DarkGray,
-				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f)
-			};
-			this.companyLabel = new UILabel () {
-				TextAlignment = UITextAlignment.Left,
-				Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font10pt),
-				TextColor = UIColor.DarkGray,
-				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f)
-			};
-			 this.bioTextView = new UITextView () {
-				TextAlignment = UITextAlignment.Left,
-				Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font10_5Pt),
-				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f),
-				ScrollEnabled = true,
-				Editable = false
-			};
-			this.image = new UIImageView();
+		    
+            this.image = new UIImageView();
+            this.nameField = this.CreateEditableTextField();
+            /*var actionSheetDatePicker = new ActionSheetDatePicker(this);
+            actionSheetDatePicker.Title = "Choose Date:";
+            actionSheetDatePicker.DatePicker.Mode = UIDatePickerMode.Date;
+            actionSheetDatePicker.DatePicker.ValueChanged += (s, e) =>
+            {
+                this.patient.DateOfBirth = (s as UIDatePicker).Date;
+                this.Update();
+            };
+             * */
+            var datePicker = new DatePickerPopover(this);
+            datePicker.DatePicker.Mode = UIDatePickerMode.Date;
+            datePicker.DatePicker.ValueChanged += (s, e) =>
+            {
+                this.patient.DateOfBirth = (s as UIDatePicker).Date;
+                this.Update();
+            };
+            this.dateOfBirthLabel = CreateLabel(text: "date of birth:");
+            this.dateOfBirthField = CreateLabel(tapGestureRecognizer: new UITapGestureRecognizer(
+                recognizer =>
+                {
+                    if (!this.Editable)
+                    {
+                        return;
+                    }
 
-			this.AddSubview (this.nameLabel);
-			this.AddSubview (this.titleLabel);
-			this.AddSubview (this.companyLabel);
-			this.AddSubview (this.bioTextView);
-			this.AddSubview (this.image);	
+                    datePicker.Show(this.dateOfBirthField);
+                }));
+
+            this.AddSubview(this.nameField);
+			this.AddSubview(this.dateOfBirthField);
+			this.AddSubview(this.image);	
 		}
 
-		public override void LayoutSubviews ()
+        public IPatientManager PatientManager { get; set; }
+
+        public override void LayoutSubviews ()
 		{
-			if (EmptyOverlay.ShowIfRequired (ref this.emptyOverlay, this.showPatient, this, "No Patient info", EmptyOverlayType.Speaker)) return;
+			if (EmptyOverlay.ShowIfRequired (ref this.emptyOverlay, this.patient, this, "No Patient info", EmptyOverlayType.Speaker)) return;
 
-			var full = this.Bounds;
-			var bigFrame = full;
-			
-			bigFrame.X = ImageSpace+13+17;
-			bigFrame.Y = this.y + 27; // 15 -> 13
-			bigFrame.Height = 26;
-			bigFrame.Width -= (ImageSpace+13+17);
-			this.nameLabel.Frame = bigFrame;
-			
-			var smallFrame = full;
-			smallFrame.X = ImageSpace+13+17;
-			smallFrame.Y = this.y + 27+26;
-			smallFrame.Height = 15; // 12 -> 15
-			smallFrame.Width -= (ImageSpace+13+17);
-			this.titleLabel.Frame = smallFrame;
-			
-			smallFrame.Y += this.y + 17;
-			this.companyLabel.Frame = smallFrame;
-
-			this.image.Frame = new RectangleF(13, this.y + 15, 80, 80);
-
-			this.bioTextView.Frame = new RectangleF(5, this.y + 115, 310, 30);			
+		    this.LayoutImage();
+		    this.LayoutNameLabel();
+		    this.LayoutDateOfBirth();            		    
 		}
-		
-		// for masterdetail
-		public void Update(int speakerID)
+
+        private void LayoutImage()
+        {
+            this.image.Frame = new RectangleF(this.LeftMargin(), this.TopMargin(), 80, 80);
+        }
+
+        private void LayoutNameLabel()
+        {
+            this.nameField.Frame = 
+                this.AlignBottom(this.image);            
+        }
+
+        private void LayoutDateOfBirth()
+        {
+            this.dateOfBirthLabel.Frame = this.AlignBottom(this.nameField, width: this.QuarterScreenWidth());
+            this.dateOfBirthField.Frame = this.AlignBottom(this.dateOfBirthLabel, width: this.QuarterScreenWidth());
+        }
+
+        // for masterdetail
+
+        public void Update(int speakerID)
 		{
 			this.patientId = speakerID;
-			this.showPatient = this.PatientManager.GetById(this.patientId);
+			this.patient = this.PatientManager.GetById(this.patientId);
 			this.Update ();
 			this.LayoutSubviews ();
 		}
 
-		public void Clear()
+        public void Clear()
 		{
-			this.showPatient = null;
-			this.nameLabel.Text = "";
-			this.titleLabel.Text = "";
-			this.companyLabel.Text = "";
-			this.bioTextView.Text = "";
+			this.patient = null;
+			this.nameField.Text = "";
+			this.dateOfBirthField.Text = "";
 			this.image.Image = null;
 			this.LayoutSubviews (); // show the grey 'no Patient' message
 		}
 
-		void Update()
+        void Update()
 		{
-			if (this.showPatient == null) {this.nameLabel.Text ="not found"; return;}
-			
-			this.nameLabel.Text = this.showPatient.Name.ToString();
-			this.titleLabel.Text = "TITLE";
-			this.companyLabel.Text = "COMPANY";
+			if (this.patient == null) {this.nameField.Text ="not found"; return;}
 
-			this.bioTextView.Font = UIFont.FromName ("Helvetica-LightOblique", AppDelegate.Font10_5Pt);
-			this.bioTextView.TextColor = UIColor.Gray;
-			this.bioTextView.Text = "No background information available.";
-			
-
-            this.image.Image = ImageLoader.DefaultRequestImage(new Uri("https://en.gravatar.com/avatar/196d33ea9cdaf7817b98b981afe62c16?s=100"), this);			
+		    this.image.Image = ImageLoader.DefaultRequestImage(new Uri("https://en.gravatar.com/avatar/196d33ea9cdaf7817b98b981afe62c16?s=100"), this);
+		    this.nameField.Text = this.patient.Name.ToString();
+		    this.dateOfBirthField.Text = this.patient.DateOfBirth.ToString("d", CultureInfo.CurrentCulture);
 		}
 
-		public void UpdatedImage (Uri uri)
+        public void UpdatedImage (Uri uri)
 		{
 			this.image.Image = ImageLoader.DefaultRequestImage(uri, this);
 		}
-	}
+
+        public void ShowEditMode()
+        {
+            this.Editable = true;
+        }
+    }
 }

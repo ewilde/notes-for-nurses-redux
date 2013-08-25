@@ -7,7 +7,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.UI
 {
     public interface IScreenController
     {
-        void StartConfiguration();
+        void ConfigurationStart();
 
         void ShowHomeScreen();
 
@@ -15,7 +15,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.UI
 
         void ShowMessage(string title, string message);
 
-        void ShowSetPassword();
+        void SetPasswordStart();
 
         void MapConfigurationCompleted();
     }

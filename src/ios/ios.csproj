@@ -108,6 +108,9 @@
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
     <Reference Include="MonoTouch.Dialog-1" />
+    <Reference Include="PincodeBinding">
+      <HintPath>..\lib\debug\PincodeBinding.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Data.Sqlcipher">
       <HintPath>..\Components\sqlcipher-for-xamarin-2.1.1.4\lib\ios\Mono.Data.Sqlcipher.dll</HintPath>
     </Reference>
@@ -129,8 +132,11 @@
     <Compile Include="UI\Common\Map\MapConfigurationViewController.cs" />
     <Compile Include="UI\Common\Map\SimpleAnnotation.cs" />
     <Compile Include="UI\Common\NavigationViewController.cs" />
+    <Compile Include="UI\iPad\DatePickerPopover.cs" />
+    <Compile Include="UI\iPad\ViewBase.cs" />
     <Compile Include="UI\ScreenController.cs" />
     <Compile Include="Xamarin\Network\NetworkStatus.cs" />
+    <Compile Include="Xamarin\UI\Controls\ActionSheetDatePicker.cs" />
     <Compile Include="Xamarin\UI\Controls\EmptyOverlayType.cs" />
     <Compile Include="Xamarin\UI\Controls\LoadingOverlay.cs" />
     <Compile Include="UI\Common\PatientListViewController.cs" />
@@ -148,8 +154,9 @@
     <Compile Include="Xamarin\UI\Controls\UnderlineLabel.cs" />
     <Compile Include="UI\Common\AboutView.cs" />
     <Compile Include="Xamarin\UI\IntelligentSplitViewController.cs" />
-    <Compile Include="UI\Common\PincodeSetPasswordDelegate.cs" />
     <Compile Include="UI\Common\PasswordViewController.cs" />
+    <Compile Include="UI\Common\Pincode\PincodeSetPasswordDelegate.cs" />
+    <Compile Include="UI\Common\Pincode\PincodeEventArgs.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <ItemGroup>
@@ -163,10 +170,6 @@
     <ProjectReference Include="..\core\core.monotouch.csproj">
       <Project>{CAA47381-0DBB-461D-8EB6-4D00AC453656}</Project>
       <Name>core.monotouch</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\pincode\PincodeBinding\PincodeBinding\PincodeBinding.csproj">
-      <Project>{6C382CBB-9704-412F-AB44-AF564DCF5067}</Project>
-      <Name>PincodeBinding</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -220,4 +223,5 @@
   <ItemGroup>
     <ITunesArtwork Include="Images\Icons\512_icon.png" />
   </ItemGroup>
+  <ItemGroup />
 </Project>

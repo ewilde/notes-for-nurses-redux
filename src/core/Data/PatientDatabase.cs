@@ -52,7 +52,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
             get
             {
 #if DEBUG
-                return true;
+                return false;
 #else
                 return false;
 #endif

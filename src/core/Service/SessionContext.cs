@@ -45,5 +45,15 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Service
                 return this.SettingsManager.Get<int>(SettingKey.GeofenceRadiusSizeInMeters);
             }
         }
+
+		public LocationCoordinate GeofenceDefaultLocationCentre
+		{
+			get
+			{
+				return this.SettingsManager.Get<LocationCoordinate> (SettingKey.GeofenceDefaultLocationCentre);
+			}
+		}
+
+        public string Password { get; set; }
     }
 }

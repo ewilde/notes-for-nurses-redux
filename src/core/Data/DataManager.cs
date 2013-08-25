@@ -91,7 +91,12 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
                             {
                                 Key = SettingKey.GeofenceRadiusSizeInMeters.ToKeyString(),
                                 StringValue = this.ApplicationSettingsService.GetValue(SettingKey.GeofenceRadiusSizeInMeters.ToKeyString())
-                            }
+                            },
+						new Setting
+							{
+								Key = SettingKey.GeofenceDefaultLocationCentre.ToKeyString(),
+								StringValue = new LocationCoordinate(51.5010,0.1420).ToString()
+							}
                     });
 
             return list;

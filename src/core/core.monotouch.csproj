@@ -47,7 +47,7 @@
     <MtouchSdkVersion>6.1</MtouchSdkVersion>
     <MtouchDebug>True</MtouchDebug>
     <MtouchExtraArgs />
-    <MtouchArch>Default, ARMv7</MtouchArch>
+    <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>

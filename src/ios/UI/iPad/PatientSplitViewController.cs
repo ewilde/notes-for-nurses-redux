@@ -27,7 +27,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
 				{this.speakersList, this.speakerDetailViewControllerWithSession};
 		}
 
-		public void ShowSpeaker (int speakerID)
+		public void ShowPatient (int speakerID)
 		{
 			this.speakerDetailViewControllerWithSession = this.ViewControllers[1] as PatientDetailViewController;
 			this.speakerDetailViewControllerWithSession.Update(speakerID);

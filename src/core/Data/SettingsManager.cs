@@ -54,7 +54,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
         {
             get
             {
-                return false;
+                return this.allSettings.ContainsKey(SettingKey.GeofenceLocationCentre.ToKeyString());
             }
         }
 

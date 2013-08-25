@@ -1,25 +1,35 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone.5.1" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="pincode/PincodeBinding/PincodeBinding/ApiDefinition.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ios/UI/Common/Map/MapConfigurationViewController.cs">
     <Files>
       <File FileName="ios/UI/ScreenController.cs" Line="59" Column="30" />
-      <File FileName="ios/UI/Common/NavigationViewController.cs" Line="106" Column="70" />
+      <File FileName="ios/UI/Common/NavigationViewController.cs" Line="1" Column="1" />
       <File FileName="ios/UI/Common/PasswordViewController.cs" Line="1" Column="1" />
       <File FileName="pincode/PincodeBinding/PincodeBinding/ApiDefinition.cs" Line="1" Column="14" />
-      <File FileName="../../Pincode/PincodeBinding/PincodeBinding/ApiDefinition.cs" Line="29" Column="27" />
+      <File FileName="../../Pincode/PincodeBinding/PincodeBinding/ApiDefinition.cs" Line="1" Column="1" />
+      <File FileName="ios/UI/Common/Map/MapConfigurationViewController.cs" Line="14" Column="5" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="PincodeBinding" expanded="True">
-            <Node name="ApiDefinition.cs" selected="True" />
+        <State expanded="True" selected="True">
+          <Node name="ios" expanded="True">
+            <Node name="References" expanded="True" />
+            <Node name="UI" expanded="True">
+              <Node name="Common" expanded="True">
+                <Node name="Map" expanded="True" />
+              </Node>
+            </Node>
           </Node>
+          <Node name="PincodeBinding" expanded="True" />
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/ewilde/Projects/notes-for-nurses-redux/src/ios/UI/Common/Map/MapConfigurationViewController.cs" line="64" column="1" />
+      <Breakpoint file="/Users/ewilde/Projects/notes-for-nurses-redux/src/ios/UI/Common/Map/MapConfigurationViewController.cs" line="48" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

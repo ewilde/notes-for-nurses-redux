@@ -28,13 +28,18 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
 		    this.patientId = patientId;
 			
 			this.navBar = new UINavigationBar(new RectangleF(0,0,768, 44));
-			this.navBar.SetItems(new[]{new UINavigationItem("Patient & Session Info")},false);
+			this.navBar.SetItems(
+                new[]
+                {
+                    new UINavigationItem("Patient & Session Info")
+                },false);
 			
+            this.navBar.TopItem.SetRightBarButtonItem(new UIBarButtonItem(UIBarButtonSystemItem.Edit, (sender, args) => this.patientDetailView.ShowEditMode()), false);
 			this.View.BackgroundColor = UIColor.LightGray;
 			this.View.Frame = new RectangleF(0,0,768,768);
 
             this.patientDetailView = this.ObjectFactory.Create<PatientDetailView>(new NamedParameterOverloads { { "patientId", -1 } });
-			this.patientDetailView.Frame = new RectangleF(0,44,this.colWidth1,728);
+			this.patientDetailView.Frame = new RectangleF(0,44,this.colWidth1 + this.colWidth2, 728);
 			this.patientDetailView.AutoresizingMask = UIViewAutoresizing.FlexibleHeight;
 
 		

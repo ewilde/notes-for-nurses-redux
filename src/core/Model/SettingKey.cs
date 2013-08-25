@@ -9,6 +9,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Model
     {
         Unknown,
         GeofenceLocationCentre,
-        GeofenceRadiusSizeInMeters
+        GeofenceRadiusSizeInMeters,
+		GeofenceDefaultLocationCentre
     }
 }

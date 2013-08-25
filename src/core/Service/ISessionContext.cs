@@ -14,5 +14,8 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Service
         LocationCoordinate GeofenceLocationCentre { get; set; }
 
         int GeofenceRadiusSizeInMeters { get; }
+
+		LocationCoordinate GeofenceDefaultLocationCentre { get; }
+        string Password { get; set; }
     }
 }
