@@ -117,6 +117,106 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
+    <Content Include="Images\Profiles\picture%281%29" />
+    <Content Include="Images\Profiles\picture%282%29" />
+    <Content Include="Images\Profiles\picture%283%29" />
+    <Content Include="Images\Profiles\picture%284%29" />
+    <Content Include="Images\Profiles\picture%285%29" />
+    <Content Include="Images\Profiles\picture%286%29" />
+    <Content Include="Images\Profiles\picture%287%29" />
+    <Content Include="Images\Profiles\picture%288%29" />
+    <Content Include="Images\Profiles\picture%289%29" />
+    <Content Include="Images\Profiles\picture%2810%29" />
+    <Content Include="Images\Profiles\picture%2811%29" />
+    <Content Include="Images\Profiles\picture%2812%29" />
+    <Content Include="Images\Profiles\picture%2813%29" />
+    <Content Include="Images\Profiles\picture%2814%29" />
+    <Content Include="Images\Profiles\picture%2815%29" />
+    <Content Include="Images\Profiles\picture%2816%29" />
+    <Content Include="Images\Profiles\picture%2817%29" />
+    <Content Include="Images\Profiles\picture%2818%29" />
+    <Content Include="Images\Profiles\picture%2819%29" />
+    <Content Include="Images\Profiles\picture%2820%29" />
+    <Content Include="Images\Profiles\picture%2821%29" />
+    <Content Include="Images\Profiles\picture%2822%29" />
+    <Content Include="Images\Profiles\picture%2823%29" />
+    <Content Include="Images\Profiles\picture%2824%29" />
+    <Content Include="Images\Profiles\picture%2825%29" />
+    <Content Include="Images\Profiles\picture%2826%29" />
+    <Content Include="Images\Profiles\picture%2827%29" />
+    <Content Include="Images\Profiles\picture%2828%29" />
+    <Content Include="Images\Profiles\picture%2829%29" />
+    <Content Include="Images\Profiles\picture%2830%29" />
+    <Content Include="Images\Profiles\picture%2831%29" />
+    <Content Include="Images\Profiles\picture%2832%29" />
+    <Content Include="Images\Profiles\picture%2833%29" />
+    <Content Include="Images\Profiles\picture%2834%29" />
+    <Content Include="Images\Profiles\picture%2835%29" />
+    <Content Include="Images\Profiles\picture%2836%29" />
+    <Content Include="Images\Profiles\picture%2837%29" />
+    <Content Include="Images\Profiles\picture%2838%29" />
+    <Content Include="Images\Profiles\picture%2839%29" />
+    <Content Include="Images\Profiles\picture%2840%29" />
+    <Content Include="Images\Profiles\picture%2841%29" />
+    <Content Include="Images\Profiles\picture%2842%29" />
+    <Content Include="Images\Profiles\picture%2843%29" />
+    <Content Include="Images\Profiles\picture%2844%29" />
+    <Content Include="Images\Profiles\picture%2845%29" />
+    <Content Include="Images\Profiles\picture%2846%29" />
+    <Content Include="Images\Profiles\picture%2847%29" />
+    <Content Include="Images\Profiles\picture%2848%29" />
+    <Content Include="Images\Profiles\picture%2849%29" />
+    <Content Include="Images\Profiles\picture%2850%29" />
+    <Content Include="Images\Profiles\picture%2851%29" />
+    <Content Include="Images\Profiles\picture%2852%29" />
+    <Content Include="Images\Profiles\picture%2853%29" />
+    <Content Include="Images\Profiles\picture%2854%29" />
+    <Content Include="Images\Profiles\picture%2855%29" />
+    <Content Include="Images\Profiles\picture%2856%29" />
+    <Content Include="Images\Profiles\picture%2857%29" />
+    <Content Include="Images\Profiles\picture%2858%29" />
+    <Content Include="Images\Profiles\picture%2859%29" />
+    <Content Include="Images\Profiles\picture%2860%29" />
+    <Content Include="Images\Profiles\picture%2861%29" />
+    <Content Include="Images\Profiles\picture%2862%29" />
+    <Content Include="Images\Profiles\picture%2863%29" />
+    <Content Include="Images\Profiles\picture%2864%29" />
+    <Content Include="Images\Profiles\picture%2865%29" />
+    <Content Include="Images\Profiles\picture%2866%29" />
+    <Content Include="Images\Profiles\picture%2867%29" />
+    <Content Include="Images\Profiles\picture%2868%29" />
+    <Content Include="Images\Profiles\picture%2869%29" />
+    <Content Include="Images\Profiles\picture%2870%29" />
+    <Content Include="Images\Profiles\picture%2871%29" />
+    <Content Include="Images\Profiles\picture%2872%29" />
+    <Content Include="Images\Profiles\picture%2873%29" />
+    <Content Include="Images\Profiles\picture%2874%29" />
+    <Content Include="Images\Profiles\picture%2875%29" />
+    <Content Include="Images\Profiles\picture%2876%29" />
+    <Content Include="Images\Profiles\picture%2877%29" />
+    <Content Include="Images\Profiles\picture%2878%29" />
+    <Content Include="Images\Profiles\picture%2879%29" />
+    <Content Include="Images\Profiles\picture%2880%29" />
+    <Content Include="Images\Profiles\picture%2881%29" />
+    <Content Include="Images\Profiles\picture%2882%29" />
+    <Content Include="Images\Profiles\picture%2883%29" />
+    <Content Include="Images\Profiles\picture%2884%29" />
+    <Content Include="Images\Profiles\picture%2885%29" />
+    <Content Include="Images\Profiles\picture%2886%29" />
+    <Content Include="Images\Profiles\picture%2887%29" />
+    <Content Include="Images\Profiles\picture%2888%29" />
+    <Content Include="Images\Profiles\picture%2889%29" />
+    <Content Include="Images\Profiles\picture%2890%29" />
+    <Content Include="Images\Profiles\picture%2891%29" />
+    <Content Include="Images\Profiles\picture%2892%29" />
+    <Content Include="Images\Profiles\picture%2893%29" />
+    <Content Include="Images\Profiles\picture%2894%29" />
+    <Content Include="Images\Profiles\picture%2895%29" />
+    <Content Include="Images\Profiles\picture%2896%29" />
+    <Content Include="Images\Profiles\picture%2897%29" />
+    <Content Include="Images\Profiles\picture%2898%29" />
+    <Content Include="Images\Profiles\picture%2899%29" />
+    <Content Include="Images\Profiles\picture%28100%29" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -223,5 +323,6 @@
   <ItemGroup>
     <ITunesArtwork Include="Images\Icons\512_icon.png" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup />
 </Project>

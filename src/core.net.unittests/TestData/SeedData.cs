@@ -27,6 +27,7 @@ namespace core.net.tests.TestData
         Because of = () =>
             {
                 PatientFile patientFile = new PatientFile();
+                int i = 1;
                 foreach (var item in names.Descendants("Name"))
                 {
                     patientFile.Patients.Add(
@@ -34,8 +35,12 @@ namespace core.net.tests.TestData
                             {
                                 DateOfBirth = new DateTime(Random(2000, 2013), Random(1, 12),  Random(1, 28)),
                                 Name =
-                                    new Name { FirstName = item.Value.Split(' ')[0], LastName = item.Value.Split(' ')[1] }
+                                    new Name { FirstName = item.Value.Split(' ')[0], LastName = item.Value.Split(' ')[1] },
+                                ProfilePicture = string.Format("Images/Profiles/picture({0})", i)
+
                             });
+
+                    i = i + 1;
                 }
 
                 Result = patientFile.Serialize();

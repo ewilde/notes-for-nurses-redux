@@ -83,13 +83,13 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
         private void LayoutNameLabel()
         {
             this.nameField.Frame = 
-                this.AlignBottom(this.image);            
+                this.AlignBottom(this.image, height: this.SingleLineControlHeight(this.nameField), width: 200);            
         }
 
         private void LayoutDateOfBirth()
         {
-            this.dateOfBirthLabel.Frame = this.AlignBottom(this.nameField, width: this.QuarterScreenWidth());
-            this.dateOfBirthField.Frame = this.AlignBottom(this.dateOfBirthLabel, width: this.QuarterScreenWidth());
+            this.dateOfBirthLabel.Frame = this.AlignBottom(this.nameField, height: this.SingleLineControlHeight(this.dateOfBirthLabel), width: 75);
+            this.dateOfBirthField.Frame = this.AlignBottom(this.dateOfBirthLabel, height: this.SingleLineControlHeight(this.dateOfBirthLabel), width: 75);
         }
 
         // for masterdetail
@@ -114,7 +114,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
 		{
 			if (this.patient == null) {this.nameField.Text ="not found"; return;}
 
-		    this.image.Image = ImageLoader.DefaultRequestImage(new Uri("https://en.gravatar.com/avatar/196d33ea9cdaf7817b98b981afe62c16?s=100"), this);
+            this.image.Image = UIImage.FromBundle(patient.ProfilePicture);
 		    this.nameField.Text = this.patient.Name.ToString();
 		    this.UpdateDateOfBirthLabel(this.patient.DateOfBirth);
 		}

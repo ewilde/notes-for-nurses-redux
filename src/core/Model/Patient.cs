@@ -61,6 +61,9 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Model
                 return this.Name == null || this.Name.FirstName.Length == 0 ? "A" : this.Name.FirstName[0].ToString().ToUpper();
             }
         }
+
+        [XmlAttribute("ProfilePicture")]
+        public string ProfilePicture { get; set; }
     }
 }
 

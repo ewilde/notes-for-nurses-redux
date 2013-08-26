@@ -74,7 +74,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common {
 			this.nameLabel.Text = patient.Name.ToString();
 			this.companyLabel.Text = "COMPANY NAME?";
 
-            this.image.Image = ImageLoader.DefaultRequestImage(new Uri("https://en.gravatar.com/avatar/196d33ea9cdaf7817b98b981afe62c16?s=100"), this);			
+            this.image.Image = UIImage.FromBundle(patient.ProfilePicture);
 		}
 
 		public void UpdatedImage (Uri uri)

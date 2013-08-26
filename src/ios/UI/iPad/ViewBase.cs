@@ -78,11 +78,18 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad
             return this.GetLineHeight(view.Font);
         }
 
-        protected RectangleF AlignBottom(UIView label, float width = 0)
+        protected RectangleF AlignTop(UIView label, float width = 0, float height = 0)
         {
             return new RectangleF(this.LeftMargin(label), label.Frame.Top,
-                width > 0 ? width : this.HalfScreenWidth(), label.Frame.Height);
+                width > 0 ? width : this.HalfScreenWidth(), height > 0 ? height :label.Frame.Height);
         }
+
+        protected RectangleF AlignBottom(UIView label, float height, float width = 0)
+        {
+            return new RectangleF(this.LeftMargin(label), label.Frame.Bottom - height,
+                                  width > 0 ? width : this.HalfScreenWidth(), height);
+        }
+
 
         protected bool Editable { get; set; }
 
