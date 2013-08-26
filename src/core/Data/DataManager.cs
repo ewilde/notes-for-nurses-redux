@@ -1,6 +1,7 @@
 namespace Edward.Wilde.Note.For.Nurses.Core.Data
 {
     using System.Collections.Generic;
+    using System.Linq;
 
     using Edward.Wilde.Note.For.Nurses.Core.Model;
     using Edward.Wilde.Note.For.Nurses.Core.Service;
@@ -36,7 +37,12 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
 
         public void SavePatients(IEnumerable<Patient> items)
         {
-            this.PatientDatabase.SaveItems<Patient>(items);
+            IEnumerable<Patient> patients = items as IList<Patient> ?? items.ToList();
+            this.PatientDatabase.SaveItems<Patient>(patients);
+            foreach (var patient in patients)
+            {
+                patient.OnItemUpdated();
+            }
         }
 
         public int DeletePatient(int id)
@@ -74,6 +80,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
         public void SavePatient(Patient patient)
         {
             this.PatientDatabase.SavePatient(patient);
+            patient.OnItemUpdated();
         }
 
         public void SaveSetting(Setting setting)

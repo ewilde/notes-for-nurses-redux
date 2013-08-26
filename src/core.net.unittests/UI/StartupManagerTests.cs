@@ -24,6 +24,7 @@ namespace core.net.tests.UI
     {
         Establish context = () =>
             {
+                With<StartupManagerWithMockedDependants>();
                 With<PatientFileUpdateManagerBehaviour>();
                 With<ExistingSettings>();
                 With<DeviceInsideGeofence>();
@@ -49,6 +50,7 @@ namespace core.net.tests.UI
     {
         Establish context = () =>
             {
+                With<StartupManagerWithMockedDependants>();
                 With<PatientFileUpdateManagerBehaviour>();
                 With<NoExistingSettings>();
                 With<DeviceInsideGeofence>();
@@ -58,7 +60,7 @@ namespace core.net.tests.UI
 
         It should_show_the_configuration_screen = () =>
             {
-                The<IScreenController>().WasToldTo(call => call.StartConfiguration());
+                The<IScreenController>().WasToldTo(call => call.ConfigurationStart());
             };
 
         It should_not_show_the_home_screen = () =>
@@ -71,6 +73,7 @@ namespace core.net.tests.UI
     {
         Establish context = () =>
             {
+                With<StartupManagerWithMockedDependants>();
                 With<PatientFileUpdateManagerBehaviour>();
                 With<ExistingSettings>();
                 With<DeviceInsideGeofence>();
@@ -90,7 +93,7 @@ namespace core.net.tests.UI
 
         It should_not_show_the_configuration_screen = () =>
             {
-                The<IScreenController>().WasNotToldTo(call => call.StartConfiguration());
+                The<IScreenController>().WasNotToldTo(call => call.ConfigurationStart());
             };
     }
 
@@ -98,6 +101,7 @@ namespace core.net.tests.UI
     {
         Establish context = () =>
         {
+            With<StartupManagerWithMockedDependants>();
             With<PatientFileUpdateManagerBehaviour>();
             With<ExistingSettings>();
             With<DeviceOutsideGeofence>();
@@ -120,6 +124,7 @@ namespace core.net.tests.UI
     {
         Establish context = () =>
         {
+            With<StartupManagerWithMockedDependants>();
             With<PatientFileUpdateManagerBehaviour>();
             With<ExistingSettings>();
             With<DeviceInsideGeofence>();

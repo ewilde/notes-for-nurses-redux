@@ -65,7 +65,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common {
 		{
 			if (this.splitViewController != null)
 			{
-			    this.splitViewController.ShowPatient (this.patient.Id);
+			    this.splitViewController.ShowPatient (this.patient);
 			}
 			else 
             {

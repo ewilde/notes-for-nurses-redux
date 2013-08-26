@@ -55,6 +55,25 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Model
             {
                 return string.Format("{0} {1}", this.FirstName, this.LastName);
             }
+            set
+            {
+                this.FirstName = string.Empty;
+                this.LastName = string.Empty;
+                var words = value.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                for (int i = 0; i < words.Length; i++)
+                {
+                    if (i < words.Length - 1 || words.Length == 1)
+                    {
+                        this.FirstName = string.IsNullOrEmpty(this.FirstName)
+                            ? words[i]
+                            : this.FirstName + " " + words[i];
+                    }
+                    else
+                    {
+                        this.LastName = words[i];
+                    }
+                }
+            }
         }
 
         /// <summary>

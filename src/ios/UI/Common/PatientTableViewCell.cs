@@ -24,7 +24,8 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common {
 		public PatientTableViewCell (UITableViewCellStyle style, NSString ident, Patient showPatient) : base (style, ident)
 		{
 			this.SelectionStyle = UITableViewCellSelectionStyle.Blue;
-			
+		    showPatient.ItemUpdated += (sender, args) => this.UpdateCell(showPatient);
+
 			this.nameLabel = new UILabel () {
 				TextAlignment = UITextAlignment.Left,
 				Font = bigFont,
@@ -39,7 +40,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common {
 
 			this.image = new UIImageView();
 
-			this.UpdateCell (showPatient);
+			this.UpdateCell(showPatient);
 			
 			this.ContentView.Add (this.nameLabel);
 			this.ContentView.Add (this.companyLabel);

@@ -1,13 +1,38 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone.5.1" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="core/UI/StartupManager.cs">
+    <Files>
+      <File FileName="ios/Xamarin/UI/Controls/ActionSheetDatePicker.cs" Line="144" Column="60" />
+      <File FileName="core/UI/StartupManager.cs" Line="66" Column="1" />
+      <File FileName="core/UI/IScreenController.cs" Line="10" Column="9" />
+      <File FileName="ios/UI/ScreenController.cs" Line="18" Column="5" />
+      <File FileName="ios/UI/Common/Map/MapConfigurationViewController.cs" Line="135" Column="36" />
+      <File FileName="core/Service/SessionContext.cs" Line="11" Column="5" />
+      <File FileName="core/Data/SettingsManager.cs" Line="57" Column="101" />
+      <File FileName="ios/Main.cs" Line="15" Column="1" />
+      <File FileName="ios/UI/iPad/DatePickerPopover.cs" Line="43" Column="13" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
+          <Node name="core.monotouch" expanded="True">
+            <Node name="Data" expanded="True" />
+            <Node name="Service" expanded="True" />
+            <Node name="UI" expanded="True">
+              <Node name="StartupManager.cs" selected="True" />
+            </Node>
+          </Node>
           <Node name="core.net.integrationtests" expanded="True">
             <Node name="Data" expanded="True" />
           </Node>
-          <Node name="ios" expanded="True" selected="True" />
+          <Node name="ios" expanded="True">
+            <Node name="UI" expanded="True">
+              <Node name="Common" expanded="True">
+                <Node name="Pincode" expanded="True" />
+              </Node>
+              <Node name="iPad" expanded="True" />
+            </Node>
+          </Node>
         </State>
       </Pad>
     </Pads>

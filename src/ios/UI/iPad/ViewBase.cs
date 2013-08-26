@@ -1,6 +1,7 @@
 namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad
 {
     using System;
+    using System.Diagnostics;
     using System.Drawing;
 
     using MonoTouch.UIKit;
@@ -87,15 +88,17 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad
 
         protected UITextField CreateEditableTextField()
         {
-            return new UITextField () {
-                                          ShouldBeginEditing = field => this.Editable,
-                                          TextAlignment = UITextAlignment.Left,
-                                          Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font16pt),
-                                          BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f)
-                                      };
+            var textField = new UITextField () {
+                                                           ShouldBeginEditing = field => this.Editable,
+                                                           TextAlignment = UITextAlignment.Left,
+                                                           Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font16pt),
+                                                           BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f)
+                                                       };
+            this.ApplyDebugUIAttributes(textField);
+            return textField;
         }
 
-        protected static UILabel CreateLabel(string text = null, UITapGestureRecognizer tapGestureRecognizer = null)
+        protected UILabel CreateLabel(string text = null, UITapGestureRecognizer tapGestureRecognizer = null)
         {
             var label = new UILabel {
                                         Text = text,                                      
@@ -111,7 +114,15 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad
                 label.AddGestureRecognizer(tapGestureRecognizer);
             }
 
+            this.ApplyDebugUIAttributes(label);
             return label;
+        }
+
+        [Conditional("UI_DEBUG")]
+        protected void ApplyDebugUIAttributes(UIView view)
+        {
+            view.Layer.BorderColor = UIColor.Red.CGColor;
+            view.Layer.BorderWidth = 1;
         }
     }
 }

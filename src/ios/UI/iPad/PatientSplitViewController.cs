@@ -1,5 +1,6 @@
 namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
     using Edward.Wilde.Note.For.Nurses.Core;
+    using Edward.Wilde.Note.For.Nurses.Core.Model;
     using Edward.Wilde.Note.For.Nurses.Core.UI;
 
     using MonoTouch.UIKit;
@@ -12,33 +13,34 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
     public class PatientSplitViewController : IntelligentSplitViewController {
         public IObjectFactory ObjectFactory { get; set; }
 
-        PatientListViewController speakersList;
-		PatientDetailViewController speakerDetailViewControllerWithSession;
+        PatientListViewController patientListController;
+		PatientDetailViewController patientDetailController;
 		
 		public PatientSplitViewController(IObjectFactory objectFactory)
 		{
 		    this.ObjectFactory = objectFactory;
-		    this.Delegate = new SpeakerSplitViewDelegate();
+		    this.Delegate = new PatientSplitViewDelegate();
 
-            this.speakersList = this.ObjectFactory.Create<PatientListViewController>(new NamedParameterOverloads { { "patientSplitViewController", this } });
-			this.speakerDetailViewControllerWithSession = this.ObjectFactory.Create<PatientDetailViewController>(new NamedParameterOverloads{{"patientId", -1}});
+            this.patientListController = this.ObjectFactory.Create<PatientListViewController>(new NamedParameterOverloads { { "patientSplitViewController", this } });
+			this.patientDetailController = this.ObjectFactory.Create<PatientDetailViewController>();
 			
 			this.ViewControllers = new UIViewController[]
-				{this.speakersList, this.speakerDetailViewControllerWithSession};
+				{this.patientListController, this.patientDetailController};
 		}
 
-		public void ShowPatient (int speakerID)
+		public void ShowPatient (Patient patient)
 		{
-			this.speakerDetailViewControllerWithSession = this.ViewControllers[1] as PatientDetailViewController;
-			this.speakerDetailViewControllerWithSession.Update(speakerID);
+			this.patientDetailController = this.ViewControllers[1] as PatientDetailViewController;
+			this.patientDetailController.Update(patient);
 		}
+
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
         {
             return true;
         }
 	}
 
- 	public class SpeakerSplitViewDelegate : UISplitViewControllerDelegate
+ 	public class PatientSplitViewDelegate : UISplitViewControllerDelegate
     {
 		public override bool ShouldHideViewController (UISplitViewController svc, UIViewController viewController, UIInterfaceOrientation inOrientation)
 		{

@@ -8,6 +8,8 @@ namespace core.net.tests.Data
 {
     using System.Collections.Generic;
 
+    using core.net.tests.Data.Behaviors;
+
     using Edward.Wilde.Note.For.Nurses.Core.Service;
 
     using Machine.Fakes;
@@ -21,16 +23,21 @@ namespace core.net.tests.Data
     [Subject(typeof(DataManager), "saving")]
     public class When_saving_patient_entity : WithConcreteSubject<DataManager, IDataManager>
     {
-        static Patient patient;
+        public static Patient Entity;
         
         Establish context = () =>
-            patient = new Patient { Name = new Name { FirstName = "Bob", LastName = "Moore" } };
-                        
-
-        Because of = () => Subject.SavePatient(patient);
+        {
+            Entity = The<Patient>();
+            With(new EntityThatFiresChangedEvent<DataManager>(Entity));
+        };
+                       
+        Because of = () => Subject.SavePatient(Entity);
 
         It should_call_patient_database_to_save_the_item = () => 
-            The<IPatientDatabase>().WasToldTo(call => call.SavePatient(patient));
+            The<IPatientDatabase>().WasToldTo(call => call.SavePatient(Entity));
+
+        It should_raise_the_item_updated_event =
+            () => Entity.WasToldTo(call => call.OnItemUpdated());
     }
 
     [Subject(typeof(DataManager), "Subject")]

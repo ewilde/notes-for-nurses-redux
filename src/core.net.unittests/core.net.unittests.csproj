@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContextBase.cs" />
+    <Compile Include="Data\Contexts\EntityThatFiresChangedEvent.cs" />
     <Compile Include="Data\Contexts\DataManagerWithSomeSettings.cs" />
     <Compile Include="Data\SettingsManagerTests.cs" />
     <Compile Include="Data\DataManagerTests.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="UI\Contexts\NoExistingSettings.cs" />
     <Compile Include="UI\Contexts\ExistingSettings.cs" />
     <Compile Include="UI\Contexts\PatientFileUpdateManagerBehaviour.cs" />
+    <Compile Include="UI\Contexts\StartupManagerWithMockedDependants.cs" />
     <Compile Include="UI\StartupManagerTests.cs" />
     <Compile Include="WithConcreteSubject.cs" />
     <Compile Include="WithSubjectAndResult.cs" />
@@ -111,7 +113,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Data\Behaviors\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

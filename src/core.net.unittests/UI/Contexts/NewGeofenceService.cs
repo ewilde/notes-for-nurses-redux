@@ -29,7 +29,7 @@ namespace core.net.tests.UI
                 InsideFenceEventFiredCount = 0;
                 
                 FakeAccessor = engine;
-                FakeAccessor.Configure<ILocationListener>(engine.An<MockLocationListener>());
+                FakeAccessor.Configure<ILocationListener>(engine.The<MockLocationListener>());
 
                 ContextBase.Subject<GeofenceService>().OutsideFence += (sender, args) =>
                     { 

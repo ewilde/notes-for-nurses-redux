@@ -117,7 +117,10 @@ namespace core.net.tests.Service
         
         Because of = () =>
             {
-                Result = Subject.Initialize();
+                var task = Task.Factory.StartNew(() => Result = Subject.Initialize());
+                NewGeofenceService.LocationChanged(LocationListInsideFence.NewLocations);
+
+                task.Wait();
             };
 
         It should_tell_the_location_listener_to_start_listening = () =>
@@ -136,7 +139,7 @@ namespace core.net.tests.Service
         Because of = () => Subject.Dispose();
 
         It should_tell_the_location_listener_to_stop_listening = () => 
-            The<MockLocationListener>().WasNotToldTo(call=> call.StopListening());
+            The<MockLocationListener>().WasToldTo(call=> call.StopListening());
     }
 
     [Subject(typeof(GeofenceService), "initialize")]

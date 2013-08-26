@@ -6,6 +6,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
     using Edward.Wilde.Note.For.Nurses.Core.Model;
     using Edward.Wilde.Note.For.Nurses.iOS.Xamarin.UI.Controls;
 
+    using MonoTouch.Foundation;
     using MonoTouch.UIKit;
     using MonoTouch.Dialog.Utilities;
 
@@ -26,36 +27,25 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
 
         private readonly UIImageView image;
 
-        private int patientId;
-
         private Patient patient;
 
         private EmptyOverlay emptyOverlay;
 
-        public PatientDetailView(IPatientManager patientManager, int patientId)
-		{
-		    this.PatientManager = patientManager;
-		    this.patientId = patientId;
+        private NSDate editingDateOfBirth;
 
-			this.BackgroundColor = UIColor.White;
+        public PatientDetailView()
+		{
+		    this.BackgroundColor = UIColor.White;
 		    
             this.image = new UIImageView();
             this.nameField = this.CreateEditableTextField();
-            /*var actionSheetDatePicker = new ActionSheetDatePicker(this);
-            actionSheetDatePicker.Title = "Choose Date:";
-            actionSheetDatePicker.DatePicker.Mode = UIDatePickerMode.Date;
-            actionSheetDatePicker.DatePicker.ValueChanged += (s, e) =>
+            
+            var datePickerPopover = new DatePickerPopover(this);
+            datePickerPopover.DatePicker.Mode = UIDatePickerMode.Date;
+            datePickerPopover.DatePicker.ValueChanged += (s, e) =>
             {
-                this.patient.DateOfBirth = (s as UIDatePicker).Date;
-                this.Update();
-            };
-             * */
-            var datePicker = new DatePickerPopover(this);
-            datePicker.DatePicker.Mode = UIDatePickerMode.Date;
-            datePicker.DatePicker.ValueChanged += (s, e) =>
-            {
-                this.patient.DateOfBirth = (s as UIDatePicker).Date;
-                this.Update();
+                this.editingDateOfBirth = (s as UIDatePicker).Date;
+                this.UpdateDateOfBirthLabel(this.editingDateOfBirth);
             };
             this.dateOfBirthLabel = CreateLabel(text: "date of birth:");
             this.dateOfBirthField = CreateLabel(tapGestureRecognizer: new UITapGestureRecognizer(
@@ -66,15 +56,15 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
                         return;
                     }
 
-                    datePicker.Show(this.dateOfBirthField);
+                    datePickerPopover.DatePicker.Date = this.patient.DateOfBirth;
+                    datePickerPopover.Show(this.dateOfBirthField);
                 }));
 
             this.AddSubview(this.nameField);
+			this.AddSubview(this.dateOfBirthLabel);
 			this.AddSubview(this.dateOfBirthField);
 			this.AddSubview(this.image);	
 		}
-
-        public IPatientManager PatientManager { get; set; }
 
         public override void LayoutSubviews ()
 		{
@@ -104,11 +94,10 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
 
         // for masterdetail
 
-        public void Update(int speakerID)
+        public void Update(Patient patient)
 		{
-			this.patientId = speakerID;
-			this.patient = this.PatientManager.GetById(this.patientId);
-			this.Update ();
+			this.patient = patient;
+			this.Update();
 			this.LayoutSubviews ();
 		}
 
@@ -127,17 +116,38 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
 
 		    this.image.Image = ImageLoader.DefaultRequestImage(new Uri("https://en.gravatar.com/avatar/196d33ea9cdaf7817b98b981afe62c16?s=100"), this);
 		    this.nameField.Text = this.patient.Name.ToString();
-		    this.dateOfBirthField.Text = this.patient.DateOfBirth.ToString("d", CultureInfo.CurrentCulture);
+		    this.UpdateDateOfBirthLabel(this.patient.DateOfBirth);
 		}
+
+        private void UpdateDateOfBirthLabel(DateTime dateOfBirth)
+        {
+            this.dateOfBirthField.Text = dateOfBirth.ToString("d", CultureInfo.CurrentCulture);
+        }
 
         public void UpdatedImage (Uri uri)
 		{
 			this.image.Image = ImageLoader.DefaultRequestImage(uri, this);
 		}
 
-        public void ShowEditMode()
+        public void StartEditing()
         {
             this.Editable = true;
+        }
+
+        public void FinishedEditing()
+        {
+            this.Editable = false;
+
+            // update patient object
+            if (this.editingDateOfBirth != null)
+            {
+                this.patient.DateOfBirth = this.editingDateOfBirth;
+            }
+
+            this.patient.Name.DisplayName = this.nameField.Text;
+
+            // reset ui to look like read-mode
+            this.nameField.EndEditing(true);
         }
     }
 }

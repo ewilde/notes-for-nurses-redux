@@ -205,7 +205,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS
                 if (majorVersion >= 5)
                 {
                     // gotta love Appearance in iOS5
-                    UINavigationBar.Appearance.TintColor = ColorNavBarTint;
+                    // UINavigationBar.Appearance.TintColor = ColorNavBarTint;
                 }
 
                 this.ObjectFactory.Create<IStartupManager>().Run();

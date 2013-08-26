@@ -50,4 +50,40 @@ namespace core.net.tests.Model
 
         It should_return_more_than_zero_for_a_name_alphabetically_after_the_item_being_compared = () => Result.ShouldEqual((int)CompareResult.MoreThan);
     }
+
+    [Subject(typeof(Name), "Setting first and last name")]
+    public class When_setting_the_first_and_last_name_from_a_display_name_with_two_words : WithSubject<Name>
+    {
+        Establish context = () => Subject = new Name();
+
+        Because of = () => Subject.DisplayName = "Ben Hur";
+
+        It should_set_the_first_name_taking_the_first_word = () => Subject.FirstName.ShouldEqual("Ben");
+
+        It should_set_the_last_name_taking_the_second_word = () => Subject.LastName.ShouldEqual("Hur");
+    }
+
+    [Subject(typeof(Name), "Setting first and last name")]
+    public class When_setting_the_first_and_last_name_from_a_display_name_with_one_words : WithSubject<Name>
+    {
+        Establish context = () => Subject = new Name();
+
+        Because of = () => Subject.DisplayName = "Ben";
+
+        It should_set_the_first_name_taking_the_first_word = () => Subject.FirstName.ShouldEqual("Ben");
+
+        It should_set_the_last_name_to_string_empty = () => Subject.LastName.ShouldEqual(string.Empty);
+    }
+
+    [Subject(typeof(Name), "Setting first and last name")]
+    public class When_setting_the_first_and_last_name_from_a_display_name_with_three_or_more_words : WithSubject<Name>
+    {
+        Establish context = () => Subject = new Name();
+
+        Because of = () => Subject.DisplayName = "Ben James Erlend Oye";
+
+        It should_set_the_first_name_taking_all_but_the_last_word = () => Subject.FirstName.ShouldEqual("Ben James Erlend");
+
+        It should_set_the_last_name_to_string_empty = () => Subject.LastName.ShouldEqual("Oye");
+    }
 }

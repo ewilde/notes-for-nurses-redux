@@ -1,5 +1,7 @@
 namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
     using Edward.Wilde.Note.For.Nurses.Core;
+    using Edward.Wilde.Note.For.Nurses.Core.Data;
+    using Edward.Wilde.Note.For.Nurses.Core.Model;
     using Edward.Wilde.Note.For.Nurses.Core.UI;
 
     using MonoTouch.UIKit;
@@ -12,9 +14,6 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
         public IObjectFactory ObjectFactory { get; set; }
 
         UINavigationBar navBar;
-
-		int patientId;
-
 	    PatientDetailView patientDetailView;
 
 		int colWidth1 = 335;
@@ -22,23 +21,28 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
 	
 		public UIPopoverController Popover;
 
-		public PatientDetailViewController(IObjectFactory objectFactory, int patientId)
+        private Patient currentPatient;
+
+        public IPatientManager PatientManager { get; set; }
+
+        public PatientDetailViewController(IObjectFactory objectFactory)
 		{
 		    this.ObjectFactory = objectFactory;
-		    this.patientId = patientId;
+		    this.PatientManager = this.ObjectFactory.Create<IPatientManager>();
 			
 			this.navBar = new UINavigationBar(new RectangleF(0,0,768, 44));
+            this.navBar.AutoresizingMask = UIViewAutoresizing.FlexibleWidth;
 			this.navBar.SetItems(
                 new[]
                 {
                     new UINavigationItem("Patient & Session Info")
                 },false);
 			
-            this.navBar.TopItem.SetRightBarButtonItem(new UIBarButtonItem(UIBarButtonSystemItem.Edit, (sender, args) => this.patientDetailView.ShowEditMode()), false);
+            this.navBar.TopItem.SetRightBarButtonItem(this.EditButtonItem, false);
 			this.View.BackgroundColor = UIColor.LightGray;
 			this.View.Frame = new RectangleF(0,0,768,768);
 
-            this.patientDetailView = this.ObjectFactory.Create<PatientDetailView>(new NamedParameterOverloads { { "patientId", -1 } });
+            this.patientDetailView = this.ObjectFactory.Create<PatientDetailView>();
 			this.patientDetailView.Frame = new RectangleF(0,44,this.colWidth1 + this.colWidth2, 728);
 			this.patientDetailView.AutoresizingMask = UIViewAutoresizing.FlexibleHeight;
 
@@ -47,10 +51,30 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
 			this.View.AddSubview (this.navBar);
 		}
 
-		public void Update(int patientId)
+        public override void SetEditing(bool editing, bool animated)
+        {
+            base.SetEditing(editing, animated);
+
+            if (editing)
+            {
+                this.patientDetailView.StartEditing();
+            }
+            else
+            {
+                this.patientDetailView.FinishedEditing();
+                this.Save();
+            }
+        }
+
+        private void Save()
+        {
+            this.PatientManager.Save(this.currentPatient);
+        }
+
+        public void Update(Patient patient)
 		{
-			this.patientId = patientId;
-			this.patientDetailView.Update (patientId);
+			this.currentPatient = patient;
+            this.patientDetailView.Update(this.currentPatient);
 			this.patientDetailView.SetNeedsDisplay();
 			
 

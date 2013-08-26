@@ -1,5 +1,7 @@
 namespace Edward.Wilde.Note.For.Nurses.Core.Xamarin.Contracts
 {
+    using System;
+
     using SQLite;
 
     /// <summary>
@@ -16,6 +18,17 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Xamarin.Contracts
 		[PrimaryKey, AutoIncrement]
 		[System.Xml.Serialization.XmlIgnore]
         public int Id { get; set; }
+
+        public event EventHandler<EventArgs> ItemUpdated;
+
+        public virtual void OnItemUpdated()
+        {
+            var handler = this.ItemUpdated;
+            if (handler != null)
+            {
+                handler(this, EventArgs.Empty);
+            }
+        }
 	}
 }
 
