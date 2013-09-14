@@ -4,14 +4,14 @@
 
     public class ObjectFactory : IObjectFactory
     {
-        public TView Create<TView>() where TView : class
+        public TInstance Create<TInstance>() where TInstance : class
         {
-            return TinyIoC.TinyIoCContainer.Current.Resolve<TView>();
+            return TinyIoC.TinyIoCContainer.Current.Resolve<TInstance>();
         }
 
-        public TView Create<TView>(NamedParameterOverloads parameterOverloads) where TView : class
+        public TInstance Create<TInstance>(NamedParameterOverloads parameterOverloads) where TInstance : class
         {
-            return TinyIoC.TinyIoCContainer.Current.Resolve<TView>(parameterOverloads);
+            return TinyIoC.TinyIoCContainer.Current.Resolve<TInstance>(parameterOverloads);
         }
     }
 }

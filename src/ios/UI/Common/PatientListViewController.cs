@@ -95,15 +95,15 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common {
 	/// Implement index
 	/// </summary>
 	public class PatientListTableSource : DialogViewController.SizingSource {
-		IList<Patient> speakerList;
-		public PatientListTableSource (DialogViewController dvc, IList<Patient> speakers) : base(dvc)
+		IList<Patient> patientList;
+		public PatientListTableSource (DialogViewController dvc, IList<Patient> patients) : base(dvc)
 		{
-			this.speakerList = speakers;
+			this.patientList = patients;
 		}
 
 		public override string[] SectionIndexTitles (UITableView tableView)
 		{
-			var sit = from speaker in this.speakerList
+			var sit = from speaker in this.patientList
                     group speaker by (speaker.Index) into alpha
 						orderby alpha.Key
 						select alpha.Key;

@@ -1,42 +1,24 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone.5.1" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ios/UI/iPad/PatientDetailView.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="core\Data\PatientDatabase.cs">
     <Files>
-      <File FileName="ios/UI/iPad/PatientDetailViewController.cs" Line="71" Column="1" />
-      <File FileName="ios/UI/iPad/PatientDetailView.cs" Line="85" Column="1" />
-      <File FileName="ios/UI/iPad/ViewBase.cs" Line="87" Column="70" />
-      <File FileName="ios/UI/Common/PatientTableViewCell.cs" Line="77" Column="1" />
-      <File FileName="core/Data/PatientDatabase.cs" Line="55" Column="29" />
+      <File FileName="ios\UI\iPad\PatientDetailViewController.cs" Line="1" Column="1" />
+      <File FileName="ios\UI\iPad\PatientDetailView.cs" Line="85" Column="1" />
+      <File FileName="ios\UI\iPad\ViewBase.cs" Line="1" Column="1" />
+      <File FileName="ios\UI\Common\PatientTableViewCell.cs" Line="1" Column="1" />
+      <File FileName="core\Data\PatientDatabase.cs" Line="55" Column="26" />
+      <File FileName="core\Service\Location\IDistanceCalculatorService.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="core.monotouch" expanded="True">
-            <Node name="Data" expanded="True" />
-            <Node name="Service" expanded="True" />
-            <Node name="UI" expanded="True" />
-            <Node name="Xamarin" expanded="True">
-              <Node name="Contracts" expanded="True" />
-            </Node>
-          </Node>
-          <Node name="core.net" expanded="True">
-            <Node name="Service" expanded="True">
-              <Node name="Location" expanded="True" />
-            </Node>
-          </Node>
+          <Node name="core.monotouch" expanded="True" />
+          <Node name="core.net" expanded="True" />
           <Node name="core.net.integrationtests" expanded="True">
             <Node name="Data" expanded="True" />
           </Node>
           <Node name="core.net.unittests" expanded="True" />
-          <Node name="ios" expanded="True">
-            <Node name="Images" expanded="True" />
-            <Node name="UI" expanded="True">
-              <Node name="Common" expanded="True" />
-              <Node name="iPad" expanded="True">
-                <Node name="PatientDetailView.cs" selected="True" />
-              </Node>
-            </Node>
-          </Node>
+          <Node name="ios" expanded="True" />
         </State>
       </Pad>
     </Pads>

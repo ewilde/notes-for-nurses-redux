@@ -116,6 +116,7 @@
   <ItemGroup>
     <None Include="Data\Data.Class.Diagram.cd" />
     <None Include="Model\Model.Class.Diagram.cd" />
+    <None Include="Service\Service.Class.Diagram.cd" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

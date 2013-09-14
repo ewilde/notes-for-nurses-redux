@@ -3,13 +3,13 @@
   <Class Name="Edward.Wilde.Note.For.Nurses.Core.Data.DataManager" BaseTypeListCollapsed="true">
     <Position X="0.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAQAAQAAAAQAAAAAAAAAAAACEABEAAAAAAAAAACA=</HashCode>
+      <HashCode>AAAAAQgAQAAAAQAgAAAAAAAAAACEABEAABAAAAAAACA=</HashCode>
       <FileName>Data\DataManager.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Edward.Wilde.Note.For.Nurses.Core.Data.PatientDatabase" BaseTypeListCollapsed="true">
-    <Position X="8.25" Y="4.5" Width="1.5" />
+    <Position X="10.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAEQEgIAAABAAAAAAACAAAAABAAAAAAAAAAACA=</HashCode>
       <FileName>Data\PatientDatabase.cs</FileName>
@@ -17,7 +17,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Edward.Wilde.Note.For.Nurses.Core.Data.PatientFileUpdateManager" BaseTypeListCollapsed="true">
-    <Position X="5.25" Y="1.75" Width="2.25" />
+    <Position X="7.5" Y="1.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>IAQAAAAAAAAAAAAAEAAAAAAgAICAAEAAAAAIAIAAAAA=</HashCode>
       <FileName>Data\PatientFileUpdateManager.cs</FileName>
@@ -33,7 +33,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Edward.Wilde.Note.For.Nurses.Core.Xamarin.Data.XamarinDatabase" Collapsed="true">
-    <Position X="8.25" Y="3" Width="1.5" />
+    <Position X="10.5" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAFAAAAAAAAAAEABAQAAABAAAAAAAgABAQAAAAAAAAA=</HashCode>
       <FileName>Xamarin\Data\XamarinDatabase.cs</FileName>
@@ -41,51 +41,80 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="System.Object" Collapsed="true">
-    <Position X="4.5" Y="0.5" Width="1.5" />
+    <Position X="5.5" Y="0.5" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Class Name="SQLite.SQLiteConnection" Collapsed="true">
-    <Position X="8.25" Y="1.75" Width="1.5" />
+    <Position X="10.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAEEABACnQiAbrFBAEQAQQCAWIgRoBUYAIgBCAAlU=</HashCode>
       <FileName>C:\dev\notes-for-nurses-redux\src\sqlite\src\SQLite.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Interface Name="Edward.Wilde.Note.For.Nurses.Core.Data.IDataManager">
-    <Position X="4.5" Y="6.75" Width="1.5" />
+  <Class Name="Edward.Wilde.Note.For.Nurses.Core.Data.SettingsManager">
+    <Position X="5.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAQAAQAAAAAAAAAAAAAAAAACEABAAAAAAAAAAACA=</HashCode>
+      <HashCode>AAAAAIAAAAAAAQBAAAAAAAAgAAAAABAAAEAAAABAAAA=</HashCode>
+      <FileName>Data\SettingsManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Edward.Wilde.Note.For.Nurses.Core.Data.UpdateFinishedEventArgs" Collapsed="true">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\UpdateFinishedEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Edward.Wilde.Note.For.Nurses.Core.Data.IDataManager" Collapsed="true">
+    <Position X="13" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQgAQAAAAAAgAAAAAAAAAACEABAAAAAAAAAAACA=</HashCode>
       <FileName>Data\IDataManager.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Edward.Wilde.Note.For.Nurses.Core.Data.IPatientDatabase">
-    <Position X="0.5" Y="6.75" Width="1.5" />
+    <Position X="13.25" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAQEgIAAAAAAAAAAAAAAAAABAAAAAAAACAACA=</HashCode>
       <FileName>Data\IPatientDatabase.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Edward.Wilde.Note.For.Nurses.Core.Data.IPatientFileUpdateManager">
-    <Position X="6.5" Y="6.75" Width="1.5" />
+  <Interface Name="Edward.Wilde.Note.For.Nurses.Core.Data.IPatientFileUpdateManager" Collapsed="true">
+    <Position X="14.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAEAAAAAAAAIAAAEAAAAAAAIAAAAA=</HashCode>
       <FileName>Data\IPatientFileUpdateManager.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Edward.Wilde.Note.For.Nurses.Core.Data.IPatientManager">
-    <Position X="2.5" Y="6.75" Width="1.5" />
+  <Interface Name="Edward.Wilde.Note.For.Nurses.Core.Data.IPatientManager" Collapsed="true">
+    <Position X="13" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAIAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
       <FileName>Data\IPatientManager.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Edward.Wilde.Note.For.Nurses.Core.Xamarin.Data.IXamarinDatabase" Collapsed="true">
-    <Position X="0.5" Y="5.5" Width="1.5" />
+    <Position X="13.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAFAAAAAAAAAAEABBQAAAAQAAAAAAgAAAQAAAAAAAAA=</HashCode>
       <FileName>Xamarin\Data\IXamarinDatabase.cs</FileName>
     </TypeIdentifier>
   </Interface>
+  <Interface Name="Edward.Wilde.Note.For.Nurses.Core.Data.ISettingsManager" Collapsed="true">
+    <Position X="14.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAQBAAAAAAAAAAAAAABAAAEAAAAAAAAA=</HashCode>
+      <FileName>Data\ISettingsManager.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Edward.Wilde.Note.For.Nurses.Core.Data.UpdateType" Collapsed="true">
+    <Position X="13" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Data\UpdateFinishedEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

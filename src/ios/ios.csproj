@@ -218,6 +218,7 @@
     <Content Include="Images\Profiles\picture%2898%29" />
     <Content Include="Images\Profiles\picture%2899%29" />
     <Content Include="Images\Profiles\picture%28100%29" />
+    <None Include="UI\UI.Class.Diagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
