@@ -35,7 +35,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.iPad {
 			this.navBar.SetItems(
                 new[]
                 {
-                    new UINavigationItem("Patient & Session Info")
+                    new UINavigationItem("Patient Information")
                 },false);
 			
             this.navBar.TopItem.SetRightBarButtonItem(this.EditButtonItem, false);

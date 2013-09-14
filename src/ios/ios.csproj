@@ -103,6 +103,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Mono.Data.Sqlcipher, Version=2.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Components\sqlcipher-for-xamarin-2.1.1.4\lib\ios\Mono.Data.Sqlcipher.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -110,9 +114,6 @@
     <Reference Include="MonoTouch.Dialog-1" />
     <Reference Include="PincodeBinding">
       <HintPath>..\lib\debug\PincodeBinding.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Data.Sqlcipher">
-      <HintPath>..\Components\sqlcipher-for-xamarin-2.1.1.4\lib\ios\Mono.Data.Sqlcipher.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -261,7 +262,6 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <ItemGroup>
     <XamarinComponentReference Include="sqlcipher-for-xamarin">
-      <InstallationInProgress>False</InstallationInProgress>
       <Version>2.1.1.4</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>

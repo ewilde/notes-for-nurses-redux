@@ -72,7 +72,7 @@ namespace Edward.Wilde.Note.For.Nurses.iOS.UI.Common {
 		public void UpdateCell (Patient patient)
 		{
 			this.nameLabel.Text = patient.Name.ToString();
-			this.companyLabel.Text = "COMPANY NAME?";
+			this.companyLabel.Text = "Class C";
 
             this.image.Image = UIImage.FromBundle(patient.ProfilePicture);
 		}
