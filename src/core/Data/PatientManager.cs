@@ -17,10 +17,10 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
             DataManager = dataManager;
         }
 
-        public void Update(IList<Patient> speakers)
+        public void Update(IList<Patient> patients)
         {
             this.DataManager.DeletePatients();
-            this.DataManager.SavePatients(speakers);
+            this.DataManager.SavePatients(patients);
 		}
 	
 		public IList<Patient> Get() 

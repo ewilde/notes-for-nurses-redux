@@ -9,7 +9,7 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
     /// </summary>
     public interface IPatientManager
     {
-        void Update(IList<Patient> speakers);
+        void Update(IList<Patient> patients);
 
         IList<Patient> Get();
 
@@ -17,4 +17,4 @@ namespace Edward.Wilde.Note.For.Nurses.Core.Data
 
         void Save(Patient patient);
     }
-}
+} 
